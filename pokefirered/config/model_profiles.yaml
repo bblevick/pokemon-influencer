@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "implementation_status": "HERMES-01 configurable Puppeteer loader + guarded actual Hermes runtime; strategy/System One remain configuration skeletons",
+  "default_profile": "offline",
+  "hosted_inference_enabled": false,
+  "credentials_env": "OPENROUTER_KEY",
+  "policy": {
+    "free_only": true,
+    "max_cost_usd": 0,
+    "allow_paid_fallback": false,
+    "allow_model_substitution": false,
+    "require_current_zero_pricing": true,
+    "fail_closed_on_unknown_pricing": true
+  },
+  "profiles": {
+    "development": {
+      "network_allowed_when_explicitly_enabled": false,
+      "roles": {
+        "puppeteer": {
+          "provider": "openrouter_chat",
+          "model_env": "POKEINFLUENCER_PUPPETEER_MODEL",
+          "default_model": "thinkingmachines/inkling:free",
+          "version_policy": "floating_free",
+          "fallback": "template-v1"
+        },
+        "strategy": {
+          "provider": "openrouter_chat",
+          "model_env": "POKEINFLUENCER_STRATEGY_MODEL",
+          "default_model": "nvidia/nemotron-3.5-lightning:free",
+          "version_policy": "floating_free",
+          "fallback": "template-v1"
+        },
+        "system1": {
+          "provider": "openrouter_systemone",
+          "model_env": "POKEINFLUENCER_SYSTEM1_MODEL",
+          "default_model": "inception/mercury-decide:free",
+          "version_policy": "floating_free",
+          "fallback": "heuristic-v1"
+        }
+      },
+      "activation_gate": "Pinned serving revisions unresolved; free aliases may be run only under the explicitly experimental profile."
+    },
+    "experimental": {
+      "network_allowed_when_explicitly_enabled": true,
+      "roles": {
+        "puppeteer": {
+          "provider": "openrouter_chat",
+          "model_env": "POKEINFLUENCER_PUPPETEER_MODEL",
+          "default_model": "thinkingmachines/inkling:free",
+          "version_policy": "floating_free",
+          "fallback": "template-v1"
+        },
+        "strategy": {
+          "provider": "openrouter_chat",
+          "model_env": "POKEINFLUENCER_STRATEGY_MODEL",
+          "default_model": "nvidia/nemotron-3.5-lightning:free",
+          "version_policy": "floating_free",
+          "fallback": "template-v1"
+        },
+        "system1": {
+          "provider": "openrouter_systemone",
+          "model_env": "POKEINFLUENCER_SYSTEM1_MODEL",
+          "default_model": "inception/mercury-decide:free",
+          "version_policy": "floating_free",
+          "fallback": "heuristic-v1"
+        }
+      }
+    },
+    "offline": {
+      "network_allowed_when_explicitly_enabled": false,
+      "roles": {
+        "puppeteer": {
+          "provider": "fake",
+          "model": "template-v1"
+        },
+        "strategy": {
+          "provider": "fake",
+          "model": "neutral-posture-v1"
+        },
+        "system1": {
+          "provider": "deterministic",
+          "model": "heuristic-v1"
+        }
+      }
+    }
+  },
+  "regression_reference": {
+    "enabled": false,
+    "provider": "openrouter_decisions",
+    "model": "typesafe/jev-1.13",
+    "version_policy": "versioned_reference",
+    "reason": "Paid input; excluded by free-only policy. No evaluation run."
+  },
+  "experimental_reference": {
+    "enabled": false,
+    "provider": "openrouter_decisions",
+    "model": "~typesafe/jev-latest",
+    "version_policy": "floating",
+    "reason": "Reference only; not approved by free-only policy."
+  }
+}

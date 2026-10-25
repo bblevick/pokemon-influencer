@@ -1,0 +1,54 @@
+PYTHON ?= .venv/bin/python
+.PHONY: bridge-build bridge-build-disabled bridge-test bridge-launch bridge-host
+bridge-build:
+	$(PYTHON) tools/phase1_build.py
+bridge-build-disabled:
+	$(PYTHON) tools/phase1_build.py --disabled
+bridge-test:
+	$(PYTHON) tools/phase1_test.py
+bridge-launch:
+	$(PYTHON) tools/phase1_launch.py --start
+bridge-host:
+	$(PYTHON) tools/phase1_host.py --seconds 120
+
+# Retained live evidence checks; does not advertise a fresh full playthrough.
+.PHONY: bridge-verify-evidence
+bridge-verify-evidence:
+	$(PYTHON) tools/verify_phase0_save.py --manifest evidence/phase1/manifest-enabled.json --save .local/phase1-emulator/pokefirered.sav --report evidence/phase1/battery-save.json
+	$(PYTHON) tools/verify_phase1_emulator.py
+
+.PHONY: events-build events-build-disabled events-test events-launch events-host events-replay
+events-build:
+	$(PYTHON) tools/phase1_events_build.py
+events-build-disabled:
+	$(PYTHON) tools/phase1_events_build.py --disabled
+events-test:
+	$(PYTHON) tools/phase1_events_test.py
+events-launch:
+	$(PYTHON) tools/phase1_events_launch.py --start
+events-host:
+	$(PYTHON) tools/phase1_events_host.py --seconds 120
+events-replay:
+	$(PYTHON) tools/phase1_events_replay.py --log evidence/phase1/bridge02/events.jsonl --report evidence/phase1/bridge02/replay.json
+
+.PHONY: events-verify-evidence
+events-verify-evidence:
+	$(PYTHON) tools/verify_phase1_events_emulator.py
+
+.PHONY: ui-build ui-build-disabled ui-test ui-launch ui-host ui-acceptance ui-faults ui-verify-evidence
+ui-build:
+	$(PYTHON) tools/phase1_ui_build.py
+ui-build-disabled:
+	$(PYTHON) tools/phase1_ui_build.py --disabled
+ui-test:
+	$(PYTHON) tools/phase1_ui_test.py
+ui-launch:
+	$(PYTHON) tools/phase1_ui_launch.py --start
+ui-host:
+	$(PYTHON) tools/phase1_ui_host.py --seconds 1800
+ui-acceptance:
+	$(PYTHON) tools/phase1_ui_scenario.py acceptance
+ui-faults:
+	$(PYTHON) tools/phase1_ui_scenario.py faults
+ui-verify-evidence:
+	$(PYTHON) tools/verify_phase1_ui_emulator.py

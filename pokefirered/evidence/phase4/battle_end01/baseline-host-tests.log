@@ -1,0 +1,34 @@
+test_durable_thirty_total_and_no_duplicate (tests.test_system1_battle.BattleLiveTests.test_durable_thirty_total_and_no_duplicate) ... ok
+test_host_window_is_bounded_and_retains_old_default (tests.test_system1_battle.BattleLiveTests.test_host_window_is_bounded_and_retains_old_default) ... ok
+test_shadow_retains_selected_probability_without_native_send (tests.test_system1_battle.BattleLiveTests.test_shadow_retains_selected_probability_without_native_send) ... ok
+test_worker_error_and_invalid_output_close_without_retry (tests.test_system1_battle.BattleLiveTests.test_worker_error_and_invalid_output_close_without_retry) ... ok
+test_worker_timeout_disables_further_network (tests.test_system1_battle.BattleLiveTests.test_worker_timeout_disables_further_network) ... ok
+test_async_provider_timeout_and_malformed (tests.test_battle01.CodecTests.test_async_provider_timeout_and_malformed) ... ERROR
+test_audit_save_restore_prefix_and_duplicate (tests.test_battle01.CodecTests.test_audit_save_restore_prefix_and_duplicate) ... ok
+test_codec_closed_sanitized_fields (tests.test_battle01.CodecTests.test_codec_closed_sanitized_fields) ... ok
+test_deterministic_provider_fixed_choices (tests.test_battle01.CodecTests.test_deterministic_provider_fixed_choices) ... ok
+test_duplicate_action_rejected (tests.test_battle01.CodecTests.test_duplicate_action_rejected) ... ok
+test_exact_subjective_memo_and_zero_inventory (tests.test_battle01.CodecTests.test_exact_subjective_memo_and_zero_inventory) ... ok
+test_fragment_order_bounded (tests.test_battle01.CodecTests.test_fragment_order_bounded) ... ok
+test_live_packet_schemas_and_privacy_source (tests.test_battle01.CodecTests.test_live_packet_schemas_and_privacy_source) ... /Users/blevicki/Documents/poke/pokefirered/tests/test_battle01.py:74: DeprecationWarning: jsonschema.RefResolver is deprecated as of v4.18.0, in favor of the https://github.com/python-jsonschema/referencing library, which provides more compliant referencing behavior as well as more flexible APIs for customization. A future release will remove RefResolver. Please file a feature request (on referencing) if you are missing an API for the kind of customization you need.
+  schema=json.loads((ROOT/'schemas/battle/request.schema.json').read_text());resolver=jsonschema.RefResolver((ROOT/'schemas/battle/').as_uri()+'/',schema)
+ok
+test_size_phase_identity_rejection (tests.test_battle01.CodecTests.test_size_phase_identity_rejection) ... ok
+test_source_actual_c_rules_and_controller_matrix (tests.test_battle01.CodecTests.test_source_actual_c_rules_and_controller_matrix) ... ok
+
+======================================================================
+ERROR: test_async_provider_timeout_and_malformed (tests.test_battle01.CodecTests.test_async_provider_timeout_and_malformed)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/blevicki/Documents/poke/pokefirered/tests/test_battle01.py", line 55, in test_async_provider_timeout_and_malformed
+    h.job['deadline']=time.monotonic()-1;h.tick(None,Sock());self.assertIsNone(h.job);self.assertEqual(r['source'],'unavailable')
+                                         ~~~~~~^^^^^^^^^^^^^
+  File "/Users/blevicki/Documents/poke/pokefirered/battle/transport.py", line 72, in tick
+    future.cancel();self.retired=future;record.update(result=None,source='unavailable',nativeSelected=None);self.log('selection-timeout',record);self.disposition(record,'CANCELED_TIMEOUT_FALLBACK','host deadline');self.pending.pop((msg.nonce,msg.generation,msg.sequence),None);return
+                                                                                                                                                                                                                                        ^^^^^^^^^
+AttributeError: 'types.SimpleNamespace' object has no attribute 'nonce'
+
+----------------------------------------------------------------------
+Ran 15 tests in 2.108s
+
+FAILED (errors=1)

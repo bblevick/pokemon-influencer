@@ -1,0 +1,23 @@
+Traceback (most recent call last):
+  File "/Users/blevicki/Documents/poke/pokefirered/tools/campaign_expansion01.py", line 52, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "/Users/blevicki/Documents/poke/pokefirered/tools/campaign_expansion01.py", line 36, in main
+    sys.argv=[sys.argv[0],*rest];host.main()
+                                 ~~~~~~~~~^^
+  File "/Users/blevicki/Documents/poke/pokefirered/tools/vertical_slice01_host.py", line 53, in main
+    try:host.run(a.seconds,services=services,battle_handler=handler)
+        ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/blevicki/Documents/poke/pokefirered/tools/strategy01_host.py", line 55, in run
+    log('host-open',campaign=w.campaign(),stateSHA256=w.verify_replay(),memorySHA256=w.verify_memory_replay(),socialSHA256=w.verify_social_replay())
+                                                                                     ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/blevicki/Documents/poke/pokefirered/memory/store.py", line 294, in verify_memory_replay
+    context = {actor: self.for_actor(actor).context() for actor in sorted(self.registry_actor_ids())}
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/blevicki/Documents/poke/pokefirered/memory/store.py", line 361, in context
+    page = self.records(as_of_cursor=as_of_cursor, limit=256)
+  File "/Users/blevicki/Documents/poke/pokefirered/memory/store.py", line 337, in records
+    cursor = self._validate(as_of_cursor)
+  File "/Users/blevicki/Documents/poke/pokefirered/memory/store.py", line 316, in _validate
+    raise WorldError('revoked actor grant after restore/branch/suspension')
+world.store.WorldError: revoked actor grant after restore/branch/suspension

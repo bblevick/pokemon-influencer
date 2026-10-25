@@ -1,0 +1,112 @@
+{
+  "type": "object",
+  "properties": {
+    "contractVersion": {
+      "const": 1
+    },
+    "balanceVersion": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "defaultAggregateMoveChanges": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "firstEarnedOpportunityAcquisitionLimit": {
+      "const": 0
+    },
+    "laterOpportunityAllowanceChoices": {
+      "const": [
+        1,
+        2
+      ]
+    },
+    "originWeights": {
+      "type": "object",
+      "properties": {
+        "native": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "nearby": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      },
+      "required": [
+        "native",
+        "nearby"
+      ],
+      "additionalProperties": false
+    },
+    "weightSemantics": {
+      "const": "filter eligibility, normalize nonempty ordinary origin pools, then seeded origin draw; System One chooses within drawn pool or keeps existing team"
+    },
+    "emptyPoolPolicy": {
+      "const": "no acquisition; never widen access or invent exceptional origin"
+    },
+    "accessibleExceptionalPolicy": {
+      "const": "explicit actor-scoped acquisition permission; separate from ordinary weighted pool"
+    },
+    "preserveOriginals": {
+      "const": true
+    },
+    "retainSignatures": {
+      "const": true
+    },
+    "evolutionPreservesLineage": {
+      "const": true
+    },
+    "enginePartyLimit": {
+      "const": 6
+    },
+    "reservesEnabled": {
+      "const": false
+    },
+    "laterBalance": {
+      "const": {
+        "acquisitionProbability": {
+          "status": "unresolved"
+        },
+        "minimumOpportunitySpacing": {
+          "status": "unresolved"
+        },
+        "campaignAcquisitionCap": {
+          "status": "unresolved"
+        }
+      }
+    },
+    "updatesApplyTo": {
+      "const": "future uncommitted opportunities only"
+    },
+    "supersedes": {
+      "const": [
+        "historical one per opportunity / two per campaign as final campaign limits",
+        "historical 25% probability and spacing2 as implicitly approved later settings"
+      ]
+    }
+  },
+  "required": [
+    "contractVersion",
+    "balanceVersion",
+    "defaultAggregateMoveChanges",
+    "firstEarnedOpportunityAcquisitionLimit",
+    "laterOpportunityAllowanceChoices",
+    "originWeights",
+    "weightSemantics",
+    "emptyPoolPolicy",
+    "accessibleExceptionalPolicy",
+    "preserveOriginals",
+    "retainSignatures",
+    "evolutionPreservesLineage",
+    "enginePartyLimit",
+    "reservesEnabled",
+    "laterBalance",
+    "updatesApplyTo",
+    "supersedes"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

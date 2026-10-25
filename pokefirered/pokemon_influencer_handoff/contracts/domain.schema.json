@@ -1,0 +1,1132 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://pokemon-influencer.local/contracts/domain.schema.json",
+  "title": "Pokemon Influencer illustrative domain records v0.1",
+  "description": "Reference records for planning. Not the wire ABI and not the full future game schema.",
+  "oneOf": [
+    {
+      "$ref": "#/$defs/npc_profile"
+    },
+    {
+      "$ref": "#/$defs/event"
+    },
+    {
+      "$ref": "#/$defs/memory_record"
+    },
+    {
+      "$ref": "#/$defs/roster_plan"
+    },
+    {
+      "$ref": "#/$defs/battle_observation"
+    },
+    {
+      "$ref": "#/$defs/social_post"
+    },
+    {
+      "$ref": "#/$defs/delivery"
+    }
+  ],
+  "$defs": {
+    "pokemon": {
+      "type": "object",
+      "properties": {
+        "lineage_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[A-Za-z0-9_.:-]+$"
+        },
+        "species_id": {
+          "type": "string",
+          "pattern": "^SPECIES_[A-Z0-9_]+$"
+        },
+        "level": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 100
+        },
+        "moves": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^MOVE_[A-Z0-9_]+$"
+          },
+          "minItems": 1,
+          "maxItems": 4,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "lineage_id",
+        "species_id",
+        "level",
+        "moves"
+      ],
+      "additionalProperties": false
+    },
+    "npc_profile": {
+      "type": "object",
+      "properties": {
+        "schema_version": {
+          "const": 1
+        },
+        "record_type": {
+          "const": "npc_profile"
+        },
+        "npc_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[A-Za-z0-9_.:-]+$"
+        },
+        "display_name": {
+          "type": "string",
+          "maxLength": 24
+        },
+        "handle": {
+          "type": "string",
+          "maxLength": 12
+        },
+        "binding": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "enum": [
+                "illustrative_unbound",
+                "verified"
+              ]
+            },
+            "rom_trainer_symbol": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
+          "required": [
+            "status",
+            "rom_trainer_symbol"
+          ],
+          "additionalProperties": false
+        },
+        "region_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[A-Za-z0-9_.:-]+$"
+        },
+        "home_maps": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256
+          },
+          "minItems": 1,
+          "maxItems": 20,
+          "uniqueItems": true
+        },
+        "archetype": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[A-Za-z0-9_.:-]+$"
+        },
+        "follow_policy": {
+          "enum": [
+            "ordinary_first_win",
+            "hostile",
+            "story_override"
+          ]
+        },
+        "signature_lineage_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[A-Za-z0-9_.:-]+$"
+        },
+        "baseline_party": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/pokemon"
+          },
+          "minItems": 1,
+          "maxItems": 6
+        },
+        "personality": {
+          "type": "object",
+          "properties": {
+            "aggression": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "risk_tolerance": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "ambition": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "adaptability": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "home_attachment": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            }
+          },
+          "required": [
+            "aggression",
+            "risk_tolerance",
+            "ambition",
+            "adaptability",
+            "home_attachment"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "schema_version",
+        "record_type",
+        "npc_id",
+        "display_name",
+        "handle",
+        "binding",
+        "region_id",
+        "home_maps",
+        "archetype",
+        "follow_policy",
+        "signature_lineage_id",
+        "baseline_party",
+        "personality"
+      ],
+      "additionalProperties": false
+    },
+    "event": {
+      "type": "object",
+      "properties": {
+        "schema_version": {
+          "const": 1
+        },
+        "record_type": {
+          "const": "event"
+        },
+        "event_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[A-Za-z0-9_.:-]+$"
+        },
+        "save_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[A-Za-z0-9_.:-]+$"
+        },
+        "branch_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[A-Za-z0-9_.:-]+$"
+        },
+        "event_seq": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "game_tick": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "event_type": {
+          "enum": [
+            "BATTLE_COMPLETED",
+            "BADGE_AWARDED",
+            "TRAINING_COMMITTED"
+          ]
+        },
+        "authority": {
+          "enum": [
+            "rom",
+            "rules_service"
+          ]
+        },
+        "origin_event_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[A-Za-z0-9_.:-]+$"
+        },
+        "payload": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "schema_version",
+        "record_type",
+        "event_id",
+        "save_id",
+        "branch_id",
+        "event_seq",
+        "game_tick",
+        "event_type",
+        "authority",
+        "origin_event_id",
+        "payload"
+      ],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "event_type": {
+                "const": "BATTLE_COMPLETED"
+              }
+            },
+            "required": [
+              "event_type"
+            ]
+          },
+          "then": {
+            "properties": {
+              "payload": {
+                "type": "object",
+                "properties": {
+                  "battle_id": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 128,
+                    "pattern": "^[A-Za-z0-9_.:-]+$"
+                  },
+                  "trainer_id": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 128,
+                    "pattern": "^[A-Za-z0-9_.:-]+$"
+                  },
+                  "winner": {
+                    "enum": [
+                      "player",
+                      "trainer"
+                    ]
+                  },
+                  "revealed_player_species": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "pattern": "^SPECIES_[A-Z0-9_]+$"
+                    },
+                    "minItems": 0,
+                    "maxItems": 6,
+                    "uniqueItems": true
+                  },
+                  "observed_player_moves": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "pattern": "^MOVE_[A-Z0-9_]+$"
+                    },
+                    "minItems": 0,
+                    "maxItems": 24,
+                    "uniqueItems": true
+                  },
+                  "witness_ids": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 128,
+                      "pattern": "^[A-Za-z0-9_.:-]+$"
+                    },
+                    "minItems": 1,
+                    "maxItems": 20,
+                    "uniqueItems": true
+                  },
+                  "publication_policy": {
+                    "enum": [
+                      "participants_may_publish_summary",
+                      "private_only"
+                    ]
+                  }
+                },
+                "required": [
+                  "battle_id",
+                  "trainer_id",
+                  "winner",
+                  "revealed_player_species",
+                  "observed_player_moves",
+                  "witness_ids",
+                  "publication_policy"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "event_type": {
+                "const": "BADGE_AWARDED"
+              }
+            },
+            "required": [
+              "event_type"
+            ]
+          },
+          "then": {
+            "properties": {
+              "payload": {
+                "type": "object",
+                "properties": {
+                  "milestone_id": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 128,
+                    "pattern": "^[A-Za-z0-9_.:-]+$"
+                  },
+                  "badge_id": {
+                    "enum": [
+                      "boulder",
+                      "cascade",
+                      "thunder",
+                      "rainbow",
+                      "soul",
+                      "marsh",
+                      "volcano",
+                      "earth"
+                    ]
+                  }
+                },
+                "required": [
+                  "milestone_id",
+                  "badge_id"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "event_type": {
+                "const": "TRAINING_COMMITTED"
+              }
+            },
+            "required": [
+              "event_type"
+            ]
+          },
+          "then": {
+            "properties": {
+              "payload": {
+                "type": "object",
+                "properties": {
+                  "npc_id": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 128,
+                    "pattern": "^[A-Za-z0-9_.:-]+$"
+                  },
+                  "plan_id": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 128,
+                    "pattern": "^[A-Za-z0-9_.:-]+$"
+                  },
+                  "opportunity_id": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 128,
+                    "pattern": "^[A-Za-z0-9_.:-]+$"
+                  }
+                },
+                "required": [
+                  "npc_id",
+                  "plan_id",
+                  "opportunity_id"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      ]
+    },
+    "memory_record": {
+      "type": "object",
+      "properties": {
+        "schema_version": {
+          "const": 1
+        },
+        "record_type": {
+          "const": "memory_record"
+        },
+        "memory_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[A-Za-z0-9_.:-]+$"
+        },
+        "save_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[A-Za-z0-9_.:-]+$"
+        },
+        "branch_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[A-Za-z0-9_.:-]+$"
+        },
+        "owner_npc_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[A-Za-z0-9_.:-]+$"
+        },
+        "kind": {
+          "enum": [
+            "episode",
+            "belief",
+            "summary"
+          ]
+        },
+        "predicate": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[A-Za-z0-9_.:-]+$"
+        },
+        "summary": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 280
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "source_event_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128,
+            "pattern": "^[A-Za-z0-9_.:-]+$"
+          },
+          "minItems": 1,
+          "maxItems": 20,
+          "uniqueItems": true
+        },
+        "origin_event_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128,
+            "pattern": "^[A-Za-z0-9_.:-]+$"
+          },
+          "minItems": 1,
+          "maxItems": 20,
+          "uniqueItems": true
+        },
+        "independent_encounters": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "knowledge_cutoff_seq": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "visibility": {
+          "const": "owner_scoped"
+        }
+      },
+      "required": [
+        "schema_version",
+        "record_type",
+        "memory_id",
+        "save_id",
+        "branch_id",
+        "owner_npc_id",
+        "kind",
+        "predicate",
+        "summary",
+        "confidence",
+        "source_event_ids",
+        "origin_event_ids",
+        "independent_encounters",
+        "knowledge_cutoff_seq",
+        "visibility"
+      ],
+      "additionalProperties": false
+    },
+    "roster_plan": {
+      "type": "object",
+      "properties": {
+        "schema_version": {
+          "const": 1
+        },
+        "record_type": {
+          "const": "roster_plan"
+        },
+        "plan_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[A-Za-z0-9_.:-]+$"
+        },
+        "save_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[A-Za-z0-9_.:-]+$"
+        },
+        "branch_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[A-Za-z0-9_.:-]+$"
+        },
+        "npc_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[A-Za-z0-9_.:-]+$"
+        },
+        "opportunity_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[A-Za-z0-9_.:-]+$"
+        },
+        "epoch_index": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "status": {
+          "enum": [
+            "candidate",
+            "committed"
+          ]
+        },
+        "roster_version": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "prepared_at_seq": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "evidence_cutoff_seq": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128,
+            "pattern": "^[A-Za-z0-9_.:-]+$"
+          },
+          "minItems": 1,
+          "maxItems": 20,
+          "uniqueItems": true
+        },
+        "signature_lineage_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[A-Za-z0-9_.:-]+$"
+        },
+        "party": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/pokemon"
+          },
+          "minItems": 1,
+          "maxItems": 6
+        },
+        "changes": {
+          "type": "object",
+          "properties": {
+            "move_slot_edits": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "new_acquisition_ids": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 128,
+                "pattern": "^[A-Za-z0-9_.:-]+$"
+              },
+              "minItems": 0,
+              "maxItems": 6,
+              "uniqueItems": true
+            },
+            "evolved_lineage_ids": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 128,
+                "pattern": "^[A-Za-z0-9_.:-]+$"
+              },
+              "minItems": 0,
+              "maxItems": 6,
+              "uniqueItems": true
+            },
+            "level_gains": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "lineage_id": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 128,
+                    "pattern": "^[A-Za-z0-9_.:-]+$"
+                  },
+                  "gain": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 100
+                  }
+                },
+                "required": [
+                  "lineage_id",
+                  "gain"
+                ],
+                "additionalProperties": false
+              },
+              "minItems": 1,
+              "maxItems": 6
+            }
+          },
+          "required": [
+            "move_slot_edits",
+            "new_acquisition_ids",
+            "evolved_lineage_ids",
+            "level_gains"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "schema_version",
+        "record_type",
+        "plan_id",
+        "save_id",
+        "branch_id",
+        "npc_id",
+        "opportunity_id",
+        "epoch_index",
+        "status",
+        "roster_version",
+        "prepared_at_seq",
+        "evidence_cutoff_seq",
+        "evidence_ids",
+        "signature_lineage_id",
+        "party",
+        "changes"
+      ],
+      "additionalProperties": false
+    },
+    "battle_observation": {
+      "type": "object",
+      "properties": {
+        "schema_version": {
+          "const": 1
+        },
+        "record_type": {
+          "const": "battle_observation"
+        },
+        "observation_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[A-Za-z0-9_.:-]+$"
+        },
+        "save_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[A-Za-z0-9_.:-]+$"
+        },
+        "branch_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[A-Za-z0-9_.:-]+$"
+        },
+        "session_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[A-Za-z0-9_.:-]+$"
+        },
+        "generation": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "battle_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[A-Za-z0-9_.:-]+$"
+        },
+        "turn": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "phase": {
+          "enum": [
+            "choose_action",
+            "forced_replacement"
+          ]
+        },
+        "npc_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[A-Za-z0-9_.:-]+$"
+        },
+        "plan_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[A-Za-z0-9_.:-]+$"
+        },
+        "knowledge_cutoff_seq": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "own_active_party_slot": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 5
+        },
+        "own_party": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/pokemon"
+          },
+          "minItems": 1,
+          "maxItems": 6
+        },
+        "opponent_visible": {
+          "type": "object",
+          "properties": {
+            "active_species_id": {
+              "type": "string",
+              "pattern": "^SPECIES_[A-Z0-9_]+$"
+            },
+            "displayed_level": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100
+            },
+            "hp_bucket": {
+              "enum": [
+                "0",
+                "1_25",
+                "26_50",
+                "51_75",
+                "76_100"
+              ]
+            },
+            "public_status": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128,
+              "pattern": "^[A-Za-z0-9_.:-]+$"
+            },
+            "revealed_moves": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^MOVE_[A-Z0-9_]+$"
+              },
+              "minItems": 0,
+              "maxItems": 24,
+              "uniqueItems": true
+            }
+          },
+          "required": [
+            "active_species_id",
+            "displayed_level",
+            "hp_bucket",
+            "public_status",
+            "revealed_moves"
+          ],
+          "additionalProperties": false
+        },
+        "known_memory_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128,
+            "pattern": "^[A-Za-z0-9_.:-]+$"
+          },
+          "minItems": 0,
+          "maxItems": 8,
+          "uniqueItems": true
+        },
+        "legal_actions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "action_id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 128,
+                "pattern": "^[A-Za-z0-9_.:-]+$"
+              },
+              "kind": {
+                "enum": [
+                  "move",
+                  "switch",
+                  "item"
+                ]
+              },
+              "slot": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 5
+              }
+            },
+            "required": [
+              "action_id",
+              "kind",
+              "slot"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 1,
+          "maxItems": 32
+        }
+      },
+      "required": [
+        "schema_version",
+        "record_type",
+        "observation_id",
+        "save_id",
+        "branch_id",
+        "session_id",
+        "generation",
+        "battle_id",
+        "turn",
+        "phase",
+        "npc_id",
+        "plan_id",
+        "knowledge_cutoff_seq",
+        "own_active_party_slot",
+        "own_party",
+        "opponent_visible",
+        "known_memory_ids",
+        "legal_actions"
+      ],
+      "additionalProperties": false
+    },
+    "social_post": {
+      "type": "object",
+      "properties": {
+        "schema_version": {
+          "const": 1
+        },
+        "record_type": {
+          "const": "social_post"
+        },
+        "post_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[A-Za-z0-9_.:-]+$"
+        },
+        "save_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[A-Za-z0-9_.:-]+$"
+        },
+        "branch_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[A-Za-z0-9_.:-]+$"
+        },
+        "author_npc_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[A-Za-z0-9_.:-]+$"
+        },
+        "body": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 96
+        },
+        "source_event_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128,
+            "pattern": "^[A-Za-z0-9_.:-]+$"
+          },
+          "minItems": 1,
+          "maxItems": 20,
+          "uniqueItems": true
+        },
+        "origin_event_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128,
+            "pattern": "^[A-Za-z0-9_.:-]+$"
+          },
+          "minItems": 1,
+          "maxItems": 20,
+          "uniqueItems": true
+        },
+        "published_at_seq": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "visibility": {
+          "enum": [
+            "local_followers",
+            "public",
+            "direct"
+          ]
+        },
+        "intent": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[A-Za-z0-9_.:-]+$"
+        },
+        "claim_status": {
+          "enum": [
+            "verified_fact",
+            "authored_rumor"
+          ]
+        }
+      },
+      "required": [
+        "schema_version",
+        "record_type",
+        "post_id",
+        "save_id",
+        "branch_id",
+        "author_npc_id",
+        "body",
+        "source_event_ids",
+        "origin_event_ids",
+        "published_at_seq",
+        "visibility",
+        "intent",
+        "claim_status"
+      ],
+      "additionalProperties": false
+    },
+    "delivery": {
+      "type": "object",
+      "properties": {
+        "schema_version": {
+          "const": 1
+        },
+        "record_type": {
+          "const": "delivery"
+        },
+        "delivery_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[A-Za-z0-9_.:-]+$"
+        },
+        "save_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[A-Za-z0-9_.:-]+$"
+        },
+        "branch_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[A-Za-z0-9_.:-]+$"
+        },
+        "post_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[A-Za-z0-9_.:-]+$"
+        },
+        "recipient_npc_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[A-Za-z0-9_.:-]+$"
+        },
+        "channel": {
+          "enum": [
+            "follow_feed",
+            "authored_contact",
+            "direct"
+          ]
+        },
+        "delivered_at_seq": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "repost_hop": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "origin_event_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128,
+            "pattern": "^[A-Za-z0-9_.:-]+$"
+          },
+          "minItems": 1,
+          "maxItems": 20,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "schema_version",
+        "record_type",
+        "delivery_id",
+        "save_id",
+        "branch_id",
+        "post_id",
+        "recipient_npc_id",
+        "channel",
+        "delivered_at_seq",
+        "repost_hop",
+        "origin_event_ids"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

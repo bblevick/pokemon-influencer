@@ -1,0 +1,30 @@
+Traceback (most recent call last):
+  File "/Users/blevicki/Documents/poke/pokefirered/tools/system1_01a_scenario.py", line 13, in <module>
+    if sys.argv[1]=='save':print(json.dumps(ret.normal_save(sys.argv[2],int(sys.argv[3])),indent=2))
+  File "/Users/blevicki/Documents/poke/pokefirered/tools/strategy01_scenario.py", line 22, in normal_save
+    else:intent=w.begin_save(cfg['nonce'],save)
+  File "/Users/blevicki/Documents/poke/pokefirered/world/store.py", line 199, in begin_save
+    return self._tx(action)
+  File "/Users/blevicki/Documents/poke/pokefirered/system1/native.py", line 54, in _tx
+    return super()._tx(action)
+  File "/Users/blevicki/Documents/poke/pokefirered/prep/store.py", line 62, in _tx
+    return super()._tx(action)
+  File "/Users/blevicki/Documents/poke/pokefirered/puppeteer/store.py", line 61, in _tx
+    return super()._tx(action)
+  File "/Users/blevicki/Documents/poke/pokefirered/social/store.py", line 95, in _tx
+    return super()._tx(action)
+  File "/Users/blevicki/Documents/poke/pokefirered/memory/store.py", line 105, in _tx
+    return super()._tx(action)
+  File "/Users/blevicki/Documents/poke/pokefirered/world/store.py", line 58, in _tx
+    try:result=fn();self.db.execute('COMMIT');return result
+  File "/Users/blevicki/Documents/poke/pokefirered/memory/store.py", line 83, in action
+    result = fn()
+  File "/Users/blevicki/Documents/poke/pokefirered/social/store.py", line 94, in action
+    return fn()
+  File "/Users/blevicki/Documents/poke/pokefirered/puppeteer/store.py", line 60, in action
+    return fn()
+  File "/Users/blevicki/Documents/poke/pokefirered/prep/store.py", line 61, in action
+    return fn()
+  File "/Users/blevicki/Documents/poke/pokefirered/world/store.py", line 194, in action
+    if any(not b['ended'] for b in s['battles'].values()):raise WorldError('save requires completed battles')
+world.store.WorldError: save requires completed battles

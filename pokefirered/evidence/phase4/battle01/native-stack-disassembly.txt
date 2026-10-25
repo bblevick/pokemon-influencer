@@ -1,0 +1,296 @@
+
+.local/battle01-native-v3/pokefirered.elf:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+Disassembly of section lib_text:
+
+Disassembly of section extra:
+
+08eb2608 <PiBattle_Select>:
+ 8eb2608:	b5f0      	push	{r4, r5, r6, r7, lr}
+ 8eb260a:	4647      	mov	r7, r8
+ 8eb260c:	b480      	push	{r7}
+ 8eb260e:	4c28      	ldr	r4, [pc, #160]	@ (8eb26b0 <PiBattle_Select+0xa8>)
+ 8eb2610:	44a5      	add	sp, r4
+ 8eb2612:	0600      	lsls	r0, r0, #24
+ 8eb2614:	0e06      	lsrs	r6, r0, #24
+ 8eb2616:	f7ff fa97 	bl	8eb1b48 <Supported>
+ 8eb261a:	0600      	lsls	r0, r0, #24
+ 8eb261c:	2800      	cmp	r0, #0
+ 8eb261e:	d100      	bne.n	8eb2622 <PiBattle_Select+0x1a>
+ 8eb2620:	e11a      	b.n	8eb2858 <PiBattle_Select+0x250>
+ 8eb2622:	4d24      	ldr	r5, [pc, #144]	@ (8eb26b4 <PiBattle_Select+0xac>)
+ 8eb2624:	7828      	ldrb	r0, [r5, #0]
+ 8eb2626:	f000 fb1f 	bl	8eb2c68 <__GetBattlerSide_veneer>
+ 8eb262a:	0600      	lsls	r0, r0, #24
+ 8eb262c:	0e00      	lsrs	r0, r0, #24
+ 8eb262e:	2801      	cmp	r0, #1
+ 8eb2630:	d000      	beq.n	8eb2634 <PiBattle_Select+0x2c>
+ 8eb2632:	e111      	b.n	8eb2858 <PiBattle_Select+0x250>
+ 8eb2634:	2e02      	cmp	r6, #2
+ 8eb2636:	d10c      	bne.n	8eb2652 <PiBattle_Select+0x4a>
+ 8eb2638:	481f      	ldr	r0, [pc, #124]	@ (8eb26b8 <PiBattle_Select+0xb0>)
+ 8eb263a:	6804      	ldr	r4, [r0, #0]
+ 8eb263c:	7828      	ldrb	r0, [r5, #0]
+ 8eb263e:	f000 fa9b 	bl	8eb2b78 <__GetBattlerPosition_veneer>
+ 8eb2642:	0600      	lsls	r0, r0, #24
+ 8eb2644:	0e40      	lsrs	r0, r0, #25
+ 8eb2646:	3492      	adds	r4, #146	@ 0x92
+ 8eb2648:	1824      	adds	r4, r4, r0
+ 8eb264a:	7820      	ldrb	r0, [r4, #0]
+ 8eb264c:	2806      	cmp	r0, #6
+ 8eb264e:	d000      	beq.n	8eb2652 <PiBattle_Select+0x4a>
+ 8eb2650:	e102      	b.n	8eb2858 <PiBattle_Select+0x250>
+ 8eb2652:	f7ff fa5b 	bl	8eb1b0c <Work>
+ 8eb2656:	1c05      	adds	r5, r0, #0
+ 8eb2658:	4c18      	ldr	r4, [pc, #96]	@ (8eb26bc <PiBattle_Select+0xb4>)
+ 8eb265a:	8ca0      	ldrh	r0, [r4, #36]	@ 0x24
+ 8eb265c:	2801      	cmp	r0, #1
+ 8eb265e:	d06e      	beq.n	8eb273e <PiBattle_Select+0x136>
+ 8eb2660:	8ca0      	ldrh	r0, [r4, #36]	@ 0x24
+ 8eb2662:	2802      	cmp	r0, #2
+ 8eb2664:	d06b      	beq.n	8eb273e <PiBattle_Select+0x136>
+ 8eb2666:	68a1      	ldr	r1, [r4, #8]
+ 8eb2668:	2001      	movs	r0, #1
+ 8eb266a:	4240      	negs	r0, r0
+ 8eb266c:	4281      	cmp	r1, r0
+ 8eb266e:	d100      	bne.n	8eb2672 <PiBattle_Select+0x6a>
+ 8eb2670:	e0f2      	b.n	8eb2858 <PiBattle_Select+0x250>
+ 8eb2672:	8ca0      	ldrh	r0, [r4, #36]	@ 0x24
+ 8eb2674:	2100      	movs	r1, #0
+ 8eb2676:	2700      	movs	r7, #0
+ 8eb2678:	84a7      	strh	r7, [r4, #36]	@ 0x24
+ 8eb267a:	4a11      	ldr	r2, [pc, #68]	@ (8eb26c0 <PiBattle_Select+0xb8>)
+ 8eb267c:	18a8      	adds	r0, r5, r2
+ 8eb267e:	7001      	strb	r1, [r0, #0]
+ 8eb2680:	68a0      	ldr	r0, [r4, #8]
+ 8eb2682:	3001      	adds	r0, #1
+ 8eb2684:	60a0      	str	r0, [r4, #8]
+ 8eb2686:	480b      	ldr	r0, [pc, #44]	@ (8eb26b4 <PiBattle_Select+0xac>)
+ 8eb2688:	4680      	mov	r8, r0
+ 8eb268a:	7802      	ldrb	r2, [r0, #0]
+ 8eb268c:	1c28      	adds	r0, r5, #0
+ 8eb268e:	1c31      	adds	r1, r6, #0
+ 8eb2690:	f7ff fd74 	bl	8eb217c <Capture>
+ 8eb2694:	79e8      	ldrb	r0, [r5, #7]
+ 8eb2696:	2800      	cmp	r0, #0
+ 8eb2698:	d116      	bne.n	8eb26c8 <PiBattle_Select+0xc0>
+ 8eb269a:	2280      	movs	r2, #128	@ 0x80
+ 8eb269c:	00d2      	lsls	r2, r2, #3
+ 8eb269e:	18a9      	adds	r1, r5, r2
+ 8eb26a0:	2003      	movs	r0, #3
+ 8eb26a2:	7008      	strb	r0, [r1, #0]
+ 8eb26a4:	4807      	ldr	r0, [pc, #28]	@ (8eb26c4 <PiBattle_Select+0xbc>)
+ 8eb26a6:	1829      	adds	r1, r5, r0
+ 8eb26a8:	2001      	movs	r0, #1
+ 8eb26aa:	7008      	strb	r0, [r1, #0]
+ 8eb26ac:	e0d4      	b.n	8eb2858 <PiBattle_Select+0x250>
+ 8eb26ae:	0000      	.short	0x0000
+ 8eb26b0:	fffffd3c 	.word	0xfffffd3c
+ 8eb26b4:	02023bc4 	.word	0x02023bc4
+ 8eb26b8:	02023fe8 	.word	0x02023fe8
+ 8eb26bc:	0203ffcc 	.word	0x0203ffcc
+ 8eb26c0:	000003ff 	.word	0x000003ff
+ 8eb26c4:	00000401 	.word	0x00000401
+ 8eb26c8:	21b1      	movs	r1, #177	@ 0xb1
+ 8eb26ca:	0089      	lsls	r1, r1, #2
+ 8eb26cc:	1c28      	adds	r0, r5, #0
+ 8eb26ce:	f7ff fa23 	bl	8eb1b18 <Hash>
+ 8eb26d2:	60e0      	str	r0, [r4, #12]
+ 8eb26d4:	4916      	ldr	r1, [pc, #88]	@ (8eb2730 <PiBattle_Select+0x128>)
+ 8eb26d6:	68c8      	ldr	r0, [r1, #12]
+ 8eb26d8:	6160      	str	r0, [r4, #20]
+ 8eb26da:	6908      	ldr	r0, [r1, #16]
+ 8eb26dc:	61a0      	str	r0, [r4, #24]
+ 8eb26de:	6dc8      	ldr	r0, [r1, #92]	@ 0x5c
+ 8eb26e0:	61e0      	str	r0, [r4, #28]
+ 8eb26e2:	6e08      	ldr	r0, [r1, #96]	@ 0x60
+ 8eb26e4:	8c22      	ldrh	r2, [r4, #32]
+ 8eb26e6:	8420      	strh	r0, [r4, #32]
+ 8eb26e8:	1c22      	adds	r2, r4, #0
+ 8eb26ea:	3222      	adds	r2, #34	@ 0x22
+ 8eb26ec:	7810      	ldrb	r0, [r2, #0]
+ 8eb26ee:	7016      	strb	r6, [r2, #0]
+ 8eb26f0:	4642      	mov	r2, r8
+ 8eb26f2:	7810      	ldrb	r0, [r2, #0]
+ 8eb26f4:	1c23      	adds	r3, r4, #0
+ 8eb26f6:	3323      	adds	r3, #35	@ 0x23
+ 8eb26f8:	781a      	ldrb	r2, [r3, #0]
+ 8eb26fa:	7018      	strb	r0, [r3, #0]
+ 8eb26fc:	6b48      	ldr	r0, [r1, #52]	@ 0x34
+ 8eb26fe:	30b4      	adds	r0, #180	@ 0xb4
+ 8eb2700:	62e0      	str	r0, [r4, #44]	@ 0x2c
+ 8eb2702:	62a7      	str	r7, [r4, #40]	@ 0x28
+ 8eb2704:	8ce0      	ldrh	r0, [r4, #38]	@ 0x26
+ 8eb2706:	84e7      	strh	r7, [r4, #38]	@ 0x26
+ 8eb2708:	79e8      	ldrb	r0, [r5, #7]
+ 8eb270a:	2801      	cmp	r0, #1
+ 8eb270c:	d114      	bne.n	8eb2738 <PiBattle_Select+0x130>
+ 8eb270e:	21aa      	movs	r1, #170	@ 0xaa
+ 8eb2710:	0049      	lsls	r1, r1, #1
+ 8eb2712:	1868      	adds	r0, r5, r1
+ 8eb2714:	8801      	ldrh	r1, [r0, #0]
+ 8eb2716:	8ce2      	ldrh	r2, [r4, #38]	@ 0x26
+ 8eb2718:	84e1      	strh	r1, [r4, #38]	@ 0x26
+ 8eb271a:	2180      	movs	r1, #128	@ 0x80
+ 8eb271c:	00c9      	lsls	r1, r1, #3
+ 8eb271e:	186a      	adds	r2, r5, r1
+ 8eb2720:	2103      	movs	r1, #3
+ 8eb2722:	7011      	strb	r1, [r2, #0]
+ 8eb2724:	4903      	ldr	r1, [pc, #12]	@ (8eb2734 <PiBattle_Select+0x12c>)
+ 8eb2726:	186a      	adds	r2, r5, r1
+ 8eb2728:	2104      	movs	r1, #4
+ 8eb272a:	7011      	strb	r1, [r2, #0]
+ 8eb272c:	e07b      	b.n	8eb2826 <PiBattle_Select+0x21e>
+ 8eb272e:	0000      	.short	0x0000
+ 8eb2730:	0203fbb0 	.word	0x0203fbb0
+ 8eb2734:	00000401 	.word	0x00000401
+ 8eb2738:	8ca0      	ldrh	r0, [r4, #36]	@ 0x24
+ 8eb273a:	2001      	movs	r0, #1
+ 8eb273c:	84a0      	strh	r0, [r4, #36]	@ 0x24
+ 8eb273e:	482a      	ldr	r0, [pc, #168]	@ (8eb27e8 <PiBattle_Select+0x1e0>)
+ 8eb2740:	8c81      	ldrh	r1, [r0, #36]	@ 0x24
+ 8eb2742:	1c04      	adds	r4, r0, #0
+ 8eb2744:	2902      	cmp	r1, #2
+ 8eb2746:	d157      	bne.n	8eb27f8 <PiBattle_Select+0x1f0>
+ 8eb2748:	4f28      	ldr	r7, [pc, #160]	@ (8eb27ec <PiBattle_Select+0x1e4>)
+ 8eb274a:	783a      	ldrb	r2, [r7, #0]
+ 8eb274c:	4668      	mov	r0, sp
+ 8eb274e:	1c31      	adds	r1, r6, #0
+ 8eb2750:	f7ff fd14 	bl	8eb217c <Capture>
+ 8eb2754:	4a26      	ldr	r2, [pc, #152]	@ (8eb27f0 <PiBattle_Select+0x1e8>)
+ 8eb2756:	6b50      	ldr	r0, [r2, #52]	@ 0x34
+ 8eb2758:	6ae1      	ldr	r1, [r4, #44]	@ 0x2c
+ 8eb275a:	1a40      	subs	r0, r0, r1
+ 8eb275c:	2800      	cmp	r0, #0
+ 8eb275e:	da3d      	bge.n	8eb27dc <PiBattle_Select+0x1d4>
+ 8eb2760:	6aa1      	ldr	r1, [r4, #40]	@ 0x28
+ 8eb2762:	68a0      	ldr	r0, [r4, #8]
+ 8eb2764:	4281      	cmp	r1, r0
+ 8eb2766:	d139      	bne.n	8eb27dc <PiBattle_Select+0x1d4>
+ 8eb2768:	6961      	ldr	r1, [r4, #20]
+ 8eb276a:	68d0      	ldr	r0, [r2, #12]
+ 8eb276c:	4281      	cmp	r1, r0
+ 8eb276e:	d135      	bne.n	8eb27dc <PiBattle_Select+0x1d4>
+ 8eb2770:	69a1      	ldr	r1, [r4, #24]
+ 8eb2772:	6910      	ldr	r0, [r2, #16]
+ 8eb2774:	4281      	cmp	r1, r0
+ 8eb2776:	d131      	bne.n	8eb27dc <PiBattle_Select+0x1d4>
+ 8eb2778:	69e1      	ldr	r1, [r4, #28]
+ 8eb277a:	6dd0      	ldr	r0, [r2, #92]	@ 0x5c
+ 8eb277c:	4281      	cmp	r1, r0
+ 8eb277e:	d12d      	bne.n	8eb27dc <PiBattle_Select+0x1d4>
+ 8eb2780:	8c20      	ldrh	r0, [r4, #32]
+ 8eb2782:	6e11      	ldr	r1, [r2, #96]	@ 0x60
+ 8eb2784:	4288      	cmp	r0, r1
+ 8eb2786:	d129      	bne.n	8eb27dc <PiBattle_Select+0x1d4>
+ 8eb2788:	1c20      	adds	r0, r4, #0
+ 8eb278a:	3022      	adds	r0, #34	@ 0x22
+ 8eb278c:	7800      	ldrb	r0, [r0, #0]
+ 8eb278e:	42b0      	cmp	r0, r6
+ 8eb2790:	d124      	bne.n	8eb27dc <PiBattle_Select+0x1d4>
+ 8eb2792:	1c20      	adds	r0, r4, #0
+ 8eb2794:	3023      	adds	r0, #35	@ 0x23
+ 8eb2796:	7800      	ldrb	r0, [r0, #0]
+ 8eb2798:	783f      	ldrb	r7, [r7, #0]
+ 8eb279a:	42b8      	cmp	r0, r7
+ 8eb279c:	d11e      	bne.n	8eb27dc <PiBattle_Select+0x1d4>
+ 8eb279e:	21b1      	movs	r1, #177	@ 0xb1
+ 8eb27a0:	0089      	lsls	r1, r1, #2
+ 8eb27a2:	4668      	mov	r0, sp
+ 8eb27a4:	f7ff f9b8 	bl	8eb1b18 <Hash>
+ 8eb27a8:	68e1      	ldr	r1, [r4, #12]
+ 8eb27aa:	4281      	cmp	r1, r0
+ 8eb27ac:	d116      	bne.n	8eb27dc <PiBattle_Select+0x1d4>
+ 8eb27ae:	2200      	movs	r2, #0
+ 8eb27b0:	4668      	mov	r0, sp
+ 8eb27b2:	79c0      	ldrb	r0, [r0, #7]
+ 8eb27b4:	4282      	cmp	r2, r0
+ 8eb27b6:	d211      	bcs.n	8eb27dc <PiBattle_Select+0x1d4>
+ 8eb27b8:	21aa      	movs	r1, #170	@ 0xaa
+ 8eb27ba:	0049      	lsls	r1, r1, #1
+ 8eb27bc:	468c      	mov	ip, r1
+ 8eb27be:	1c27      	adds	r7, r4, #0
+ 8eb27c0:	1c04      	adds	r4, r0, #0
+ 8eb27c2:	00d3      	lsls	r3, r2, #3
+ 8eb27c4:	4669      	mov	r1, sp
+ 8eb27c6:	18c8      	adds	r0, r1, r3
+ 8eb27c8:	4460      	add	r0, ip
+ 8eb27ca:	8cf9      	ldrh	r1, [r7, #38]	@ 0x26
+ 8eb27cc:	8800      	ldrh	r0, [r0, #0]
+ 8eb27ce:	4288      	cmp	r0, r1
+ 8eb27d0:	d01c      	beq.n	8eb280c <PiBattle_Select+0x204>
+ 8eb27d2:	1c50      	adds	r0, r2, #1
+ 8eb27d4:	0600      	lsls	r0, r0, #24
+ 8eb27d6:	0e02      	lsrs	r2, r0, #24
+ 8eb27d8:	42a2      	cmp	r2, r4
+ 8eb27da:	d3f2      	bcc.n	8eb27c2 <PiBattle_Select+0x1ba>
+ 8eb27dc:	4a05      	ldr	r2, [pc, #20]	@ (8eb27f4 <PiBattle_Select+0x1ec>)
+ 8eb27de:	18a9      	adds	r1, r5, r2
+ 8eb27e0:	2003      	movs	r0, #3
+ 8eb27e2:	7008      	strb	r0, [r1, #0]
+ 8eb27e4:	4c00      	ldr	r4, [pc, #0]	@ (8eb27e8 <PiBattle_Select+0x1e0>)
+ 8eb27e6:	e02b      	b.n	8eb2840 <PiBattle_Select+0x238>
+ 8eb27e8:	0203ffcc 	.word	0x0203ffcc
+ 8eb27ec:	02023bc4 	.word	0x02023bc4
+ 8eb27f0:	0203fbb0 	.word	0x0203fbb0
+ 8eb27f4:	00000401 	.word	0x00000401
+ 8eb27f8:	4803      	ldr	r0, [pc, #12]	@ (8eb2808 <PiBattle_Select+0x200>)
+ 8eb27fa:	6b40      	ldr	r0, [r0, #52]	@ 0x34
+ 8eb27fc:	6ae1      	ldr	r1, [r4, #44]	@ 0x2c
+ 8eb27fe:	1a40      	subs	r0, r0, r1
+ 8eb2800:	2800      	cmp	r0, #0
+ 8eb2802:	da19      	bge.n	8eb2838 <PiBattle_Select+0x230>
+ 8eb2804:	2001      	movs	r0, #1
+ 8eb2806:	e028      	b.n	8eb285a <PiBattle_Select+0x252>
+ 8eb2808:	0203fbb0 	.word	0x0203fbb0
+ 8eb280c:	2080      	movs	r0, #128	@ 0x80
+ 8eb280e:	00c0      	lsls	r0, r0, #3
+ 8eb2810:	1829      	adds	r1, r5, r0
+ 8eb2812:	2200      	movs	r2, #0
+ 8eb2814:	2001      	movs	r0, #1
+ 8eb2816:	7008      	strb	r0, [r1, #0]
+ 8eb2818:	4906      	ldr	r1, [pc, #24]	@ (8eb2834 <PiBattle_Select+0x22c>)
+ 8eb281a:	1868      	adds	r0, r5, r1
+ 8eb281c:	7002      	strb	r2, [r0, #0]
+ 8eb281e:	22aa      	movs	r2, #170	@ 0xaa
+ 8eb2820:	0052      	lsls	r2, r2, #1
+ 8eb2822:	1898      	adds	r0, r3, r2
+ 8eb2824:	4468      	add	r0, sp
+ 8eb2826:	1c31      	adds	r1, r6, #0
+ 8eb2828:	f7ff fe5e 	bl	8eb24e8 <Execute>
+ 8eb282c:	0600      	lsls	r0, r0, #24
+ 8eb282e:	0e00      	lsrs	r0, r0, #24
+ 8eb2830:	e013      	b.n	8eb285a <PiBattle_Select+0x252>
+ 8eb2832:	0000      	.short	0x0000
+ 8eb2834:	00000401 	.word	0x00000401
+ 8eb2838:	480c      	ldr	r0, [pc, #48]	@ (8eb286c <PiBattle_Select+0x264>)
+ 8eb283a:	1829      	adds	r1, r5, r0
+ 8eb283c:	2002      	movs	r0, #2
+ 8eb283e:	7008      	strb	r0, [r1, #0]
+ 8eb2840:	2280      	movs	r2, #128	@ 0x80
+ 8eb2842:	00d2      	lsls	r2, r2, #3
+ 8eb2844:	18a9      	adds	r1, r5, r2
+ 8eb2846:	2200      	movs	r2, #0
+ 8eb2848:	2002      	movs	r0, #2
+ 8eb284a:	7008      	strb	r0, [r1, #0]
+ 8eb284c:	4908      	ldr	r1, [pc, #32]	@ (8eb2870 <PiBattle_Select+0x268>)
+ 8eb284e:	1868      	adds	r0, r5, r1
+ 8eb2850:	7002      	strb	r2, [r0, #0]
+ 8eb2852:	8ca0      	ldrh	r0, [r4, #36]	@ 0x24
+ 8eb2854:	2005      	movs	r0, #5
+ 8eb2856:	84a0      	strh	r0, [r4, #36]	@ 0x24
+ 8eb2858:	2000      	movs	r0, #0
+ 8eb285a:	23b1      	movs	r3, #177	@ 0xb1
+ 8eb285c:	009b      	lsls	r3, r3, #2
+ 8eb285e:	449d      	add	sp, r3
+ 8eb2860:	bc08      	pop	{r3}
+ 8eb2862:	4698      	mov	r8, r3
+ 8eb2864:	bcf0      	pop	{r4, r5, r6, r7}
+ 8eb2866:	bc02      	pop	{r1}
+ 8eb2868:	4708      	bx	r1
+ 8eb286a:	0000      	.short	0x0000
+ 8eb286c:	00000401 	.word	0x00000401
+ 8eb2870:	000003ff 	.word	0x000003ff

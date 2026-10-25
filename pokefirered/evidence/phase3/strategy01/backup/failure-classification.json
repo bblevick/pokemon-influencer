@@ -1,0 +1,54 @@
+{
+  "firstBackup": {
+    "model": "thinkingmachines/inkling-small:free",
+    "classification": "capability mismatch",
+    "POSTs": 0,
+    "reason": "tools advertised but forced tool_choice absent; endpoint all supports_tool_choice flags false"
+  },
+  "namedContingency": {
+    "model": "qwen/qwen3.8-27b:free",
+    "classification": "HTTP400 other/unknown; HTTP429 rate limit",
+    "POSTs": 3,
+    "responseBodies": "not retained by v5 HTTP error handler; no fabricated cause/backfilled response",
+    "attempts": [
+      {
+        "attempt": 1,
+        "HTTPStatus": 400,
+        "classification": "other/unknown",
+        "latencySeconds": 0.376
+      },
+      {
+        "attempt": 2,
+        "HTTPStatus": 429,
+        "classification": "rate limit",
+        "latencySeconds": 0.23
+      },
+      {
+        "attempt": 3,
+        "HTTPStatus": 429,
+        "classification": "rate limit",
+        "latencySeconds": 0.38
+      }
+    ]
+  },
+  "lastResort": {
+    "model": "openrouter/free",
+    "classification": "current exact-model/free function-tool endpoint qualification unavailable",
+    "POSTs": 0,
+    "reason": "no_healthy_verified_zero_price_function_tool_route"
+  },
+  "localPreflightFailure": {
+    "classification": "application/configuration compatibility",
+    "cause": "current .env uses OPENROUTER_API_KEY; old reader accepted only configured OPENROUTER_KEY",
+    "fixed": "host-only allowlisted alias, regression tested before POSTs",
+    "POSTs": 0
+  },
+  "postRunDiagnosticFix": {
+    "version": 6,
+    "changes": "bounded redacted HTTP body diagnostics; stop HTTP400/429 instead of repeating unchanged request",
+    "testFailureAndCorrection": "bodyless mocked HTTPError raised KeyError file; guarded reader corrected and focused30 tests passed",
+    "newLiveRequests": 0
+  },
+  "NemotronPOSTs": 0,
+  "afterLivePersistenceProof": "not run; no actual accepted live result exists"
+}

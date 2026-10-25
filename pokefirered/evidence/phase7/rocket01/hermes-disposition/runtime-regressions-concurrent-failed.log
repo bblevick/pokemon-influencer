@@ -1,0 +1,66 @@
+EF.F..E.F..
+======================================================================
+ERROR: test_actual_hermes_invalid_and_refusal_fallback (test_hermes_runtime.RuntimeTests.test_actual_hermes_invalid_and_refusal_fallback)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/blevicki/Documents/poke/pokefirered/tests/test_hermes_runtime.py", line 31, in test_actual_hermes_invalid_and_refusal_fallback
+    cleanup(Path(r['runtimeHome']),False)
+            ~~~~^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.12_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pathlib/_local.py", line 503, in __init__
+    super().__init__(*args)
+    ~~~~~~~~~~~~~~~~^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.12_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pathlib/_local.py", line 132, in __init__
+    raise TypeError(
+    ...<2 lines>...
+        f"not {type(path).__name__!r}")
+TypeError: argument should be a str or an os.PathLike object where __fspath__ returns a str, not 'NoneType'
+
+======================================================================
+ERROR: test_readonly_fresh_runtime_retrieves_durable_memory_without_republication (test_hermes_runtime.RuntimeTests.test_readonly_fresh_runtime_retrieves_durable_memory_without_republication)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/blevicki/Documents/poke/pokefirered/tests/test_hermes_runtime.py", line 64, in test_readonly_fresh_runtime_retrieves_durable_memory_without_republication
+    self.assertEqual(r['outcome']['producer'],'hermes_memory_retrieval',r['failures']);self.assertEqual(len(r['requests']),2)
+                     ~~~~~~~~~~~~^^^^^^^^^^^^
+KeyError: 'producer'
+
+======================================================================
+FAIL: test_actual_hermes_two_fresh_jobs_and_cleanup (test_hermes_runtime.RuntimeTests.test_actual_hermes_two_fresh_jobs_and_cleanup)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/blevicki/Documents/poke/pokefirered/tests/test_hermes_runtime.py", line 16, in test_actual_hermes_two_fresh_jobs_and_cleanup
+    self.assertEqual(first['outcome']['producer'],'hermes',first['failures']);self.assertEqual(len(first['requests']),3)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'deterministic_fallback' != 'hermes'
+- deterministic_fallback
++ hermes
+ : ['WorldError: another model worker is active']
+
+======================================================================
+FAIL: test_closeout_bundle_commits_without_finished_request (test_hermes_runtime.RuntimeTests.test_closeout_bundle_commits_without_finished_request)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/blevicki/Documents/poke/pokefirered/tests/test_hermes_runtime.py", line 93, in test_closeout_bundle_commits_without_finished_request
+    self.assertEqual(r['outcome']['producer'],'hermes',r['failures']);self.assertEqual(len(r['requests']),2)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'deterministic_fallback' != 'hermes'
+- deterministic_fallback
++ hermes
+ : ['WorldError: another model worker is active']
+
+======================================================================
+FAIL: test_serial_bundled_retrieval_submits_within_three_requests (test_hermes_runtime.RuntimeTests.test_serial_bundled_retrieval_submits_within_three_requests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/blevicki/Documents/poke/pokefirered/tests/test_hermes_runtime.py", line 83, in test_serial_bundled_retrieval_submits_within_three_requests
+    self.assertEqual(first['outcome']['producer'],'hermes',first['failures']);self.assertEqual(len(first['requests']),3)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'deterministic_fallback' != 'hermes'
+- deterministic_fallback
++ hermes
+ : ['WorldError: another model worker is active']
+
+----------------------------------------------------------------------
+Ran 11 tests in 0.303s
+
+FAILED (failures=3, errors=2)

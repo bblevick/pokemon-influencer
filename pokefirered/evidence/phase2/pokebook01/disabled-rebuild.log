@@ -1,0 +1,20 @@
+{"argv": ["make", "-j8", "rom", "PI_BRIDGE=0", "PI_BRIDGE_TEST=0", "PI_EVENTS=0", "PI_UI=0", "PI_UI_TEST=0", "GAME_VERSION=FIRERED", "GAME_REVISION=0", "GAME_LANGUAGE=ENGLISH", "MODERN=0"], "cwd": "/Users/blevicki/Documents/poke/pokefirered/.local/pokebook01-disabled"}
+tools/scaninc/scaninc -M build/firered/src/pi_ui.d -I include -I tools/agbcc/include src/pi_ui.c
+tools/scaninc/scaninc -M build/firered/src/pi_pokebook.d -I include -I tools/agbcc/include src/pi_pokebook.c
+tools/scaninc/scaninc -M build/firered/src/pi_events.d -I include -I tools/agbcc/include src/pi_events.c
+tools/scaninc/scaninc -M build/firered/src/battle_script_commands.d -I include -I tools/agbcc/include src/battle_script_commands.c
+tools/scaninc/scaninc -M build/firered/src/battle_main.d -I include -I tools/agbcc/include src/battle_main.c
+tools/agbcc/bin/agbcc <flags> -o build/firered/src/battle_main.o src/battle_main.c
+tools/agbcc/bin/agbcc <flags> -o build/firered/src/battle_script_commands.o src/battle_script_commands.c
+tools/agbcc/bin/agbcc <flags> -o build/firered/src/pi_events.o src/pi_events.c
+tools/agbcc/bin/agbcc <flags> -o build/firered/src/pi_pokebook.o src/pi_pokebook.c
+tools/agbcc/bin/agbcc <flags> -o build/firered/src/pi_ui.o src/pi_ui.c
+tools/ramscrgen/ramscrgen COMMON sym_common.txt ENGLISH -c build/firered/src,common_syms > build/firered/sym_common.ld
+arm-none-eabi-ld: warning: ../../pokefirered.elf has a LOAD segment with RWX permissions
+Memory region         Used Size  Region Size  %age Used
+           EWRAM:      261040 B       256 KB     99.58%
+           IWRAM:       29824 B        32 KB     91.02%
+             ROM:    15403808 B        32 MB     45.91%
+cd build/firered && arm-none-eabi-ld -Map ../../pokefirered.map -T ../../ld_script.ld --print-memory-usage -o ../../pokefirered.elf <objs> <libs> | cat
+tools/gbafix/gbafix pokefirered.elf -t"POKEMON FIRE" -cBPRE -m01 -r0 --silent
+arm-none-eabi-objcopy -O binary --gap-fill 0xFF --pad-to 0x9000000 pokefirered.elf pokefirered.gba

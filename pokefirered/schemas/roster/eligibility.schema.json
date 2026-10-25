@@ -1,0 +1,129 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "code": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "fully_legal": {
+      "const": false
+    },
+    "ids": {
+      "type": "object"
+    },
+    "prerequisites": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "provenance": {
+      "additionalProperties": false,
+      "properties": {
+        "catalogSHA256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "catalogVersion": {
+          "const": 1
+        },
+        "contextSHA256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "fixture": {
+          "type": "boolean"
+        },
+        "policySHA256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "policyVersion": {
+          "minimum": 1,
+          "type": "integer"
+        },
+        "scope": {
+          "additionalProperties": false,
+          "properties": {
+            "actor": {
+              "pattern": "^trainer:fr:trainer:[0-9]{4}$",
+              "type": "string"
+            },
+            "branch": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "campaign": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "cutoff": {
+              "minimum": 0,
+              "type": "integer"
+            },
+            "restore_epoch": {
+              "minimum": 0,
+              "type": "integer"
+            }
+          },
+          "required": [
+            "campaign",
+            "branch",
+            "actor",
+            "restore_epoch",
+            "cutoff"
+          ],
+          "type": "object"
+        },
+        "sourceFiles": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "validatorSHA256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "validatorVersion": {
+          "const": 1
+        }
+      },
+      "required": [
+        "catalogSHA256",
+        "policySHA256",
+        "catalogVersion",
+        "policyVersion",
+        "scope",
+        "contextSHA256",
+        "fixture",
+        "sourceFiles",
+        "validatorVersion",
+        "validatorSHA256"
+      ],
+      "type": "object"
+    },
+    "resources": {
+      "type": "object"
+    },
+    "status": {
+      "enum": [
+        "allowed",
+        "blocked",
+        "unqualified"
+      ]
+    }
+  },
+  "required": [
+    "status",
+    "code",
+    "ids",
+    "prerequisites",
+    "resources",
+    "provenance",
+    "fully_legal"
+  ],
+  "title": "ROSTER-01 element prerequisite result, not package approval",
+  "type": "object"
+}

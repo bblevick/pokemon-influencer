@@ -1,0 +1,115 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "version": {
+      "const": 1
+    },
+    "sourceActor": {
+      "type": "string",
+      "maxLength": 128
+    },
+    "channel": {
+      "enum": [
+        "direct_observation",
+        "pokebook",
+        "ROCKET_INTEL",
+        "development_fixture"
+      ]
+    },
+    "attribution": {
+      "enum": [
+        "direct",
+        "reported"
+      ]
+    },
+    "sourceQuality": {
+      "enum": [
+        "DIRECT",
+        "HIGH",
+        "MODERATE",
+        "LOW"
+      ]
+    },
+    "currentRelevance": {
+      "enum": [
+        "CURRENT",
+        "RECENT",
+        "OLDER"
+      ]
+    },
+    "originStage": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 64
+    },
+    "campaignDistance": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 0
+    },
+    "socialDegree": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 0,
+      "maximum": 15
+    },
+    "path": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "maxItems": 16,
+      "items": {
+        "type": "string",
+        "maxLength": 128
+      }
+    },
+    "publicationOrder": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "publicationLag": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "independentOriginCount": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "organizationalFidelity": {
+      "enum": [
+        null,
+        "full_observed_claim"
+      ]
+    },
+    "originalSourceActor": {
+      "type": "string",
+      "maxLength": 128
+    }
+  },
+  "required": [
+    "version",
+    "sourceActor",
+    "channel",
+    "attribution",
+    "sourceQuality",
+    "currentRelevance",
+    "originStage",
+    "campaignDistance",
+    "socialDegree",
+    "path",
+    "publicationOrder",
+    "publicationLag",
+    "independentOriginCount",
+    "organizationalFidelity",
+    "originalSourceActor"
+  ]
+}

@@ -1,0 +1,165 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "approach",
+    "priorities",
+    "principles",
+    "behavior",
+    "assumptions"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 2
+    },
+    "approach": {
+      "enum": [
+        "balanced",
+        "patient_control",
+        "measured_pressure",
+        "partner_preservation",
+        "theme_preservation"
+      ]
+    },
+    "priorities": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 6,
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "preserve_partners",
+          "control_status",
+          "speed_control",
+          "offensive_coverage",
+          "conserve_resources",
+          "preserve_theme",
+          "flexible_approach",
+          "consider_acquisition",
+          "use_healing"
+        ]
+      }
+    },
+    "principles": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 5,
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "retain_identity",
+          "respect_limits",
+          "adapt_to_revealed_evidence",
+          "avoid_overfitting",
+          "prepare_for_uncertainty"
+        ]
+      }
+    },
+    "behavior": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "aggression",
+        "riskTolerance",
+        "switchFlexibility",
+        "resourceConservation",
+        "setupPatience"
+      ],
+      "properties": {
+        "aggression": {
+          "type": "string",
+          "enum": [
+            "weak",
+            "moderate",
+            "strong"
+          ]
+        },
+        "riskTolerance": {
+          "type": "string",
+          "enum": [
+            "weak",
+            "moderate",
+            "strong"
+          ]
+        },
+        "switchFlexibility": {
+          "type": "string",
+          "enum": [
+            "weak",
+            "moderate",
+            "strong"
+          ]
+        },
+        "resourceConservation": {
+          "type": "string",
+          "enum": [
+            "weak",
+            "moderate",
+            "strong"
+          ]
+        },
+        "setupPatience": {
+          "type": "string",
+          "enum": [
+            "weak",
+            "moderate",
+            "strong"
+          ]
+        }
+      }
+    },
+    "assumptions": {
+      "type": "array",
+      "maxItems": 8,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "kind",
+          "basis",
+          "confidence",
+          "evidenceRefs"
+        ],
+        "properties": {
+          "kind": {
+            "enum": [
+              "observed_species",
+              "observed_move",
+              "prior_battle_result",
+              "possible_species_return",
+              "UNKNOWN"
+            ]
+          },
+          "basis": {
+            "enum": [
+              "direct",
+              "reported",
+              "interpretation",
+              "unknown"
+            ]
+          },
+          "confidence": {
+            "type": "string",
+            "enum": [
+              "weak",
+              "moderate",
+              "strong"
+            ]
+          },
+          "evidenceRefs": {
+            "type": "array",
+            "uniqueItems": true,
+            "maxItems": 4,
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 80
+            }
+          }
+        }
+      }
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

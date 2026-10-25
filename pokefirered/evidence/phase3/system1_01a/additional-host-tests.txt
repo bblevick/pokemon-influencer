@@ -1,0 +1,43 @@
+test_evolution_commit_preserves_individual_history (tests.test_system1_preparation.AdditionalPreparationTests) ... ok
+test_later_evidence_does_not_reroll_locked_preparation (tests.test_system1_preparation.AdditionalPreparationTests) ... ok
+test_future_commit_excluded_from_divergent_branch (tests.test_system1_preparation.AdditionalPreparationTests) ... ERROR
+test_selection_and_commit_do_not_deliver_npc_knowledge (tests.test_system1_preparation.AdditionalPreparationTests) ... ok
+
+======================================================================
+ERROR: test_future_commit_excluded_from_divergent_branch (tests.test_system1_preparation.AdditionalPreparationTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/blevicki/Documents/poke/pokefirered/tests/test_system1_preparation.py", line 60, in test_future_commit_excluded_from_divergent_branch
+    before=self.save;job,d=self.choose();c=self.w.commit_preparation(d['decisionID']);self.checkpoint(True);later=self.save;self.w.restore(before);self.battle(103);self.assertNotEqual(self.w.get_active_branch(),c['scope']['branch']);self.assertIsNone(self.w.locked_preparation(f.RICK));self.w.restore(later);self.assertEqual(self.w.locked_preparation(f.RICK),c)
+  File "/Users/blevicki/Documents/poke/pokefirered/tests/test_prep01.py", line 40, in battle
+    self.last+=1;self.w.ingest(replace(msg(self.last,typ,battle=bid,trainer=trainer),tag=TAG))
+  File "/Users/blevicki/Documents/poke/pokefirered/world/store.py", line 190, in ingest
+    return self._tx(action)
+  File "/Users/blevicki/Documents/poke/pokefirered/prep/store.py", line 62, in _tx
+    return super()._tx(action)
+  File "/Users/blevicki/Documents/poke/pokefirered/puppeteer/store.py", line 61, in _tx
+    return super()._tx(action)
+  File "/Users/blevicki/Documents/poke/pokefirered/social/store.py", line 95, in _tx
+    return super()._tx(action)
+  File "/Users/blevicki/Documents/poke/pokefirered/memory/store.py", line 105, in _tx
+    return super()._tx(action)
+  File "/Users/blevicki/Documents/poke/pokefirered/world/store.py", line 58, in _tx
+    try:result=fn();self.db.execute('COMMIT');return result
+  File "/Users/blevicki/Documents/poke/pokefirered/memory/store.py", line 83, in action
+    result = fn()
+  File "/Users/blevicki/Documents/poke/pokefirered/social/store.py", line 94, in action
+    return fn()
+  File "/Users/blevicki/Documents/poke/pokefirered/puppeteer/store.py", line 60, in action
+    return fn()
+  File "/Users/blevicki/Documents/poke/pokefirered/prep/store.py", line 61, in action
+    return fn()
+  File "/Users/blevicki/Documents/poke/pokefirered/world/store.py", line 148, in action
+    r=decode_event(message);launch=self._launch(message.nonce,message.generation);c=self.campaign(launch['campaign'])
+  File "/Users/blevicki/Documents/poke/pokefirered/world/store.py", line 137, in _launch
+    if not l or l['status']!='active' or run!=1:raise WorldError('unmanaged launch/reset: fresh paired battery launch required')
+world.store.WorldError: unmanaged launch/reset: fresh paired battery launch required
+
+----------------------------------------------------------------------
+Ran 4 tests in 155.916s
+
+FAILED (errors=1)

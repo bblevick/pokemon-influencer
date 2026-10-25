@@ -1,0 +1,157 @@
+{
+  "scope": "Known executed wrappers plus exact structured subprocess/native input/model audits; no assertion of a new earlier-phase playthrough",
+  "installation": [
+    "git clone --depth 1 --branch v2026.9.24 https://github.com/NousResearch/hermes-agent.git .local/hermes-source",
+    "UV_PROJECT_ENVIRONMENT=/Users/blevicki/Documents/poke/pokefirered/.local/hermes-venv .local/hermes-bootstrap/bin/uv sync --project .local/hermes-source --locked --no-default-groups --no-install-project",
+    "python3 scripts/install_hermes.py --verify-only"
+  ],
+  "finalChecks": [
+    "python3 tools/hermes01_regression.py",
+    "python3 tools/verify_hermes01.py"
+  ],
+  "save": [
+    "python3 tools/hermes01_scenario.py save --label branch-s3-final --menu-cursor 0 --resume-intent"
+  ],
+  "positiveReload": [
+    "python3 tools/hermes01_launch.py --save .local/hermes01/S3.sav --start",
+    "python3 tools/hermes01_host.py --mode offline --seconds 600",
+    "python3 tools/hermes01_input.py --label positive-boot 'a 4' 'key 9 0 180'",
+    "python3 tools/hermes01_input.py --label positive-field 'key 0 10 150' 'key 1 10 500'"
+  ],
+  "exactLaunchArguments": "launches.jsonl",
+  "exactNativeSegments": "input-commands.jsonl",
+  "exactModelRequestsToolsUsage": "jobs/*.json",
+  "exactRegressionArgvExitCodes": [
+    {
+      "argv": [
+        "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-v"
+      ],
+      "exitCode": 0,
+      "log": "evidence/phase2/hermes01/regressions/host.log"
+    },
+    {
+      "argv": [
+        "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+        "tools/phase1_test.py",
+        "--build-prefix",
+        "phase1-ui-ping",
+        "--evidence-dir",
+        "evidence/phase2/hermes01/regressions/ping"
+      ],
+      "exitCode": 0,
+      "log": "evidence/phase2/hermes01/regressions/ping.log"
+    },
+    {
+      "argv": [
+        "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+        "tools/phase1_events_test.py",
+        "--build-prefix",
+        "phase1-ui-events",
+        "--evidence-dir",
+        "evidence/phase2/hermes01/regressions/events"
+      ],
+      "exitCode": 0,
+      "log": "evidence/phase2/hermes01/regressions/events.log"
+    },
+    {
+      "argv": [
+        "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+        "/Users/blevicki/Documents/poke/pokefirered/tools/.hermes01-ui-regression.py"
+      ],
+      "exitCode": 0,
+      "log": "evidence/phase2/hermes01/regressions/ui.log"
+    },
+    {
+      "argv": [
+        "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+        "pokemon_influencer_handoff/tools/validate_handoff.py"
+      ],
+      "exitCode": 0,
+      "log": "evidence/phase2/hermes01/regressions/handoff.log"
+    },
+    {
+      "argv": [
+        "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+        "tools/validate_ai_contracts.py"
+      ],
+      "exitCode": 0,
+      "log": "evidence/phase2/hermes01/regressions/architecture.log"
+    },
+    {
+      "argv": [
+        "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+        "tools/verify_phase0_emulator.py"
+      ],
+      "exitCode": 0,
+      "log": "evidence/phase2/hermes01/regressions/retained-phase0.log"
+    },
+    {
+      "argv": [
+        "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+        "tools/verify_phase1_emulator.py"
+      ],
+      "exitCode": 0,
+      "log": "evidence/phase2/hermes01/regressions/retained-ping.log"
+    },
+    {
+      "argv": [
+        "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+        "tools/verify_phase1_events_emulator.py"
+      ],
+      "exitCode": 0,
+      "log": "evidence/phase2/hermes01/regressions/retained-events.log"
+    },
+    {
+      "argv": [
+        "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+        "tools/verify_phase1_ui_emulator.py"
+      ],
+      "exitCode": 0,
+      "log": "evidence/phase2/hermes01/regressions/retained-ui.log"
+    },
+    {
+      "argv": [
+        "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+        "tools/verify_world01.py"
+      ],
+      "exitCode": 0,
+      "log": "evidence/phase2/hermes01/regressions/retained-world.log"
+    },
+    {
+      "argv": [
+        "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+        "tools/verify_memory01.py"
+      ],
+      "exitCode": 0,
+      "log": "evidence/phase2/hermes01/regressions/retained-memory.log"
+    },
+    {
+      "argv": [
+        "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+        "tools/verify_social01.py"
+      ],
+      "exitCode": 0,
+      "log": "evidence/phase2/hermes01/regressions/retained-social.log"
+    },
+    {
+      "argv": [
+        "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+        "tools/social_species_catalog.py"
+      ],
+      "exitCode": 0,
+      "log": "evidence/phase2/hermes01/regressions/source-species.log"
+    }
+  ],
+  "firstFinalRegressionFailure": {
+    "log": "final-regression-console.log",
+    "reason": "macOS SQLite read-only open of stopped retained MEMORY WAL database lacked sidecars",
+    "resolution": "normal open initializes empty WAL sidecars; no game rows changed; retried final regression exit0"
+  },
+  "nativeUI": "CUA Tools > Scripting > File > recent .local/hermes01-run.lua once per fresh OS process; task emulator quit via super+q"
+}

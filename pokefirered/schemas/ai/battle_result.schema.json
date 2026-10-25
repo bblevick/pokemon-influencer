@@ -1,0 +1,137 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://pokemon-influencer.invalid/schemas/ai/battle_result.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "requestID": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 96,
+      "pattern": "^[A-Za-z0-9_.:-]+$"
+    },
+    "selectedLegalActionID": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 96,
+      "pattern": "^[A-Za-z0-9_.:-]+$"
+    },
+    "probabilities": {
+      "type": "object",
+      "maxProperties": 24,
+      "propertyNames": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 96,
+        "pattern": "^[A-Za-z0-9_.:-]+$"
+      },
+      "additionalProperties": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 1
+      }
+    },
+    "scores": {
+      "type": "object",
+      "maxProperties": 24,
+      "propertyNames": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 96,
+        "pattern": "^[A-Za-z0-9_.:-]+$"
+      },
+      "additionalProperties": {
+        "type": "number"
+      }
+    },
+    "provider": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 96,
+      "pattern": "^[A-Za-z0-9_.:-]+$"
+    },
+    "model": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 160,
+      "pattern": "^[A-Za-z0-9_./:~+-]+$"
+    },
+    "latencyMs": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 600000
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "ok",
+        "fallback"
+      ]
+    },
+    "errorCode": {
+      "type": "string",
+      "enum": [
+        "none",
+        "timeout",
+        "malformed_output",
+        "unavailable",
+        "model_mismatch",
+        "illegal_action",
+        "stale_response",
+        "credentials_missing",
+        "pricing_rejected",
+        "refusal"
+      ]
+    },
+    "fallbackUsed": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "requestID",
+    "selectedLegalActionID",
+    "provider",
+    "model",
+    "latencyMs",
+    "status",
+    "errorCode",
+    "fallbackUsed"
+  ],
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "ok"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "fallbackUsed": {
+            "const": false
+          },
+          "errorCode": {
+            "const": "none"
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "fallbackUsed": {
+            "const": true
+          },
+          "errorCode": {
+            "not": {
+              "const": "none"
+            }
+          }
+        }
+      }
+    }
+  ]
+}

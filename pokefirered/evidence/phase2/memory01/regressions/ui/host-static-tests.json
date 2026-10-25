@@ -1,0 +1,64 @@
+{
+  "scope": "unit/actual C sanitizer/compiled ARM; no live emulator execution",
+  "passed": true,
+  "results": [
+    {
+      "command": [
+        "/Users/blevicki/Documents/poke/pokefirered/.venv/bin/python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-v"
+      ],
+      "exit_code": 0,
+      "log": "evidence/phase2/memory01/regressions/ui/host-unit.log"
+    },
+    {
+      "command": [
+        "clang",
+        "-std=c99",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=address,undefined",
+        "-D__attribute__(x)=",
+        "-DPI_UI=1",
+        "-DPI_UI_TEST=1",
+        "-DPI_EVENTS=1",
+        "-DPI_UI_NATIVE_TEST=1",
+        "-I/Users/blevicki/Documents/poke/pokefirered/.local/phase1-ui-native",
+        "tests/pi_ui_test.c",
+        "-o",
+        "/Users/blevicki/Documents/poke/pokefirered/.local/pi_ui_test"
+      ],
+      "exit_code": 0,
+      "log": "evidence/phase2/memory01/regressions/ui/ui-native-compile.log"
+    },
+    {
+      "command": [
+        "/Users/blevicki/Documents/poke/pokefirered/.local/pi_ui_test"
+      ],
+      "exit_code": 0,
+      "log": "evidence/phase2/memory01/regressions/ui/ui-native-tests.log"
+    },
+    {
+      "command": [
+        "/Users/blevicki/Documents/poke/pokefirered/.venv/bin/python",
+        "tools/world01_verify_ui.py"
+      ],
+      "exit_code": 0,
+      "log": "evidence/phase2/memory01/regressions/ui/static-enabled.log"
+    },
+    {
+      "command": [
+        "/Users/blevicki/Documents/poke/pokefirered/.venv/bin/python",
+        "tools/world01_verify_ui.py",
+        "--disabled"
+      ],
+      "exit_code": 0,
+      "log": "evidence/phase2/memory01/regressions/ui/static-disabled.log"
+    }
+  ]
+}

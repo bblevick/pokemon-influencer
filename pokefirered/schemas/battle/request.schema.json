@@ -1,0 +1,123 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "BattleDecisionRequest v2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "requestID",
+    "scope",
+    "actionSetHash",
+    "strategyID",
+    "strategySHA256",
+    "commitmentID",
+    "state",
+    "choices",
+    "nativeActions",
+    "nativeState",
+    "question"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 2
+    },
+    "requestID": {
+      "type": "string"
+    },
+    "scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "campaign",
+        "branch",
+        "nativeROM",
+        "nonce",
+        "generation",
+        "battle",
+        "turn",
+        "battler",
+        "phase",
+        "request"
+      ],
+      "properties": {
+        "campaign": {
+          "type": "string"
+        },
+        "branch": {
+          "type": "string"
+        },
+        "nativeROM": {
+          "type": "string"
+        },
+        "nonce": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "generation": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "battle": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "turn": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "battler": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "phase": {
+          "type": "string"
+        },
+        "request": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "actionSetHash": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}$"
+    },
+    "strategyID": {
+      "type": "string"
+    },
+    "strategySHA256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "commitmentID": {
+      "type": "string"
+    },
+    "state": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 32768
+    },
+    "choices": {
+      "type": "object",
+      "minProperties": 1,
+      "maxProperties": 14,
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "nativeActions": {
+      "type": "object",
+      "minProperties": 1,
+      "maxProperties": 14,
+      "additionalProperties": {
+        "type": "integer"
+      }
+    },
+    "nativeState": {
+      "$ref": "state.schema.json"
+    },
+    "question": {
+      "type": "string"
+    }
+  }
+}

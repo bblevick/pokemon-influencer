@@ -1,0 +1,1744 @@
+{
+  "type": "object",
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "packID": {
+      "const": "opening-kanto"
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "classification": {
+      "const": "authored-playtest-content"
+    },
+    "catalogSHA256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "sourceCommit": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$"
+    },
+    "romSHA256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "registrySHA256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "basisPolicySHA256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "sourceEvidence": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{64}$"
+      }
+    },
+    "activation": {
+      "type": "object",
+      "properties": {
+        "boundary": {
+          "type": "string",
+          "minLength": 1
+        },
+        "inventoryInitialization": {
+          "type": "string",
+          "minLength": 1
+        },
+        "migration": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "boundary",
+        "inventoryInitialization",
+        "migration"
+      ],
+      "additionalProperties": false
+    },
+    "milestone": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "const": "story.boulder-awarded"
+        },
+        "sourceTrainer": {
+          "const": 414
+        },
+        "script": {
+          "const": "PewterCity_Gym_EventScript_DefeatedBrock"
+        },
+        "flags": {
+          "type": "object",
+          "properties": {
+            "FLAG_DEFEATED_BROCK": {
+              "const": 1200
+            },
+            "FLAG_BADGE01_GET": {
+              "const": 2080
+            }
+          },
+          "required": [
+            "FLAG_DEFEATED_BROCK",
+            "FLAG_BADGE01_GET"
+          ],
+          "additionalProperties": false
+        },
+        "requiresAllFlags": {
+          "const": true
+        }
+      },
+      "required": [
+        "id",
+        "sourceTrainer",
+        "script",
+        "flags",
+        "requiresAllFlags"
+      ],
+      "additionalProperties": false
+    },
+    "defaults": {
+      "type": "object",
+      "properties": {
+        "aggregateMoveChanges": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "levelGainPerOpportunity": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "catchBudget": {
+          "const": 0
+        },
+        "activeAdditions": {
+          "const": 0
+        },
+        "reserveAdditions": {
+          "const": 0
+        },
+        "replacements": {
+          "const": 0
+        },
+        "restock": {
+          "const": false
+        },
+        "ivNatureRerolls": {
+          "const": false
+        },
+        "automaticEVTraining": {
+          "const": false
+        },
+        "accessibleMaps": {
+          "const": []
+        },
+        "exceptionalMaps": {
+          "const": []
+        },
+        "methods": {
+          "const": [
+            "land_mons"
+          ]
+        },
+        "teachingMethods": {
+          "const": [
+            "retained",
+            "level_up"
+          ]
+        },
+        "evolutionMethods": {
+          "const": [
+            "EVO_LEVEL"
+          ]
+        },
+        "unsupportedMethods": {
+          "const": [
+            "surf",
+            "fishing",
+            "rock_smash",
+            "tutor",
+            "relearner",
+            "trade",
+            "gift",
+            "fossil",
+            "special_evolution"
+          ]
+        },
+        "extraHealing": {
+          "const": 0
+        },
+        "tmhmStock": {
+          "const": 0
+        },
+        "evolutionConsumables": {
+          "const": 0
+        },
+        "exceptionalTokens": {
+          "const": 0
+        },
+        "partyOrderChanges": {
+          "const": true
+        }
+      },
+      "required": [
+        "aggregateMoveChanges",
+        "levelGainPerOpportunity",
+        "catchBudget",
+        "activeAdditions",
+        "reserveAdditions",
+        "replacements",
+        "restock",
+        "ivNatureRerolls",
+        "automaticEVTraining",
+        "accessibleMaps",
+        "exceptionalMaps",
+        "methods",
+        "teachingMethods",
+        "evolutionMethods",
+        "unsupportedMethods",
+        "extraHealing",
+        "tmhmStock",
+        "evolutionConsumables",
+        "exceptionalTokens",
+        "partyOrderChanges"
+      ],
+      "additionalProperties": false
+    },
+    "trainers": {
+      "type": "object",
+      "properties": {
+        "trainer:fr:trainer:0102": {
+          "type": "object",
+          "properties": {
+            "displayName": {
+              "type": "string",
+              "minLength": 1
+            },
+            "worldTrainerID": {
+              "type": "string",
+              "minLength": 1
+            },
+            "sourceTrainer": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "sourceVariants": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "minimum": 1
+              }
+            },
+            "qualifiedVariant": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "mapEvidence": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "homeMap": {
+              "type": "string",
+              "minLength": 1
+            },
+            "regions": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object",
+                "properties": {
+                  "tier": {
+                    "enum": [
+                      "native",
+                      "nearby"
+                    ]
+                  },
+                  "requires": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  }
+                },
+                "required": [
+                  "tier",
+                  "requires"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "originals": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "baselineKey": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "fixedIV": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "heldItem": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "ivSource": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "level": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100
+                  },
+                  "moveMode": {
+                    "enum": [
+                      "default",
+                      "authored"
+                    ]
+                  },
+                  "moves": {
+                    "type": "array",
+                    "items": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "minItems": 4,
+                    "maxItems": 4
+                  },
+                  "slot": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "species": {
+                    "type": "integer",
+                    "minimum": 1
+                  }
+                },
+                "required": [
+                  "baselineKey",
+                  "fixedIV",
+                  "heldItem",
+                  "ivSource",
+                  "level",
+                  "moveMode",
+                  "moves",
+                  "slot",
+                  "species"
+                ],
+                "additionalProperties": false
+              },
+              "minItems": 1,
+              "maxItems": 6
+            },
+            "retainedOrigins": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "signatureOrigins": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "theme": {
+              "anyOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "primaryType": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "coreOrigins": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    },
+                    "minimumCore": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "maximumActive": {
+                      "type": "integer",
+                      "minimum": 1,
+                      "maximum": 6
+                    },
+                    "maximumSupport": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "supportSpecies": {
+                      "type": "array",
+                      "items": {
+                        "type": "integer",
+                        "minimum": 1
+                      }
+                    },
+                    "supportAcquisition": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    },
+                    "supportLevelCap": {
+                      "type": "integer",
+                      "minimum": 1,
+                      "maximum": 100
+                    }
+                  },
+                  "required": [
+                    "primaryType",
+                    "coreOrigins",
+                    "minimumCore",
+                    "maximumActive",
+                    "maximumSupport",
+                    "supportSpecies",
+                    "supportAcquisition",
+                    "supportLevelCap"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "stages": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object",
+                "properties": {
+                  "predicate": {
+                    "enum": [
+                      "not_previously_defeated",
+                      "boulder_absent",
+                      "boulder_required",
+                      "own_prior_defeat_and_boulder_and_unconsumed"
+                    ]
+                  },
+                  "targets": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "type": "integer",
+                      "minimum": 1,
+                      "maximum": 100
+                    }
+                  },
+                  "stageCeiling": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100
+                  },
+                  "gain": {
+                    "type": "integer",
+                    "minimum": 0
+                  }
+                },
+                "required": [
+                  "predicate",
+                  "targets",
+                  "stageCeiling",
+                  "gain"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "resources": {
+              "type": "object",
+              "properties": {
+                "owner": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "initialBattleItems": {
+                  "type": "array",
+                  "items": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "minItems": 4,
+                  "maxItems": 4
+                },
+                "initialHeldItems": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "integer",
+                    "minimum": 0
+                  }
+                },
+                "initialStock": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "item": {
+                        "type": "integer",
+                        "minimum": 1
+                      },
+                      "quantity": {
+                        "type": "integer",
+                        "minimum": 0
+                      }
+                    },
+                    "required": [
+                      "item",
+                      "quantity"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "categories": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "category": {
+                        "enum": [
+                          "battle_bag",
+                          "held",
+                          "teaching",
+                          "evolution",
+                          "capture",
+                          "tutor_relearner",
+                          "exceptional"
+                        ]
+                      },
+                      "quantity": {
+                        "type": "integer",
+                        "minimum": 0
+                      },
+                      "initialization": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "consumption": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "replenishment": {
+                        "enum": [
+                          "none"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "category",
+                      "quantity",
+                      "initialization",
+                      "consumption",
+                      "replenishment"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "minItems": 7,
+                  "maxItems": 7
+                }
+              },
+              "required": [
+                "owner",
+                "initialBattleItems",
+                "initialHeldItems",
+                "initialStock",
+                "categories"
+              ],
+              "additionalProperties": false
+            },
+            "designProvenance": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "displayName",
+            "worldTrainerID",
+            "sourceTrainer",
+            "sourceVariants",
+            "qualifiedVariant",
+            "mapEvidence",
+            "homeMap",
+            "regions",
+            "originals",
+            "retainedOrigins",
+            "signatureOrigins",
+            "theme",
+            "stages",
+            "resources",
+            "designProvenance"
+          ],
+          "additionalProperties": false
+        },
+        "trainer:fr:trainer:0103": {
+          "type": "object",
+          "properties": {
+            "displayName": {
+              "type": "string",
+              "minLength": 1
+            },
+            "worldTrainerID": {
+              "type": "string",
+              "minLength": 1
+            },
+            "sourceTrainer": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "sourceVariants": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "minimum": 1
+              }
+            },
+            "qualifiedVariant": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "mapEvidence": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "homeMap": {
+              "type": "string",
+              "minLength": 1
+            },
+            "regions": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object",
+                "properties": {
+                  "tier": {
+                    "enum": [
+                      "native",
+                      "nearby"
+                    ]
+                  },
+                  "requires": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  }
+                },
+                "required": [
+                  "tier",
+                  "requires"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "originals": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "baselineKey": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "fixedIV": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "heldItem": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "ivSource": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "level": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100
+                  },
+                  "moveMode": {
+                    "enum": [
+                      "default",
+                      "authored"
+                    ]
+                  },
+                  "moves": {
+                    "type": "array",
+                    "items": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "minItems": 4,
+                    "maxItems": 4
+                  },
+                  "slot": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "species": {
+                    "type": "integer",
+                    "minimum": 1
+                  }
+                },
+                "required": [
+                  "baselineKey",
+                  "fixedIV",
+                  "heldItem",
+                  "ivSource",
+                  "level",
+                  "moveMode",
+                  "moves",
+                  "slot",
+                  "species"
+                ],
+                "additionalProperties": false
+              },
+              "minItems": 1,
+              "maxItems": 6
+            },
+            "retainedOrigins": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "signatureOrigins": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "theme": {
+              "anyOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "primaryType": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "coreOrigins": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    },
+                    "minimumCore": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "maximumActive": {
+                      "type": "integer",
+                      "minimum": 1,
+                      "maximum": 6
+                    },
+                    "maximumSupport": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "supportSpecies": {
+                      "type": "array",
+                      "items": {
+                        "type": "integer",
+                        "minimum": 1
+                      }
+                    },
+                    "supportAcquisition": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    },
+                    "supportLevelCap": {
+                      "type": "integer",
+                      "minimum": 1,
+                      "maximum": 100
+                    }
+                  },
+                  "required": [
+                    "primaryType",
+                    "coreOrigins",
+                    "minimumCore",
+                    "maximumActive",
+                    "maximumSupport",
+                    "supportSpecies",
+                    "supportAcquisition",
+                    "supportLevelCap"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "stages": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object",
+                "properties": {
+                  "predicate": {
+                    "enum": [
+                      "not_previously_defeated",
+                      "boulder_absent",
+                      "boulder_required",
+                      "own_prior_defeat_and_boulder_and_unconsumed"
+                    ]
+                  },
+                  "targets": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "type": "integer",
+                      "minimum": 1,
+                      "maximum": 100
+                    }
+                  },
+                  "stageCeiling": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100
+                  },
+                  "gain": {
+                    "type": "integer",
+                    "minimum": 0
+                  }
+                },
+                "required": [
+                  "predicate",
+                  "targets",
+                  "stageCeiling",
+                  "gain"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "resources": {
+              "type": "object",
+              "properties": {
+                "owner": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "initialBattleItems": {
+                  "type": "array",
+                  "items": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "minItems": 4,
+                  "maxItems": 4
+                },
+                "initialHeldItems": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "integer",
+                    "minimum": 0
+                  }
+                },
+                "initialStock": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "item": {
+                        "type": "integer",
+                        "minimum": 1
+                      },
+                      "quantity": {
+                        "type": "integer",
+                        "minimum": 0
+                      }
+                    },
+                    "required": [
+                      "item",
+                      "quantity"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "categories": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "category": {
+                        "enum": [
+                          "battle_bag",
+                          "held",
+                          "teaching",
+                          "evolution",
+                          "capture",
+                          "tutor_relearner",
+                          "exceptional"
+                        ]
+                      },
+                      "quantity": {
+                        "type": "integer",
+                        "minimum": 0
+                      },
+                      "initialization": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "consumption": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "replenishment": {
+                        "enum": [
+                          "none"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "category",
+                      "quantity",
+                      "initialization",
+                      "consumption",
+                      "replenishment"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "minItems": 7,
+                  "maxItems": 7
+                }
+              },
+              "required": [
+                "owner",
+                "initialBattleItems",
+                "initialHeldItems",
+                "initialStock",
+                "categories"
+              ],
+              "additionalProperties": false
+            },
+            "designProvenance": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "displayName",
+            "worldTrainerID",
+            "sourceTrainer",
+            "sourceVariants",
+            "qualifiedVariant",
+            "mapEvidence",
+            "homeMap",
+            "regions",
+            "originals",
+            "retainedOrigins",
+            "signatureOrigins",
+            "theme",
+            "stages",
+            "resources",
+            "designProvenance"
+          ],
+          "additionalProperties": false
+        },
+        "trainer:fr:trainer:0116": {
+          "type": "object",
+          "properties": {
+            "displayName": {
+              "type": "string",
+              "minLength": 1
+            },
+            "worldTrainerID": {
+              "type": "string",
+              "minLength": 1
+            },
+            "sourceTrainer": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "sourceVariants": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "minimum": 1
+              }
+            },
+            "qualifiedVariant": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "mapEvidence": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "homeMap": {
+              "type": "string",
+              "minLength": 1
+            },
+            "regions": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object",
+                "properties": {
+                  "tier": {
+                    "enum": [
+                      "native",
+                      "nearby"
+                    ]
+                  },
+                  "requires": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  }
+                },
+                "required": [
+                  "tier",
+                  "requires"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "originals": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "baselineKey": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "fixedIV": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "heldItem": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "ivSource": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "level": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100
+                  },
+                  "moveMode": {
+                    "enum": [
+                      "default",
+                      "authored"
+                    ]
+                  },
+                  "moves": {
+                    "type": "array",
+                    "items": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "minItems": 4,
+                    "maxItems": 4
+                  },
+                  "slot": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "species": {
+                    "type": "integer",
+                    "minimum": 1
+                  }
+                },
+                "required": [
+                  "baselineKey",
+                  "fixedIV",
+                  "heldItem",
+                  "ivSource",
+                  "level",
+                  "moveMode",
+                  "moves",
+                  "slot",
+                  "species"
+                ],
+                "additionalProperties": false
+              },
+              "minItems": 1,
+              "maxItems": 6
+            },
+            "retainedOrigins": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "signatureOrigins": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "theme": {
+              "anyOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "primaryType": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "coreOrigins": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    },
+                    "minimumCore": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "maximumActive": {
+                      "type": "integer",
+                      "minimum": 1,
+                      "maximum": 6
+                    },
+                    "maximumSupport": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "supportSpecies": {
+                      "type": "array",
+                      "items": {
+                        "type": "integer",
+                        "minimum": 1
+                      }
+                    },
+                    "supportAcquisition": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    },
+                    "supportLevelCap": {
+                      "type": "integer",
+                      "minimum": 1,
+                      "maximum": 100
+                    }
+                  },
+                  "required": [
+                    "primaryType",
+                    "coreOrigins",
+                    "minimumCore",
+                    "maximumActive",
+                    "maximumSupport",
+                    "supportSpecies",
+                    "supportAcquisition",
+                    "supportLevelCap"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "stages": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object",
+                "properties": {
+                  "predicate": {
+                    "enum": [
+                      "not_previously_defeated",
+                      "boulder_absent",
+                      "boulder_required",
+                      "own_prior_defeat_and_boulder_and_unconsumed"
+                    ]
+                  },
+                  "targets": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "type": "integer",
+                      "minimum": 1,
+                      "maximum": 100
+                    }
+                  },
+                  "stageCeiling": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100
+                  },
+                  "gain": {
+                    "type": "integer",
+                    "minimum": 0
+                  }
+                },
+                "required": [
+                  "predicate",
+                  "targets",
+                  "stageCeiling",
+                  "gain"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "resources": {
+              "type": "object",
+              "properties": {
+                "owner": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "initialBattleItems": {
+                  "type": "array",
+                  "items": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "minItems": 4,
+                  "maxItems": 4
+                },
+                "initialHeldItems": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "integer",
+                    "minimum": 0
+                  }
+                },
+                "initialStock": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "item": {
+                        "type": "integer",
+                        "minimum": 1
+                      },
+                      "quantity": {
+                        "type": "integer",
+                        "minimum": 0
+                      }
+                    },
+                    "required": [
+                      "item",
+                      "quantity"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "categories": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "category": {
+                        "enum": [
+                          "battle_bag",
+                          "held",
+                          "teaching",
+                          "evolution",
+                          "capture",
+                          "tutor_relearner",
+                          "exceptional"
+                        ]
+                      },
+                      "quantity": {
+                        "type": "integer",
+                        "minimum": 0
+                      },
+                      "initialization": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "consumption": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "replenishment": {
+                        "enum": [
+                          "none"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "category",
+                      "quantity",
+                      "initialization",
+                      "consumption",
+                      "replenishment"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "minItems": 7,
+                  "maxItems": 7
+                }
+              },
+              "required": [
+                "owner",
+                "initialBattleItems",
+                "initialHeldItems",
+                "initialStock",
+                "categories"
+              ],
+              "additionalProperties": false
+            },
+            "designProvenance": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "displayName",
+            "worldTrainerID",
+            "sourceTrainer",
+            "sourceVariants",
+            "qualifiedVariant",
+            "mapEvidence",
+            "homeMap",
+            "regions",
+            "originals",
+            "retainedOrigins",
+            "signatureOrigins",
+            "theme",
+            "stages",
+            "resources",
+            "designProvenance"
+          ],
+          "additionalProperties": false
+        },
+        "trainer:fr:trainer:0414": {
+          "type": "object",
+          "properties": {
+            "displayName": {
+              "type": "string",
+              "minLength": 1
+            },
+            "worldTrainerID": {
+              "type": "string",
+              "minLength": 1
+            },
+            "sourceTrainer": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "sourceVariants": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "minimum": 1
+              }
+            },
+            "qualifiedVariant": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "mapEvidence": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "homeMap": {
+              "type": "string",
+              "minLength": 1
+            },
+            "regions": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object",
+                "properties": {
+                  "tier": {
+                    "enum": [
+                      "native",
+                      "nearby"
+                    ]
+                  },
+                  "requires": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  }
+                },
+                "required": [
+                  "tier",
+                  "requires"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "originals": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "baselineKey": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "fixedIV": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "heldItem": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "ivSource": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "level": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100
+                  },
+                  "moveMode": {
+                    "enum": [
+                      "default",
+                      "authored"
+                    ]
+                  },
+                  "moves": {
+                    "type": "array",
+                    "items": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "minItems": 4,
+                    "maxItems": 4
+                  },
+                  "slot": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "species": {
+                    "type": "integer",
+                    "minimum": 1
+                  }
+                },
+                "required": [
+                  "baselineKey",
+                  "fixedIV",
+                  "heldItem",
+                  "ivSource",
+                  "level",
+                  "moveMode",
+                  "moves",
+                  "slot",
+                  "species"
+                ],
+                "additionalProperties": false
+              },
+              "minItems": 1,
+              "maxItems": 6
+            },
+            "retainedOrigins": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "signatureOrigins": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "theme": {
+              "anyOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "primaryType": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "coreOrigins": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    },
+                    "minimumCore": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "maximumActive": {
+                      "type": "integer",
+                      "minimum": 1,
+                      "maximum": 6
+                    },
+                    "maximumSupport": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "supportSpecies": {
+                      "type": "array",
+                      "items": {
+                        "type": "integer",
+                        "minimum": 1
+                      }
+                    },
+                    "supportAcquisition": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    },
+                    "supportLevelCap": {
+                      "type": "integer",
+                      "minimum": 1,
+                      "maximum": 100
+                    }
+                  },
+                  "required": [
+                    "primaryType",
+                    "coreOrigins",
+                    "minimumCore",
+                    "maximumActive",
+                    "maximumSupport",
+                    "supportSpecies",
+                    "supportAcquisition",
+                    "supportLevelCap"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "stages": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object",
+                "properties": {
+                  "predicate": {
+                    "enum": [
+                      "not_previously_defeated",
+                      "boulder_absent",
+                      "boulder_required",
+                      "own_prior_defeat_and_boulder_and_unconsumed"
+                    ]
+                  },
+                  "targets": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "type": "integer",
+                      "minimum": 1,
+                      "maximum": 100
+                    }
+                  },
+                  "stageCeiling": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100
+                  },
+                  "gain": {
+                    "type": "integer",
+                    "minimum": 0
+                  }
+                },
+                "required": [
+                  "predicate",
+                  "targets",
+                  "stageCeiling",
+                  "gain"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "resources": {
+              "type": "object",
+              "properties": {
+                "owner": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "initialBattleItems": {
+                  "type": "array",
+                  "items": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "minItems": 4,
+                  "maxItems": 4
+                },
+                "initialHeldItems": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "integer",
+                    "minimum": 0
+                  }
+                },
+                "initialStock": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "item": {
+                        "type": "integer",
+                        "minimum": 1
+                      },
+                      "quantity": {
+                        "type": "integer",
+                        "minimum": 0
+                      }
+                    },
+                    "required": [
+                      "item",
+                      "quantity"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "categories": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "category": {
+                        "enum": [
+                          "battle_bag",
+                          "held",
+                          "teaching",
+                          "evolution",
+                          "capture",
+                          "tutor_relearner",
+                          "exceptional"
+                        ]
+                      },
+                      "quantity": {
+                        "type": "integer",
+                        "minimum": 0
+                      },
+                      "initialization": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "consumption": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "replenishment": {
+                        "enum": [
+                          "none"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "category",
+                      "quantity",
+                      "initialization",
+                      "consumption",
+                      "replenishment"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "minItems": 7,
+                  "maxItems": 7
+                }
+              },
+              "required": [
+                "owner",
+                "initialBattleItems",
+                "initialHeldItems",
+                "initialStock",
+                "categories"
+              ],
+              "additionalProperties": false
+            },
+            "designProvenance": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "displayName",
+            "worldTrainerID",
+            "sourceTrainer",
+            "sourceVariants",
+            "qualifiedVariant",
+            "mapEvidence",
+            "homeMap",
+            "regions",
+            "originals",
+            "retainedOrigins",
+            "signatureOrigins",
+            "theme",
+            "stages",
+            "resources",
+            "designProvenance"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "trainer:fr:trainer:0102",
+        "trainer:fr:trainer:0103",
+        "trainer:fr:trainer:0116",
+        "trainer:fr:trainer:0414"
+      ],
+      "additionalProperties": false
+    },
+    "adaptationRulesSHA256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "packID",
+    "version",
+    "classification",
+    "catalogSHA256",
+    "sourceCommit",
+    "romSHA256",
+    "registrySHA256",
+    "basisPolicySHA256",
+    "sourceEvidence",
+    "activation",
+    "milestone",
+    "defaults",
+    "trainers",
+    "adaptationRulesSHA256"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:poke:content:opening:1"
+}

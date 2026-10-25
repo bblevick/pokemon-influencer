@@ -1,0 +1,327 @@
+{
+  "project": "Pokemon Influencer",
+  "schema_version": 1,
+  "protocol_version": 1,
+  "bridge_version": 1,
+  "source_commit": "037335f4c725d7c9aecdac87066f2002b4bd7e14",
+  "worktree_dirty": true,
+  "overlay_sha256": {
+    "Makefile": "6237f3e8482c9af16206b6b347f13bb0592ccf44546525f8e4c31aea880745a4",
+    "ld_script.ld": "36761753453396476646a0b100c56bab341aa0115a2d4b1ce11abe2a96315102",
+    "src/main.c": "b4dde1810ebeda6e12bc0eb4ec778d34d9ac3a2484c69ff83cefca363fa940b6",
+    "src/pi_bridge.c": "2ec05ed3166f068405699dbc00b2992a36eeb29b8659c13a5ac21a1c94dc6a0e",
+    "include/pi_protocol.h": "59da7368690e6835f180bd5f16f512128dc7e3f683c82975462c1102f024f51e",
+    "include/pi_build.h": "4d4e335844b8b142c710ee2a5a5f5b9d4cb6db4b82268a034093ca01226db65a",
+    "bridge/protocol.json": "7fb64db47662e2e47a2d21c6517f9029ecbb12021b027aa40d4a2623aab31a43",
+    "bridge/mgba.lua": "ecbcb4f87da97f8f577aa7ed29c3089906d282ffc769410620944a734726a22c"
+  },
+  "build_tag": 603346710,
+  "build_content_sha256": "23f65716ee10574a62e0ad5faab0bfebfc5b0589400d7f9bd6614660b8554897",
+  "build_tag_address": 141252812,
+  "rom_path": ".local/phase1-enabled/pokefirered.gba",
+  "rom_sha256": "729c07b6a8725a1d1684249b83c6bc257f955d5e14f4c2b6683ed7cd3475267a",
+  "rom_sha1": "826237d223bc774b68efcecbf78ea4a13cdc9a5e",
+  "rom_crc32": "bc203047",
+  "rom_size": 16777216,
+  "target": {
+    "game": "FIRERED",
+    "language": "ENGLISH",
+    "revision": 0,
+    "modern": false,
+    "bridge_enabled": true,
+    "debug_ping": true
+  },
+  "elf_sha256": "4332c72497c7e9719521570e2ec29cfa584e11b132f8b56986cc01dd7b445469",
+  "map_sha256": "569c07e7902f24bc07171b252617530cc6fa46661eabac7a99e68e2e8200a81a",
+  "mailbox": {
+    "symbol": "gPiMailbox",
+    "address": 50361472,
+    "size": 108,
+    "end": 33815472,
+    "region": "EWRAM",
+    "fields": {
+      "magic": {
+        "offset": 0,
+        "size": 4,
+        "kind": "u32"
+      },
+      "version": {
+        "offset": 4,
+        "size": 2,
+        "kind": "u16"
+      },
+      "size": {
+        "offset": 6,
+        "size": 2,
+        "kind": "u16"
+      },
+      "build_tag": {
+        "offset": 8,
+        "size": 4,
+        "kind": "u32"
+      },
+      "nonce": {
+        "offset": 12,
+        "size": 4,
+        "kind": "u32"
+      },
+      "generation": {
+        "offset": 16,
+        "size": 4,
+        "kind": "u32"
+      },
+      "sequence": {
+        "offset": 20,
+        "size": 4,
+        "kind": "u32"
+      },
+      "response_sequence": {
+        "offset": 24,
+        "size": 4,
+        "kind": "u32"
+      },
+      "response_nonce": {
+        "offset": 28,
+        "size": 4,
+        "kind": "u32"
+      },
+      "response_generation": {
+        "offset": 32,
+        "size": 4,
+        "kind": "u32"
+      },
+      "state": {
+        "offset": 36,
+        "size": 2,
+        "kind": "u16"
+      },
+      "message_type": {
+        "offset": 38,
+        "size": 2,
+        "kind": "u16"
+      },
+      "length": {
+        "offset": 40,
+        "size": 2,
+        "kind": "u16"
+      },
+      "result": {
+        "offset": 42,
+        "size": 2,
+        "kind": "u16"
+      },
+      "error": {
+        "offset": 44,
+        "size": 2,
+        "kind": "u16"
+      },
+      "reserved": {
+        "offset": 46,
+        "size": 2,
+        "kind": "u16"
+      },
+      "checksum": {
+        "offset": 48,
+        "size": 4,
+        "kind": "u32"
+      },
+      "heartbeat": {
+        "offset": 52,
+        "size": 4,
+        "kind": "u32"
+      },
+      "deadline": {
+        "offset": 56,
+        "size": 4,
+        "kind": "u32"
+      },
+      "last_ack": {
+        "offset": 60,
+        "size": 4,
+        "kind": "u32"
+      },
+      "successes": {
+        "offset": 64,
+        "size": 4,
+        "kind": "u32"
+      },
+      "failures": {
+        "offset": 68,
+        "size": 4,
+        "kind": "u32"
+      },
+      "debug_trigger": {
+        "offset": 72,
+        "size": 4,
+        "kind": "u32"
+      },
+      "payload": {
+        "offset": 76,
+        "size": 32,
+        "kind": "bytes32"
+      }
+    }
+  },
+  "protocol": {
+    "schema_version": 1,
+    "protocol_version": 1,
+    "magic": 1346981937,
+    "payload_max": 32,
+    "timeout_frames": 60,
+    "states": {
+      "IDLE": 0,
+      "REQUEST_READY": 1,
+      "REQUEST_IN_PROGRESS": 2,
+      "RESPONSE_READY": 3,
+      "ERROR": 4
+    },
+    "types": {
+      "PING": 1,
+      "PONG": 2
+    },
+    "errors": {
+      "NONE": 0,
+      "TIMEOUT": 1,
+      "MALFORMED": 2,
+      "VERSION": 3,
+      "STALE": 4,
+      "DISCONNECTED": 5
+    },
+    "fields": [
+      [
+        "magic",
+        "u32"
+      ],
+      [
+        "version",
+        "u16"
+      ],
+      [
+        "size",
+        "u16"
+      ],
+      [
+        "build_tag",
+        "u32"
+      ],
+      [
+        "nonce",
+        "u32"
+      ],
+      [
+        "generation",
+        "u32"
+      ],
+      [
+        "sequence",
+        "u32"
+      ],
+      [
+        "response_sequence",
+        "u32"
+      ],
+      [
+        "response_nonce",
+        "u32"
+      ],
+      [
+        "response_generation",
+        "u32"
+      ],
+      [
+        "state",
+        "u16"
+      ],
+      [
+        "message_type",
+        "u16"
+      ],
+      [
+        "length",
+        "u16"
+      ],
+      [
+        "result",
+        "u16"
+      ],
+      [
+        "error",
+        "u16"
+      ],
+      [
+        "reserved",
+        "u16"
+      ],
+      [
+        "checksum",
+        "u32"
+      ],
+      [
+        "heartbeat",
+        "u32"
+      ],
+      [
+        "deadline",
+        "u32"
+      ],
+      [
+        "last_ack",
+        "u32"
+      ],
+      [
+        "successes",
+        "u32"
+      ],
+      [
+        "failures",
+        "u32"
+      ],
+      [
+        "debug_trigger",
+        "u32"
+      ],
+      [
+        "payload",
+        "bytes32"
+      ]
+    ]
+  },
+  "emulator": {
+    "candidate": "mGBA",
+    "version": "0.10.5",
+    "commit": "26b7884bc25a5933960f3cdcd98bac1ae14d42e2",
+    "download_url": "https://github.com/mgba-emu/mgba/releases/download/0.10.5/mGBA-0.10.5-macos.dmg",
+    "package_sha256": "443b490ec728293dfcde1cb9db160f73d94c457cb1864f3ce0407e60e174b09c",
+    "executable_sha256": "f2f329b4947baa5082fcaf27ced1e2b21f2999ccf73ca481f22b44c4c87d6640",
+    "support_status": "supported Phase 0 diagnostic candidate: boot, Lua/memory/socket/snapshot probes passed; ordinary battle/save/reload pending"
+  },
+  "allocation_checks": {
+    "original_ram_symbols_unchanged": false,
+    "symbols_compared": 890,
+    "changed": [
+      "end",
+      "errno",
+      "sListMenuItems",
+      "sMenu",
+      "sMovementScripts",
+      "sResources",
+      "sSavedIme",
+      "sWindowIds",
+      "sWork",
+      "thenan.3"
+    ],
+    "heap_start": 33554432,
+    "heap_end": 33669120,
+    "iwram_globals_end": 50361584,
+    "user_stack_initial": 50363968,
+    "stack_global_gap": 2384,
+    "mailbox_aligned": true,
+    "mailbox_size": true,
+    "mailbox_inside_ewram": false,
+    "no_original_symbol_overlap": true,
+    "overlaps": [],
+    "compiled_layout_matches": true,
+    "compiled_build_tag": true
+  },
+  "static_passed": false
+}

@@ -1,0 +1,70 @@
+{
+  "version": 1,
+  "maximumAttempts": 4,
+  "closed": true,
+  "attempts": [
+    {
+      "jobID": "strategy-model02-smoke",
+      "requestedModel": "google/gemma-4-31b-it:free",
+      "startedAtUnix": 1791322380.277457,
+      "requestSHA256": "51e0e1538fa14def2bd0e43346e9d0fdc7d913ea1537371f0cbdc78a1ef47f44",
+      "modelInputSHA256": "564eb5283699109e57c988991702132f5e9188b2f19d08960b6b2e73b5094332",
+      "routing": {
+        "only": [
+          "Google AI Studio"
+        ],
+        "allow_fallbacks": true,
+        "require_parameters": true,
+        "max_price": {
+          "prompt": 0,
+          "completion": 0
+        }
+      },
+      "response": {
+        "httpStatus": 429,
+        "latencySeconds": 0.301,
+        "error": {
+          "code": 429,
+          "message": "Provider returned error",
+          "providerName": "Google AI Studio"
+        }
+      }
+    },
+    {
+      "jobID": "strategy-model02-smoke-retry",
+      "requestedModel": "google/gemma-4-31b-it:free",
+      "startedAtUnix": 1791322420.4337778,
+      "requestSHA256": "51e0e1538fa14def2bd0e43346e9d0fdc7d913ea1537371f0cbdc78a1ef47f44",
+      "modelInputSHA256": "564eb5283699109e57c988991702132f5e9188b2f19d08960b6b2e73b5094332",
+      "routing": {
+        "only": [
+          "Google AI Studio"
+        ],
+        "allow_fallbacks": true,
+        "require_parameters": true,
+        "max_price": {
+          "prompt": 0,
+          "completion": 0
+        }
+      },
+      "response": {
+        "httpStatus": 429,
+        "latencySeconds": 0.251,
+        "error": {
+          "code": 429,
+          "message": "Provider returned error",
+          "providerName": "Google AI Studio"
+        }
+      }
+    }
+  ],
+  "authorization": {
+    "source": "3e7d2a32-5892-4d6d-b627-688a60baa67c",
+    "models": [
+      "google/gemma-4-31b-it:free",
+      "qwen/qwen3.8-27b:free"
+    ],
+    "maximumGenerationRequests": 4,
+    "scope": "Strategy smoke and synthetic memo only; secondary only after primary concrete disqualification"
+  }
+}

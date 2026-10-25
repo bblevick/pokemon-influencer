@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 2,
+  "uiKind": 3,
+  "transportVersion": 2,
+  "requestHeader": "<HHIIIIHH",
+  "responseHeader": "<HHIIIIHH",
+  "headerFields": [
+    "schema",
+    "operationOrStatus",
+    "requestID",
+    "viewID",
+    "snapshotID",
+    "postReference",
+    "page",
+    "reservedOrPageCount"
+  ],
+  "operations": {
+    "open": 1,
+    "listFeed": 2,
+    "readPostPage": 3,
+    "listFollowers": 4,
+    "close": 5
+  },
+  "statusBits": {
+    "low8": "operation",
+    "high8": {
+      "0": "ok",
+      "2": "unavailableOrRevoked"
+    }
+  },
+  "bounds": {
+    "payloadBytes": 96,
+    "requestBytes": 24,
+    "entriesPerPage": 3,
+    "labelCharacters": 18,
+    "rowBytes": 23,
+    "postLineCharacters": 23,
+    "postLines": 3,
+    "postPageBytes": 71,
+    "postPages": 64,
+    "posts": 192,
+    "followers": 192,
+    "bodyCharacters": 4096,
+    "requestFrames": 180,
+    "snapshotIdleSeconds": 600
+  },
+  "listRow": "u32 reference, up to18 safe encoded characters, ff delimiter, zero padding to19 label bytes",
+  "homeBody": "u32 actual incoming follower count; header final u16 is eligible post count",
+  "postBody": "1..71 safe encoded bytes; only fe newline, no ff/fc/fd placeholders or controls",
+  "selection": "snapshot-local references map to immutable durable postIDs; references are not permissions",
+  "close": "native cancellation clears mailbox before freeing screen; host has one bounded owner snapshot; idle expiry600s, successful scoped query renews; explicit close operation also supported",
+  "refresh": "explicit home Refresh issues a new open request and discards old snapshot",
+  "scope": "trusted host campaign,branch,social restore epoch,player; visibility/participation rechecked per query",
+  "history": "no read markers, model calls, NPC exposure, publication or follow changes"
+}

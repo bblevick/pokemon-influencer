@@ -1,0 +1,39 @@
+PASS exactly one source-native victory terminal
+PASS stable terminal after cleanup and long host absence
+PASS delayed matching ACK retires terminal
+PASS player defeat terminal without trainer-defeated reward
+PASS reconnect retry preserves exact sequence/outcome
+PASS terminal reservation preserves defeat and end under backpressure
+PASS explicit reset clears transient identities
+7 actual-C terminal cases passed (game globals stubbed)
+PASS event publication
+PASS event ACK
+PASS unavailable bounded retry timeout drop
+PASS stale ACK rejected
+PASS stale generation rejected
+PASS oversized ACK rejected before read
+PASS disconnect retry same ID
+PASS backpressure bounded gap
+PASS payload maximum
+PASS oversized enqueue rejected
+PASS reset clears transient identities
+PASS nonzero ACK error rejected
+PASS reserved ACK bits rejected
+13 actual C event transport cases passed
+PASS hidden move/status/unused battler counterfactual leaves observation unchanged
+PASS unrevealed player moves absent
+PASS public announcement authorizes only revealed move
+PASS public HP coarse and legal actions incomplete
+PASS victory trainer defeat precedes battle ended
+PASS Poke Dude tutorial excluded by supported-flags allowlist
+PASS turn exhaustion disables encounter export without identity reuse
+7 actual C gameplay observation cases passed
+Assertion failed: (gPiBattle.state==7), function main, file battle.c, line 305.
+Traceback (most recent call last):
+  File "/Users/blevicki/Documents/poke/pokefirered/tools/battle_end01_c_tests.py", line 22, in <module>
+    sub=t/'battle-fixture';sub.mkdir();src=sub/'battle.c';src.write_text(h);exe=sub/'battle';subprocess.run(['clang','-DPI_CAMPAIGN_BROCK=1','-Wno-pointer-to-int-cast','-Wno-int-to-pointer-cast','-I'+str(build/'include'),'-I'+str(build/'src'),'-I'+str(ROOT/'native/battle01'),'-I'+str(ROOT/'native/system1_01a'),str(src),'-o',str(exe)],check=True);subprocess.run([str(exe)],check=True)
+                                                                                                                                                                                                                                                                                                                                                            ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.12_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/subprocess.py", line 577, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['/var/folders/w4/zrfc517s1wx0s9d83w_t52mc0000gn/T/tmpwn7s3zw2/battle-fixture/battle']' died with <Signals.SIGABRT: 6>.

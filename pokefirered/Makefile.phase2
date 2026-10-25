@@ -1,0 +1,31 @@
+# WORLD-only host checks. These do not launch mGBA or call a provider.
+PYTHON ?= .venv/bin/python
+.PHONY: world-test world-regression world-replay world-verify-evidence
+world-test:
+	$(PYTHON) -m unittest discover -s tests -v
+world-regression:
+	$(PYTHON) tools/world01_regression.py
+world-replay:
+	$(PYTHON) tools/world01_replay.py --database .local/world01/world.sqlite3
+world-verify-evidence:
+	$(PYTHON) tools/verify_world01.py
+
+.PHONY: memory-test memory-regression memory-replay memory-verify-evidence
+memory-test:
+	$(PYTHON) -m unittest discover -s tests -v
+memory-regression:
+	$(PYTHON) tools/memory01_regression.py
+memory-replay:
+	$(PYTHON) tools/memory01_replay.py --database .local/memory01/world.sqlite3
+memory-verify-evidence:
+	$(PYTHON) tools/verify_memory01.py
+
+.PHONY: social-test social-regression social-replay social-verify-evidence
+social-test:
+	$(PYTHON) -m unittest discover -s tests -v
+social-regression:
+	$(PYTHON) tools/social01_regression.py
+social-replay:
+	$(PYTHON) tools/social01_replay.py --database .local/social01/world.sqlite3
+social-verify-evidence:
+	$(PYTHON) tools/verify_social01.py

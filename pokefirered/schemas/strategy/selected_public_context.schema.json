@@ -1,0 +1,224 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "authorizedSocialEvidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "schemaVersion": {
+          "const": 4
+        },
+        "actorID": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 512
+        },
+        "channel": {
+          "const": "pokebook"
+        },
+        "claims": {
+          "type": "array",
+          "maxItems": 256,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "claimID": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 512
+              },
+              "claim": {
+                "type": "object"
+              },
+              "channel": {
+                "const": "pokebook"
+              },
+              "attribution": {
+                "const": "reported"
+              },
+              "sourceQuality": {
+                "const": "HIGH"
+              },
+              "independentOriginCount": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "references": {
+                "type": "array",
+                "minItems": 1,
+                "maxItems": 3,
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "evidenceID": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 512
+                    },
+                    "postID": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 512
+                    },
+                    "sourceActor": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 512
+                    },
+                    "originalSourceActor": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 512
+                    },
+                    "originStage": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "publicationOrder": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "currentRelevance": {
+                      "enum": [
+                        "CURRENT",
+                        "RECENT",
+                        "OLDER"
+                      ]
+                    },
+                    "campaignDistance": {
+                      "type": [
+                        "integer",
+                        "null"
+                      ],
+                      "minimum": 0
+                    },
+                    "prominence": {
+                      "enum": [
+                        "ordinary",
+                        "gym",
+                        "rival",
+                        "elite4",
+                        "champion"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "evidenceID",
+                    "postID",
+                    "sourceActor",
+                    "originalSourceActor",
+                    "originStage",
+                    "publicationOrder",
+                    "currentRelevance",
+                    "campaignDistance",
+                    "prominence"
+                  ]
+                }
+              },
+              "conflictingClaimIDs": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 512
+                },
+                "uniqueItems": true
+              },
+              "labels": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "speciesID": {
+                    "type": "string",
+                    "maxLength": 128
+                  },
+                  "moveID": {
+                    "type": "string",
+                    "maxLength": 128
+                  }
+                }
+              }
+            },
+            "required": [
+              "claimID",
+              "claim",
+              "channel",
+              "attribution",
+              "sourceQuality",
+              "independentOriginCount",
+              "references",
+              "conflictingClaimIDs",
+              "labels"
+            ]
+          }
+        },
+        "truncated": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "schemaVersion",
+        "actorID",
+        "channel",
+        "claims",
+        "truncated"
+      ]
+    },
+    "contextSelection": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "policyID": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 512
+        },
+        "version": {
+          "const": 1
+        },
+        "policySHA256": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 512
+        },
+        "opportunityID": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 512
+        },
+        "campaignStage": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 512
+        },
+        "eligibleReceiptCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "normalizedClaimCount": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "policyID",
+        "version",
+        "policySHA256",
+        "opportunityID",
+        "campaignStage",
+        "eligibleReceiptCount",
+        "normalizedClaimCount"
+      ]
+    }
+  },
+  "required": [
+    "authorizedSocialEvidence",
+    "contextSelection"
+  ]
+}

@@ -1,0 +1,200 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "episodeID",
+    "actorID",
+    "battleID",
+    "obligationID",
+    "postID",
+    "visibility",
+    "scope",
+    "sourceEvidenceIDs",
+    "publicEvidenceIDs",
+    "priorEpisodeIDs",
+    "summaryTemplate",
+    "tone",
+    "summary",
+    "producer",
+    "promptVersion",
+    "model"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "episodeID": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "actorID": {
+      "type": "string",
+      "pattern": "^trainer:fr:trainer:[0-9]{4}$"
+    },
+    "battleID": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "obligationID": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "postID": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "visibility": {
+      "const": "actor_private"
+    },
+    "scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "campaignID",
+        "branchID",
+        "worldCursor",
+        "memoryCutoff",
+        "socialCutoff",
+        "puppeteerCutoff"
+      ],
+      "properties": {
+        "campaignID": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "branchID": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "worldCursor": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "memoryCutoff": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "socialCutoff": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "puppeteerCutoff": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "sourceEvidenceIDs": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 16,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[a-f0-9]{64}$"
+      }
+    },
+    "publicEvidenceIDs": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 2,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[a-f0-9]{64}$"
+      }
+    },
+    "priorEpisodeIDs": {
+      "type": "array",
+      "minItems": 0,
+      "maxItems": 8,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[a-f0-9]{64}$"
+      }
+    },
+    "summaryTemplate": {
+      "const": "battle_episode_v1"
+    },
+    "tone": {
+      "enum": [
+        "competitive",
+        "matter_of_fact"
+      ]
+    },
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "outcome",
+        "seenSpeciesIDs",
+        "observedPlayerMoves",
+        "ownAnnouncedMoves"
+      ],
+      "properties": {
+        "outcome": {
+          "enum": [
+            "trainer_loss",
+            "trainer_win",
+            "draw"
+          ]
+        },
+        "seenSpeciesIDs": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 65535
+          }
+        },
+        "observedPlayerMoves": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 2,
+            "items": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 65535
+            }
+          }
+        },
+        "ownAnnouncedMoves": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 2,
+            "items": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 65535
+            }
+          }
+        }
+      }
+    },
+    "producer": {
+      "enum": [
+        "hermes",
+        "deterministic_fallback"
+      ]
+    },
+    "promptVersion": {
+      "enum": [1, 2]
+    },
+    "model": {
+      "type": [
+        "object",
+        "null"
+      ]
+    }
+  }
+}

@@ -1,0 +1,130 @@
+{
+  "schema_version": 1,
+  "status": "proposed_campaign_defaults_not_playtested",
+  "content_phase": "campaign",
+  "endgame_enabled": false,
+  "base": {
+    "project": "pret/pokefirered",
+    "language": "English",
+    "revision": "resolve_from_local_dump_in_phase_0",
+    "ruleset": "pinned_firered_gen_iii"
+  },
+  "followers": {
+    "ordinary_first_win_policy": "follow_once",
+    "friendship_is_separate": true,
+    "hostile_and_story_policies": "explicit_content_overrides"
+  },
+  "adaptation": {
+    "max_move_slot_changes_per_opportunity": 2,
+    "max_level_gain_per_earned_epoch_per_pokemon": 4,
+    "first_capture_eligible_epoch": 2,
+    "capture_attempt_probability": 0.25,
+    "max_new_acquisitions_per_opportunity": 1,
+    "max_campaign_acquisitions_per_trainer": 2,
+    "min_earned_epochs_between_successful_acquisitions": 2,
+    "tier_weights": {
+      "native": 0.8,
+      "nearby": 0.2,
+      "accessible": 0.0,
+      "exceptional": 0.0
+    },
+    "off_region_requires_explicit_acquisition_grant": true,
+    "roster_replacements_enabled": false,
+    "reserve_acquisitions_enabled": false,
+    "preserve_all_original_lineages_by_default": true,
+    "minimum_original_lineage_fraction_for_future_approved_replacements": 0.75,
+    "signature_partner_required": true,
+    "max_active_additions_by_unique_badge_count": {
+      "1": 1,
+      "2": 1,
+      "3": 1,
+      "4": 2,
+      "5": 2,
+      "6": 2,
+      "7": 2,
+      "8": 2
+    },
+    "engine_party_size_limit": 6,
+    "iv_nature_rerolls_enabled": false,
+    "automatic_ev_training_enabled": false,
+    "loss_streak_growth_enabled": false,
+    "structural_budgets_accumulate": false,
+    "level_growth_can_apply_missed_earned_epochs_once": true,
+    "plan_lock_point": "commit_before_challenge_notification",
+    "default_ordinary_first_battle_roster": "authored",
+    "candidate_score_weights": {
+      "general_team_coherence": 0.5,
+      "identity_continuity": 0.25,
+      "observed_opponent_fit": 0.15,
+      "personality_fit": 0.1
+    },
+    "new_catch_initial_moves_use_acquisition_budget": true
+  },
+  "proposed_badge_stage_caps": {
+    "boulder": 14,
+    "cascade": 21,
+    "thunder": 24,
+    "rainbow": 29,
+    "soul": 43,
+    "marsh": 43,
+    "volcano": 47,
+    "earth": 50
+  },
+  "stage_cap_policy": "maximum_earned_approved_cap_plus_per_trainer_target_not_live_player_level",
+  "rematches": {
+    "max_pending_invitations_per_trainer": 1,
+    "max_paid_player_wins_per_opportunity": 1,
+    "loss_retry_uses_same_plan": true,
+    "preserve_original_defeated_flag": true,
+    "missed_opportunities_stack": false,
+    "region_unlocks": "named_predicates_in_content_manifest"
+  },
+  "memory": {
+    "npc_context_token_target": 1200,
+    "max_structured_facts": 8,
+    "max_memory_summaries": 4,
+    "filter_before_retrieval": true,
+    "correlate_evidence_by_origin": true,
+    "decay_clock": "earned_game_progression_not_wall_clock"
+  },
+  "social": {
+    "post_body_max_characters": 96,
+    "handle_max_characters": 12,
+    "max_repost_hops_in_slice": 1,
+    "max_highlighted_npc_artifacts_per_major_event": 1,
+    "procedural_rumors_enabled": false,
+    "real_social_accounts_enabled": false,
+    "posting_required_for_progression": false
+  },
+  "battle": {
+    "initial_policy": "deterministic_utility",
+    "learned_policy_required": false,
+    "own_policy_rng_separate_from_game_rng": true,
+    "host_policy_p95_target_ms": 100,
+    "rom_wait_frame_limit_initial": 18,
+    "host_response_deadline_ms_initial": 250,
+    "privacy_mode": "sanitized_observation_only"
+  },
+  "models": {
+    "enabled_by_default": false,
+    "provider": null,
+    "model": null,
+    "max_model_steps_per_job": 2,
+    "max_scoped_tool_reads_per_job": 3,
+    "max_input_tokens_per_call": 2000,
+    "max_output_tokens_per_call": 192,
+    "max_calls_per_session": 100,
+    "timeout_seconds": 8,
+    "max_repair_attempts": 1,
+    "session_budget_usd_when_pricing_configured": 1.0,
+    "unknown_pricing_policy": "disable_paid_inference",
+    "deterministic_fallback_required": true
+  },
+  "saves": {
+    "managed_checkpoint_support_required": true,
+    "ordinary_save_pairing_required": true,
+    "arbitrary_unpaired_savestates_supported": false,
+    "rewind_supported_initially": false,
+    "mismatch_policy": "suspend_enhanced_writes_and_offer_explicit_recovery"
+  }
+}

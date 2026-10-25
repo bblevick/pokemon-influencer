@@ -1,0 +1,17 @@
+# STRATEGY-01 readiness after the native viewer
+
+Planning only; no strategy, preparation or System One authorization follows from POKEBOOK-01.
+
+The existing `PuppeteerStore.trainer_packet(actor)` supplies actor-scoped direct observations, attributed reported claims and actor-owned retained episodes. `for_actor(actor)` and `for_social_actor(actor)` enforce observation/delivery provenance. Director retrieval remains private; a general NPCBriefing issuer and targeted director-note delivery service are still missing. Player viewer queries are not briefing or exposure APIs.
+
+The shared normative contract is `docs/preparation_envelope.md` v1 (D22). **ROSTER-01 is the next dependency task, supplying the authoritative catalog for PREP-01 before STRATEGY-01 consumes real envelopes**, coordinated with ROSTER-01/02 and CONTENT-01. Versioned closed envelope/intent/selection/commitment schemas, executable validators, pinned species/learnset/acquisition catalogs, meaningful diverse candidate generation and finite resource reservation/spend rules remain unimplemented. Existing v1 AI fixtures are skeletons; they do not prove feasibility.
+
+Still needed: authored personas/signature lineages/current companions; finite starting inventory and grants; stage/earned-epoch limits; native/nearby habitat/access policies; change budgets; first-Gym adaptation and bounded mixed-type support. Missing content retains the authored roster, never model-invented permission. No elapsed-time growth or private player-party input is allowed.
+
+Preserve configured free role slots: Puppeteer Inkling, Strategy Nemotron Lightning, System One Mercury Decide. Verify each strategy/preparation/battle adapter's actual structured-output capability, free-route availability, limits and fallback separately before activating it. Puppeteer acceptance does not certify those providers; no new role or live call is authorized here.
+
+SYSTEM1-01A must validate, resource-account, commit, lock and safely install a selected candidate through audited native constructors. SYSTEM1-01B separately needs a complete permitted observation and action enumerator/executor: ordinary moves/targets/PP, voluntary switches, items, forced replacement, Struggle and unsupported battle modes. Current export still has `legalActionsComplete=false`; no battle-control integration is claimed. Later posts/player party changes must not rebuild a locked encounter. Endgame stays deferred.
+
+ROSTER-01 update: the internal pinned catalog and pure prerequisite services are accepted; docs/roster01_prep_readiness.md maps their partial outputs to the shared contract. CONTENT-01 actual stage/epoch/resource/travel/signature/Gym bindings are next. PREP whole envelopes/aggregate proofs/durable receipts/candidates/commitment are still required before Strategy. The deduplicated Hermes evidence does not support action frequency, ordered switches or timing; later context needs a separately scoped ordered actor-visible evidence path. No new roles enabled.
+
+STRATEGY-01/D29 update supersedes the earlier unimplemented Strategy notes: prep/content/catalog are accepted; scoped context/behavior/intent/tool provider/fallback/pairing now exist in strategy/. General director-note delivery remains absent and its input list is empty. Actual configured free-model gate is not accepted after the closed10-call NVIDIA-failure experiment. Complete that live closeout before SYSTEM1-01A. See strategy01.md for the concrete downstream request/commit/installation and legal-action gates.

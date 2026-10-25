@@ -1,0 +1,38 @@
+{
+  "candidate": "mGBA 0.10.5",
+  "build": "26b7884bc25a5933960f3cdcd98bac1ae14d42e2",
+  "configuration": "macOS 26.1 arm64; retry hwaccelVideo=0",
+  "probes": {
+    "desktop_boot": "passed: title animation, new game and Pallet overworld seen",
+    "lua_version": "Lua 5.4",
+    "memory_read_write": "passed: read8/16/32/readRange, same-value write8/16/32 at ELF-derived gBattleTypeFlags",
+    "writeRange": "absent (nil)",
+    "frame_callbacks": "passed",
+    "savedataUpdated_callback": "passed: actual in-game save callback count1",
+    "input": "passed using key mask assertion every normal frame; runFrame() rejected from console context",
+    "screenshot": "passed on software renderer; intermittent black captures/display in initial run",
+    "tcp": "passed: loopback listener, received/send callbacks, 14-byte P0_ACK:P0_PING response; ~28.90 ms single sample, not tactical latency",
+    "snapshot": "passed explicit ALL buffer save/load and private file snapshot; independent battery rollback untested",
+    "ordinary_battle": "passed: normal Route 1 level-4 Rattata, original Tackle; flags4, outcome1",
+    "in_game_save_reload": "passed: valid 14-section battery slot counter1, fresh process without -t, Continue/quest recap, same map/party/level/HP"
+  },
+  "limitations": [
+    "No allocated mailbox or ROM bridge",
+    "No transport authentication/framing/reconnect/deadline or wrong-build tests",
+    "No generic savestate-loaded callback established",
+    "No fast-forward performance test",
+    "No external host persistence or paired saves",
+    "A dofile-loaded listener logged success but stopped listening; direct console definition verified with lsof"
+  ],
+  "evidence": [
+    "evidence/phase0/emulator-runtime.log",
+    "evidence/phase0/socket-probe.json",
+    "evidence/phase0/input-commands.jsonl",
+    "evidence/private/software-outside.png",
+    "evidence/phase0/elf-probe-symbols.txt",
+    "evidence/phase0/battery-save.json",
+    "evidence/phase0/emulator-smoke.json",
+    "evidence/private/battery-reload-field.png"
+  ],
+  "decision": "conditional Phase 1 candidate; Phase 0 smoke passed, bridge support not established"
+}

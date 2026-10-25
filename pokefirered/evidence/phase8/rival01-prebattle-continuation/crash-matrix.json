@@ -1,0 +1,50 @@
+{
+  "cases": [
+    {
+      "point": "before Strategy commit",
+      "safeDisposition": "COMMITMENT_INCOMPLETE; no descriptor; no new inference",
+      "hostTested": true
+    },
+    {
+      "point": "after Strategy before PREP",
+      "safeDisposition": "COMMITMENT_INCOMPLETE; committed memo retained",
+      "hostTested": true
+    },
+    {
+      "point": "after PREP before seal",
+      "safeDisposition": "No continuation authority until seal transaction commits; existing records reusable without re-selection",
+      "hostTested": true
+    },
+    {
+      "point": "after seal",
+      "safeDisposition": "Versioned immutable descriptor survives process reopen",
+      "hostTested": true
+    },
+    {
+      "point": "during validation/grant",
+      "safeDisposition": "Writer transaction rolls back all partial bookkeeping",
+      "hostTested": true
+    },
+    {
+      "point": "after grant before battle, crash",
+      "safeDisposition": "PRIOR_NATIVE_SESSION_UNSETTLED; requires managed native revalidation",
+      "hostTested": true
+    },
+    {
+      "point": "after grant, clean stop",
+      "safeDisposition": "Durable exact native closure permits another fresh identity",
+      "hostTested": true
+    },
+    {
+      "point": "after battle start",
+      "safeDisposition": "Descriptor consumed; restart via normal compatible gameplay checkpoint only",
+      "hostTested": true
+    },
+    {
+      "point": "after completion",
+      "safeDisposition": "Descriptor completed; cannot reattach as pending",
+      "hostTested": true
+    }
+  ],
+  "qualification": "Host transaction/fixture tests. No real Rival battle was performed."
+}

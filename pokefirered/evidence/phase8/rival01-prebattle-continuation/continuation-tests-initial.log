@@ -1,0 +1,74 @@
+test_completed_or_superseded_status (tests.test_prebattle_continuation.ContinuationTests.test_completed_or_superseded_status) ... ok
+test_crash_before_descriptor_commit_is_atomic (tests.test_prebattle_continuation.ContinuationTests.test_crash_before_descriptor_commit_is_atomic) ... ok
+test_crash_during_validation_and_before_session_commit (tests.test_prebattle_continuation.ContinuationTests.test_crash_during_validation_and_before_session_commit) ... ok
+test_descriptor_and_future_version_immutability (tests.test_prebattle_continuation.ContinuationTests.test_descriptor_and_future_version_immutability) ... ok
+test_incomplete_memo_or_prep_rejected (tests.test_prebattle_continuation.ContinuationTests.test_incomplete_memo_or_prep_rejected) ... ok
+test_mismatched_native_save (tests.test_prebattle_continuation.ContinuationTests.test_mismatched_native_save) ... ok
+test_native_start_consumption_and_no_model_work (tests.test_prebattle_continuation.ContinuationTests.test_native_start_consumption_and_no_model_work) ... ok
+test_partial_handshake_new_nonce_and_stale_old_launch (tests.test_prebattle_continuation.ContinuationTests.test_partial_handshake_new_nonce_and_stale_old_launch) ... ok
+test_real_retained_records_parent_hashes_and_repeated_restart (tests.test_prebattle_continuation.ContinuationTests.test_real_retained_records_parent_hashes_and_repeated_restart) ... ok
+test_rollback_abandons_and_does_not_revive_future (tests.test_prebattle_continuation.ContinuationTests.test_rollback_abandons_and_does_not_revive_future) ... ok
+test_sibling_branch_and_abandoned_generation (tests.test_prebattle_continuation.ContinuationTests.test_sibling_branch_and_abandoned_generation) ... ERROR
+test_wrong_native_identity_and_unproved_field_equivalence (tests.test_prebattle_continuation.ContinuationTests.test_wrong_native_identity_and_unproved_field_equivalence) ... ok
+test_wrong_opportunity_actor_encounter_and_campaign_parent (tests.test_prebattle_continuation.ContinuationTests.test_wrong_opportunity_actor_encounter_and_campaign_parent) ... ok
+
+======================================================================
+ERROR: test_sibling_branch_and_abandoned_generation (tests.test_prebattle_continuation.ContinuationTests.test_sibling_branch_and_abandoned_generation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/blevicki/Documents/poke/pokefirered/tests/test_prebattle_continuation.py", line 80, in test_sibling_branch_and_abandoned_generation
+    with self.assertRaises(WorldError):self.launch()
+                                       ~~~~~~~~~~~^^
+  File "/Users/blevicki/Documents/poke/pokefirered/tests/test_prebattle_continuation.py", line 26, in launch
+    return self.w.authorize_continuation_launch(self.identity,nonce,kw.get('save',self.save),kw.get('actor',self.d['actor']),kw.get('trainer',self.d['nativeTrainer']),kw.get('opportunity',self.d['opportunityID']))
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/blevicki/Documents/poke/pokefirered/world/continuation.py", line 173, in authorize_continuation_launch
+    return self._tx(action)
+           ~~~~~~~~^^^^^^^^
+  File "/Users/blevicki/Documents/poke/pokefirered/virality/store.py", line 60, in _tx
+    return super()._tx(action)
+           ~~~~~~~~~~~^^^^^^^^
+  File "/Users/blevicki/Documents/poke/pokefirered/system1/native.py", line 63, in _tx
+    return super()._tx(action)
+           ~~~~~~~~~~~^^^^^^^^
+  File "/Users/blevicki/Documents/poke/pokefirered/prep/store.py", line 64, in _tx
+    return super()._tx(action)
+           ~~~~~~~~~~~^^^^^^^^
+  File "/Users/blevicki/Documents/poke/pokefirered/puppeteer/store.py", line 62, in _tx
+    return super()._tx(action)
+           ~~~~~~~~~~~^^^^^^^^
+  File "/Users/blevicki/Documents/poke/pokefirered/social/store.py", line 95, in _tx
+    return super()._tx(action)
+           ~~~~~~~~~~~^^^^^^^^
+  File "/Users/blevicki/Documents/poke/pokefirered/memory/store.py", line 105, in _tx
+    return super()._tx(action)
+           ~~~~~~~~~~~^^^^^^^^
+  File "/Users/blevicki/Documents/poke/pokefirered/world/store.py", line 62, in _tx
+    try:result=fn();self.db.execute('COMMIT');return result
+               ~~^^
+  File "/Users/blevicki/Documents/poke/pokefirered/memory/store.py", line 83, in action
+    result = fn()
+  File "/Users/blevicki/Documents/poke/pokefirered/social/store.py", line 94, in action
+    return fn()
+  File "/Users/blevicki/Documents/poke/pokefirered/puppeteer/store.py", line 61, in action
+    return fn()
+  File "/Users/blevicki/Documents/poke/pokefirered/prep/store.py", line 63, in action
+    return fn()
+  File "/Users/blevicki/Documents/poke/pokefirered/virality/store.py", line 57, in action
+    self._viral_posts_before=set(self.social_state()['posts']) if self._one('SELECT * FROM campaigns') else set()
+                                 ~~~~~~~~~~~~~~~~~^^
+  File "/Users/blevicki/Documents/poke/pokefirered/social/store.py", line 149, in social_state
+    for e in self._events(): apply(state,e)
+             ~~~~~~~~~~~~^^
+  File "/Users/blevicki/Documents/poke/pokefirered/prep/store.py", line 95, in _events
+    return super()._events(branch,cursor,cutoff)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/blevicki/Documents/poke/pokefirered/social/store.py", line 143, in _events
+    prefix = self._events(b['parent'], min(cursor,b['fork_cursor']), min(cutoff,boundary['parent_cutoff'])) if b['parent'] else []
+                                                                                                               ~^^^^^^^^^^
+TypeError: 'NoneType' object is not subscriptable
+
+----------------------------------------------------------------------
+Ran 13 tests in 18.934s
+
+FAILED (errors=1)

@@ -1,0 +1,704 @@
+{
+  "type": "object",
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "status": {
+      "enum": [
+        "permitted",
+        "prohibited_by_policy",
+        "unsupported_implementation",
+        "missing_trusted_state"
+      ]
+    },
+    "reason": {
+      "type": "string",
+      "minLength": 1
+    },
+    "scope": {
+      "type": "object",
+      "properties": {
+        "campaign": {
+          "type": "string",
+          "minLength": 1
+        },
+        "branch": {
+          "type": "string",
+          "minLength": 1
+        },
+        "actor": {
+          "type": "string",
+          "minLength": 1
+        },
+        "restore_epoch": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "cutoff": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "campaign",
+        "branch",
+        "actor",
+        "restore_epoch",
+        "cutoff"
+      ],
+      "additionalProperties": false
+    },
+    "stage": {
+      "type": "string",
+      "minLength": 1
+    },
+    "packID": {
+      "type": "string",
+      "minLength": 1
+    },
+    "packVersion": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "packSHA256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "catalogSHA256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "scenario": {
+      "type": "boolean"
+    },
+    "fully_legal": {
+      "const": false
+    },
+    "fallback": {
+      "enum": [
+        "authored-baseline"
+      ]
+    },
+    "requiredFlags": {
+      "type": "object",
+      "properties": {
+        "FLAG_DEFEATED_BROCK": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "FLAG_BADGE01_GET": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "FLAG_DEFEATED_BROCK",
+        "FLAG_BADGE01_GET"
+      ],
+      "additionalProperties": false
+    },
+    "opportunityID": {
+      "type": "string",
+      "minLength": 1
+    },
+    "activation": {
+      "type": "string",
+      "minLength": 1
+    },
+    "checkpoint": {
+      "type": "string",
+      "minLength": 1
+    },
+    "evidenceRefs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "levels": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "origin": {
+            "type": "string",
+            "minLength": 1
+          },
+          "originalLevel": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100
+          },
+          "target": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100
+          },
+          "stageCeiling": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100
+          },
+          "current": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100
+          },
+          "maximum": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100
+          }
+        },
+        "required": [
+          "origin",
+          "originalLevel",
+          "target",
+          "stageCeiling",
+          "current",
+          "maximum"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "retainedLineages": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "signatureLineages": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "theme": {
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "primaryType": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "coreOrigins": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "minimumCore": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "maximumActive": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 6
+            },
+            "maximumSupport": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "supportSpecies": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "minimum": 1
+              }
+            },
+            "supportAcquisition": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "supportLevelCap": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100
+            }
+          },
+          "required": [
+            "primaryType",
+            "coreOrigins",
+            "minimumCore",
+            "maximumActive",
+            "maximumSupport",
+            "supportSpecies",
+            "supportAcquisition",
+            "supportLevelCap"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "budgets": {
+      "type": "object",
+      "properties": {
+        "aggregateMoveChanges": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "levelGainPerOpportunity": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "catchBudget": {
+          "const": 0
+        },
+        "activeAdditions": {
+          "const": 0
+        },
+        "reserveAdditions": {
+          "const": 0
+        },
+        "replacements": {
+          "const": 0
+        },
+        "restock": {
+          "const": false
+        },
+        "ivNatureRerolls": {
+          "const": false
+        },
+        "automaticEVTraining": {
+          "const": false
+        },
+        "accessibleMaps": {
+          "const": []
+        },
+        "exceptionalMaps": {
+          "const": []
+        },
+        "methods": {
+          "const": [
+            "land_mons"
+          ]
+        },
+        "teachingMethods": {
+          "const": [
+            "retained",
+            "level_up"
+          ]
+        },
+        "evolutionMethods": {
+          "const": [
+            "EVO_LEVEL"
+          ]
+        },
+        "unsupportedMethods": {
+          "const": [
+            "surf",
+            "fishing",
+            "rock_smash",
+            "tutor",
+            "relearner",
+            "trade",
+            "gift",
+            "fossil",
+            "special_evolution"
+          ]
+        },
+        "extraHealing": {
+          "const": 0
+        },
+        "tmhmStock": {
+          "const": 0
+        },
+        "evolutionConsumables": {
+          "const": 0
+        },
+        "exceptionalTokens": {
+          "const": 0
+        },
+        "partyOrderChanges": {
+          "const": true
+        }
+      },
+      "required": [
+        "aggregateMoveChanges",
+        "levelGainPerOpportunity",
+        "catchBudget",
+        "activeAdditions",
+        "reserveAdditions",
+        "replacements",
+        "restock",
+        "ivNatureRerolls",
+        "automaticEVTraining",
+        "accessibleMaps",
+        "exceptionalMaps",
+        "methods",
+        "teachingMethods",
+        "evolutionMethods",
+        "unsupportedMethods",
+        "extraHealing",
+        "tmhmStock",
+        "evolutionConsumables",
+        "exceptionalTokens",
+        "partyOrderChanges"
+      ],
+      "additionalProperties": false
+    },
+    "regions": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "tier": {
+            "enum": [
+              "native",
+              "nearby"
+            ]
+          },
+          "requires": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "required": [
+          "tier",
+          "requires"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "startingResourceDefinition": {
+      "type": "object",
+      "properties": {
+        "owner": {
+          "type": "string",
+          "minLength": 1
+        },
+        "initialBattleItems": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "minItems": 4,
+          "maxItems": 4
+        },
+        "initialHeldItems": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "initialStock": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "item": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "quantity": {
+                "type": "integer",
+                "minimum": 0
+              }
+            },
+            "required": [
+              "item",
+              "quantity"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "categories": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "category": {
+                "enum": [
+                  "battle_bag",
+                  "held",
+                  "teaching",
+                  "evolution",
+                  "capture",
+                  "tutor_relearner",
+                  "exceptional"
+                ]
+              },
+              "quantity": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "initialization": {
+                "type": "string",
+                "minLength": 1
+              },
+              "consumption": {
+                "type": "string",
+                "minLength": 1
+              },
+              "replenishment": {
+                "enum": [
+                  "none"
+                ]
+              }
+            },
+            "required": [
+              "category",
+              "quantity",
+              "initialization",
+              "consumption",
+              "replenishment"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 7,
+          "maxItems": 7
+        }
+      },
+      "required": [
+        "owner",
+        "initialBattleItems",
+        "initialHeldItems",
+        "initialStock",
+        "categories"
+      ],
+      "additionalProperties": false
+    },
+    "currentInventory": {
+      "type": "array",
+      "items": {
+        "type": "array",
+        "prefixItems": [
+          {
+            "type": "integer",
+            "minimum": 1
+          },
+          {
+            "type": "integer",
+            "minimum": 0
+          }
+        ],
+        "items": false,
+        "minItems": 2
+      }
+    },
+    "earnedOpportunityAllowance": {
+      "enum": [
+        0,
+        1
+      ]
+    },
+    "runtimeGates": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "moveChanges": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "notSelected": {
+      "const": true
+    },
+    "element": {
+      "anyOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "code": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "fully_legal": {
+              "const": false
+            },
+            "ids": {
+              "type": "object"
+            },
+            "prerequisites": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "provenance": {
+              "additionalProperties": false,
+              "properties": {
+                "catalogSHA256": {
+                  "pattern": "^[0-9a-f]{64}$",
+                  "type": "string"
+                },
+                "catalogVersion": {
+                  "const": 1
+                },
+                "contextSHA256": {
+                  "pattern": "^[0-9a-f]{64}$",
+                  "type": "string"
+                },
+                "fixture": {
+                  "type": "boolean"
+                },
+                "policySHA256": {
+                  "pattern": "^[0-9a-f]{64}$",
+                  "type": "string"
+                },
+                "policyVersion": {
+                  "minimum": 1,
+                  "type": "integer"
+                },
+                "scope": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "actor": {
+                      "pattern": "^trainer:fr:trainer:[0-9]{4}$",
+                      "type": "string"
+                    },
+                    "branch": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "campaign": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "cutoff": {
+                      "minimum": 0,
+                      "type": "integer"
+                    },
+                    "restore_epoch": {
+                      "minimum": 0,
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "campaign",
+                    "branch",
+                    "actor",
+                    "restore_epoch",
+                    "cutoff"
+                  ],
+                  "type": "object"
+                },
+                "sourceFiles": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "validatorSHA256": {
+                  "pattern": "^[0-9a-f]{64}$",
+                  "type": "string"
+                },
+                "validatorVersion": {
+                  "const": 1
+                }
+              },
+              "required": [
+                "catalogSHA256",
+                "policySHA256",
+                "catalogVersion",
+                "policyVersion",
+                "scope",
+                "contextSHA256",
+                "fixture",
+                "sourceFiles",
+                "validatorVersion",
+                "validatorSHA256"
+              ],
+              "type": "object"
+            },
+            "resources": {
+              "type": "object"
+            },
+            "status": {
+              "enum": [
+                "allowed",
+                "blocked",
+                "unqualified"
+              ]
+            }
+          },
+          "required": [
+            "status",
+            "code",
+            "ids",
+            "prerequisites",
+            "resources",
+            "provenance",
+            "fully_legal"
+          ],
+          "title": "ROSTER-01 element prerequisite result, not package approval",
+          "type": "object"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "progression": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "namedStage",
+        "milestoneID",
+        "flags"
+      ],
+      "properties": {
+        "namedStage": {
+          "enum": [
+            "before-boulder",
+            "after-boulder"
+          ]
+        },
+        "milestoneID": {
+          "const": "story.boulder-awarded"
+        },
+        "flags": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "FLAG_DEFEATED_BROCK",
+            "FLAG_BADGE01_GET"
+          ],
+          "properties": {
+            "FLAG_DEFEATED_BROCK": {
+              "type": "boolean"
+            },
+            "FLAG_BADGE01_GET": {
+              "type": "boolean"
+            }
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "status",
+    "reason",
+    "scope",
+    "stage",
+    "packID",
+    "packVersion",
+    "packSHA256",
+    "catalogSHA256",
+    "scenario",
+    "fully_legal"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

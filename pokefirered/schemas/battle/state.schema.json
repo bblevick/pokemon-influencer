@@ -1,0 +1,315 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "trainerID",
+    "phase",
+    "battle",
+    "request",
+    "nonce",
+    "generation",
+    "turn",
+    "battler",
+    "activeSlot",
+    "moveMask",
+    "opponent",
+    "weather",
+    "inventory",
+    "own",
+    "actions",
+    "history"
+  ],
+  "properties": {
+    "trainerID": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "phase": {
+      "enum": [
+        "NORMAL_TURN",
+        "FORCED_REPLACEMENT"
+      ]
+    },
+    "battle": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "request": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "nonce": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "generation": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "turn": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "battler": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "activeSlot": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "moveMask": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "opponent": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "species",
+        "hpBar",
+        "status",
+        "revealedMoves"
+      ],
+      "properties": {
+        "species": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "hpBar": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 48
+        },
+        "status": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "revealedMoves": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          }
+        }
+      }
+    },
+    "weather": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "inventory": {
+      "type": "array",
+      "items": {
+        "type": "integer",
+        "minimum": 0
+      }
+    },
+    "own": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "slot",
+          "species",
+          "hp",
+          "maxHP",
+          "heldItem",
+          "moves",
+          "status",
+          "status2",
+          "status3",
+          "level",
+          "types",
+          "ability",
+          "pp",
+          "maxPP",
+          "stages"
+        ],
+        "properties": {
+          "slot": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "species": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "hp": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "maxHP": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "heldItem": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "moves": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "status": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "status2": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "status3": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "level": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "types": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "ability": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "pp": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "maxPP": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "stages": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "minimum": 0
+            }
+          }
+        }
+      },
+      "maxItems": 6
+    },
+    "actions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "nativeID",
+          "kind",
+          "slot",
+          "value",
+          "target",
+          "flags"
+        ],
+        "properties": {
+          "nativeID": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "kind": {
+            "type": "string"
+          },
+          "slot": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "value": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "target": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "flags": {
+            "type": "integer",
+            "minimum": 0
+          }
+        }
+      },
+      "maxItems": 14,
+      "minItems": 1
+    },
+    "history": {
+      "type": "array",
+      "maxItems": 16,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "turn",
+          "move",
+          "species",
+          "side",
+          "nativeActionKind",
+          "opponentHPBar",
+          "opponentStatus",
+          "ownHP",
+          "item"
+        ],
+        "properties": {
+          "turn": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "move": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "species": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "side": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "nativeActionKind": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "opponentHPBar": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "opponentStatus": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "ownHP": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "item": {
+            "type": "integer",
+            "minimum": 0
+          }
+        }
+      }
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "BATTLE-01 sanitized native state v1"
+}

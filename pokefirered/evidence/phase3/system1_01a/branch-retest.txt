@@ -1,0 +1,42 @@
+test_future_commit_excluded_from_divergent_branch (tests.test_system1_preparation.AdditionalPreparationTests) ... ERROR
+
+======================================================================
+ERROR: test_future_commit_excluded_from_divergent_branch (tests.test_system1_preparation.AdditionalPreparationTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/blevicki/Documents/poke/pokefirered/tests/test_system1_preparation.py", line 62, in test_future_commit_excluded_from_divergent_branch
+    for seq,typ in enumerate((1,2,6,3,4,5),1):self.w.ingest(f.replace(f.msg(seq,typ,battle=99,trainer=103,nonce=201),tag=f.TAG))
+  File "/Users/blevicki/Documents/poke/pokefirered/world/store.py", line 190, in ingest
+    return self._tx(action)
+  File "/Users/blevicki/Documents/poke/pokefirered/prep/store.py", line 62, in _tx
+    return super()._tx(action)
+  File "/Users/blevicki/Documents/poke/pokefirered/puppeteer/store.py", line 61, in _tx
+    return super()._tx(action)
+  File "/Users/blevicki/Documents/poke/pokefirered/social/store.py", line 95, in _tx
+    return super()._tx(action)
+  File "/Users/blevicki/Documents/poke/pokefirered/memory/store.py", line 105, in _tx
+    return super()._tx(action)
+  File "/Users/blevicki/Documents/poke/pokefirered/world/store.py", line 58, in _tx
+    try:result=fn();self.db.execute('COMMIT');return result
+  File "/Users/blevicki/Documents/poke/pokefirered/memory/store.py", line 103, in action
+    self._after_memory_transaction()
+  File "/Users/blevicki/Documents/poke/pokefirered/system1/store.py", line 52, in _after_memory_transaction
+    super()._after_memory_transaction()
+  File "/Users/blevicki/Documents/poke/pokefirered/strategy/store.py", line 47, in _after_memory_transaction
+    super()._after_memory_transaction()
+  File "/Users/blevicki/Documents/poke/pokefirered/prep/store.py", line 85, in _after_memory_transaction
+    self._earn_available()
+  File "/Users/blevicki/Documents/poke/pokefirered/prep/store.py", line 132, in _earn_available
+    s=self.preparation_state()
+  File "/Users/blevicki/Documents/poke/pokefirered/system1/store.py", line 78, in preparation_state
+    for oid,c in self.decision_state()['commitments'].items():
+  File "/Users/blevicki/Documents/poke/pokefirered/system1/store.py", line 60, in decision_state
+    for e in self._decision_events():
+  File "/Users/blevicki/Documents/poke/pokefirered/system1/store.py", line 56, in _decision_events
+    prefix=self._decision_events(b['parent'],min(cursor,b['fork_cursor']),min(cutoff,bound['parent_cutoff'])) if b['parent'] else []
+TypeError: 'NoneType' object is not subscriptable
+
+----------------------------------------------------------------------
+Ran 1 test in 37.069s
+
+FAILED (errors=1)

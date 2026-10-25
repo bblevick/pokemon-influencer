@@ -1,0 +1,107 @@
+{
+  "scope": "host/schema, actual C with native stubs/sanitizers, compiled ARM allocation; not live emulator",
+  "passed": true,
+  "results": [
+    {
+      "command": [
+        "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-v"
+      ],
+      "log": "evidence/phase2/hermes01/regressions/events/host-unit.log",
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "clang",
+        "-std=c99",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=address,undefined",
+        "-D__attribute__(x)=",
+        "-DPI_EVENTS=1",
+        "-DPI_EVENTS_NATIVE_TEST=1",
+        "-I/Users/blevicki/Documents/poke/pokefirered/.local/phase1-events-native",
+        "tests/pi_events_test.c",
+        "src/pi_events.c",
+        "-o",
+        "/Users/blevicki/Documents/poke/pokefirered/.local/pi_events_test"
+      ],
+      "log": "evidence/phase2/hermes01/regressions/events/events-native-compile.log",
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/Users/blevicki/Documents/poke/pokefirered/.local/pi_events_test"
+      ],
+      "log": "evidence/phase2/hermes01/regressions/events/events-native-tests.log",
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "clang",
+        "-std=c99",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=address,undefined",
+        "-D__attribute__(x)=",
+        "-DPI_EVENTS=1",
+        "-I/Users/blevicki/Documents/poke/pokefirered/.local/phase1-events-native",
+        "tests/pi_observation_test.c",
+        "src/pi_events.c",
+        "-o",
+        "/Users/blevicki/Documents/poke/pokefirered/.local/pi_observation_test"
+      ],
+      "log": "evidence/phase2/hermes01/regressions/events/observation-native-compile.log",
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/Users/blevicki/Documents/poke/pokefirered/.local/pi_observation_test"
+      ],
+      "log": "evidence/phase2/hermes01/regressions/events/observation-native-tests.log",
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+        "tools/phase1_events_build.py",
+        "--verify-existing",
+        "--output-prefix",
+        "phase1-ui-events",
+        "--evidence-dir",
+        "evidence/phase2/hermes01/regressions/events"
+      ],
+      "log": "evidence/phase2/hermes01/regressions/events/static-enabled.log",
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+        "tools/phase1_events_build.py",
+        "--disabled",
+        "--verify-existing",
+        "--output-prefix",
+        "phase1-ui-events",
+        "--evidence-dir",
+        "evidence/phase2/hermes01/regressions/events"
+      ],
+      "log": "evidence/phase2/hermes01/regressions/events/static-disabled.log",
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+        "tools/validate_ai_contracts.py"
+      ],
+      "log": "evidence/phase2/hermes01/regressions/events/architecture-regression.log",
+      "exit_code": 0
+    }
+  ]
+}

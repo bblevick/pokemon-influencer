@@ -1,0 +1,685 @@
+{
+  "schemaVersion": 1,
+  "packID": "opening-kanto",
+  "version": 1,
+  "classification": "authored-playtest-content",
+  "catalogSHA256": "227dba5e0ddc9bce607a9acd47f637c0c8a485bda82b8ab06b5c3ce11fe15b4c",
+  "sourceCommit": "037335f4c725d7c9aecdac87066f2002b4bd7e14",
+  "romSHA256": "bec6245f354e0846a9e606ba0665d9dabc2e4f9825ba278342755143de56e829",
+  "registrySHA256": "1868e7548312f1f54d32f7ebf93cdadc89342c021e4b880236fda611f0dfbf8d",
+  "basisPolicySHA256": "7862e066b5229cb11ba07cfe5df601e3dec4d4de1af04c4ca36ca7d2ffeef3b7",
+  "sourceEvidence": {
+    "include/constants/flags.h": "45f31e4dc3d42c1054463974cd31b1173bdd4cb6d9f94b2cdbf2c88b0f745493",
+    "data/maps/PewterCity_Gym/scripts.inc": "c1e6f14fd5c437d96421b41e88609e637e81fbc5a03a2161bcdadd6c1bc45153",
+    "data/maps/ViridianForest/scripts.inc": "e079cb646b9ccc0c56301ae8dcd10776748ac73d682927368f031ba5d1c1aa85",
+    "data/scripts/trainers.inc": "d145a6d45e4143e3b215fdff82de07b78fd361aa695855e4065c043ffba36945",
+    "src/vs_seeker.c": "35fae0cd75989534e25c463a21e1c5c74f5688b57d8b73b2ee58e03c5db4509d"
+  },
+  "activation": {
+    "boundary": "explicit future campaign content activation before preparation",
+    "inventoryInitialization": "once per campaign/actor, never at query/opportunity/restart/version update",
+    "migration": "no retroactive change to ownership, spends, history or locked encounters"
+  },
+  "milestone": {
+    "id": "story.boulder-awarded",
+    "sourceTrainer": 414,
+    "script": "PewterCity_Gym_EventScript_DefeatedBrock",
+    "flags": {
+      "FLAG_DEFEATED_BROCK": 1200,
+      "FLAG_BADGE01_GET": 2080
+    },
+    "requiresAllFlags": true
+  },
+  "defaults": {
+    "aggregateMoveChanges": 2,
+    "levelGainPerOpportunity": 4,
+    "catchBudget": 0,
+    "activeAdditions": 0,
+    "reserveAdditions": 0,
+    "replacements": 0,
+    "restock": false,
+    "ivNatureRerolls": false,
+    "automaticEVTraining": false,
+    "accessibleMaps": [],
+    "exceptionalMaps": [],
+    "methods": [
+      "land_mons"
+    ],
+    "teachingMethods": [
+      "retained",
+      "level_up"
+    ],
+    "evolutionMethods": [
+      "EVO_LEVEL"
+    ],
+    "unsupportedMethods": [
+      "surf",
+      "fishing",
+      "rock_smash",
+      "tutor",
+      "relearner",
+      "trade",
+      "gift",
+      "fossil",
+      "special_evolution"
+    ],
+    "extraHealing": 0,
+    "tmhmStock": 0,
+    "evolutionConsumables": 0,
+    "exceptionalTokens": 0,
+    "partyOrderChanges": true
+  },
+  "trainers": {
+    "trainer:fr:trainer:0102": {
+      "displayName": "Rick",
+      "worldTrainerID": "fr:trainer:0102",
+      "sourceTrainer": 102,
+      "sourceVariants": [
+        102
+      ],
+      "qualifiedVariant": 102,
+      "mapEvidence": [
+        "data/maps/ViridianForest/scripts.inc"
+      ],
+      "homeMap": "MAP_VIRIDIAN_FOREST",
+      "regions": {
+        "MAP_VIRIDIAN_FOREST": {
+          "tier": "native",
+          "requires": []
+        },
+        "MAP_ROUTE2": {
+          "tier": "nearby",
+          "requires": [
+            "travel.forest.route2"
+          ]
+        }
+      },
+      "originals": [
+        {
+          "baselineKey": "102:0",
+          "fixedIV": 0,
+          "heldItem": 0,
+          "ivSource": 0,
+          "level": 6,
+          "moveMode": "default",
+          "moves": [
+            40,
+            81,
+            0,
+            0
+          ],
+          "slot": 0,
+          "species": 13
+        },
+        {
+          "baselineKey": "102:1",
+          "fixedIV": 0,
+          "heldItem": 0,
+          "ivSource": 0,
+          "level": 6,
+          "moveMode": "default",
+          "moves": [
+            33,
+            81,
+            0,
+            0
+          ],
+          "slot": 1,
+          "species": 10
+        }
+      ],
+      "retainedOrigins": [
+        "102:0",
+        "102:1"
+      ],
+      "signatureOrigins": [],
+      "theme": null,
+      "stages": {
+        "first": {
+          "predicate": "not_previously_defeated",
+          "targets": {
+            "102:0": 6,
+            "102:1": 6
+          },
+          "stageCeiling": 6,
+          "gain": 0
+        },
+        "forest-post-boulder-1": {
+          "predicate": "own_prior_defeat_and_boulder_and_unconsumed",
+          "targets": {
+            "102:0": 10,
+            "102:1": 10
+          },
+          "stageCeiling": 14,
+          "gain": 4
+        }
+      },
+      "resources": {
+        "owner": "trainer:fr:trainer:0102",
+        "initialBattleItems": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "initialHeldItems": {
+          "102:0": 0,
+          "102:1": 0
+        },
+        "initialStock": [],
+        "categories": [
+          {
+            "category": "battle_bag",
+            "quantity": 0,
+            "initialization": "source-empty",
+            "consumption": "actual battle use",
+            "replenishment": "none"
+          },
+          {
+            "category": "held",
+            "quantity": 0,
+            "initialization": "source-empty",
+            "consumption": "actual held-item game rules",
+            "replenishment": "none"
+          },
+          {
+            "category": "teaching",
+            "quantity": 0,
+            "initialization": "D26-no-authored-grant",
+            "consumption": "TM consumable; HM reusable equipment",
+            "replenishment": "none"
+          },
+          {
+            "category": "evolution",
+            "quantity": 0,
+            "initialization": "D26-no-authored-grant",
+            "consumption": "actual evolution-item use",
+            "replenishment": "none"
+          },
+          {
+            "category": "capture",
+            "quantity": 0,
+            "initialization": "D26-no-authored-grant",
+            "consumption": "actual attempt use",
+            "replenishment": "none"
+          },
+          {
+            "category": "tutor_relearner",
+            "quantity": 0,
+            "initialization": "D26-no-authored-grant",
+            "consumption": "explicit entitlement use",
+            "replenishment": "none"
+          },
+          {
+            "category": "exceptional",
+            "quantity": 0,
+            "initialization": "D26-no-authored-grant",
+            "consumption": "explicit acquisition-token use",
+            "replenishment": "none"
+          }
+        ]
+      },
+      "designProvenance": "D26 / CONTENT-01 opening playtest policy; source originals/resources are retention facts, not acquisition permissions"
+    },
+    "trainer:fr:trainer:0103": {
+      "displayName": "Doug",
+      "worldTrainerID": "fr:trainer:0103",
+      "sourceTrainer": 103,
+      "sourceVariants": [
+        103
+      ],
+      "qualifiedVariant": 103,
+      "mapEvidence": [
+        "data/maps/ViridianForest/scripts.inc"
+      ],
+      "homeMap": "MAP_VIRIDIAN_FOREST",
+      "regions": {
+        "MAP_VIRIDIAN_FOREST": {
+          "tier": "native",
+          "requires": []
+        },
+        "MAP_ROUTE2": {
+          "tier": "nearby",
+          "requires": [
+            "travel.forest.route2"
+          ]
+        }
+      },
+      "originals": [
+        {
+          "baselineKey": "103:0",
+          "fixedIV": 0,
+          "heldItem": 0,
+          "ivSource": 0,
+          "level": 7,
+          "moveMode": "default",
+          "moves": [
+            40,
+            81,
+            0,
+            0
+          ],
+          "slot": 0,
+          "species": 13
+        },
+        {
+          "baselineKey": "103:1",
+          "fixedIV": 0,
+          "heldItem": 0,
+          "ivSource": 0,
+          "level": 7,
+          "moveMode": "default",
+          "moves": [
+            106,
+            0,
+            0,
+            0
+          ],
+          "slot": 1,
+          "species": 14
+        },
+        {
+          "baselineKey": "103:2",
+          "fixedIV": 0,
+          "heldItem": 0,
+          "ivSource": 0,
+          "level": 7,
+          "moveMode": "default",
+          "moves": [
+            40,
+            81,
+            0,
+            0
+          ],
+          "slot": 2,
+          "species": 13
+        }
+      ],
+      "retainedOrigins": [
+        "103:0",
+        "103:1",
+        "103:2"
+      ],
+      "signatureOrigins": [],
+      "theme": null,
+      "stages": {
+        "first": {
+          "predicate": "not_previously_defeated",
+          "targets": {
+            "103:0": 7,
+            "103:1": 7,
+            "103:2": 7
+          },
+          "stageCeiling": 7,
+          "gain": 0
+        },
+        "forest-post-boulder-1": {
+          "predicate": "own_prior_defeat_and_boulder_and_unconsumed",
+          "targets": {
+            "103:0": 11,
+            "103:1": 11,
+            "103:2": 11
+          },
+          "stageCeiling": 14,
+          "gain": 4
+        }
+      },
+      "resources": {
+        "owner": "trainer:fr:trainer:0103",
+        "initialBattleItems": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "initialHeldItems": {
+          "103:0": 0,
+          "103:1": 0,
+          "103:2": 0
+        },
+        "initialStock": [],
+        "categories": [
+          {
+            "category": "battle_bag",
+            "quantity": 0,
+            "initialization": "source-empty",
+            "consumption": "actual battle use",
+            "replenishment": "none"
+          },
+          {
+            "category": "held",
+            "quantity": 0,
+            "initialization": "source-empty",
+            "consumption": "actual held-item game rules",
+            "replenishment": "none"
+          },
+          {
+            "category": "teaching",
+            "quantity": 0,
+            "initialization": "D26-no-authored-grant",
+            "consumption": "TM consumable; HM reusable equipment",
+            "replenishment": "none"
+          },
+          {
+            "category": "evolution",
+            "quantity": 0,
+            "initialization": "D26-no-authored-grant",
+            "consumption": "actual evolution-item use",
+            "replenishment": "none"
+          },
+          {
+            "category": "capture",
+            "quantity": 0,
+            "initialization": "D26-no-authored-grant",
+            "consumption": "actual attempt use",
+            "replenishment": "none"
+          },
+          {
+            "category": "tutor_relearner",
+            "quantity": 0,
+            "initialization": "D26-no-authored-grant",
+            "consumption": "explicit entitlement use",
+            "replenishment": "none"
+          },
+          {
+            "category": "exceptional",
+            "quantity": 0,
+            "initialization": "D26-no-authored-grant",
+            "consumption": "explicit acquisition-token use",
+            "replenishment": "none"
+          }
+        ]
+      },
+      "designProvenance": "D26 / CONTENT-01 opening playtest policy; source originals/resources are retention facts, not acquisition permissions"
+    },
+    "trainer:fr:trainer:0116": {
+      "displayName": "Janice",
+      "worldTrainerID": "fr:trainer:0116",
+      "sourceTrainer": 116,
+      "sourceVariants": [
+        116,
+        507,
+        508
+      ],
+      "qualifiedVariant": 116,
+      "mapEvidence": [
+        "src/vs_seeker.c:Janice MAP_ROUTE3",
+        "data/scripts/trainers.inc:Route3_EventScript_Janice"
+      ],
+      "homeMap": "MAP_ROUTE3",
+      "regions": {
+        "MAP_ROUTE3": {
+          "tier": "native",
+          "requires": []
+        }
+      },
+      "originals": [
+        {
+          "baselineKey": "116:0",
+          "fixedIV": 0,
+          "heldItem": 0,
+          "ivSource": 0,
+          "level": 9,
+          "moveMode": "default",
+          "moves": [
+            33,
+            28,
+            16,
+            0
+          ],
+          "slot": 0,
+          "species": 16
+        },
+        {
+          "baselineKey": "116:1",
+          "fixedIV": 0,
+          "heldItem": 0,
+          "ivSource": 0,
+          "level": 9,
+          "moveMode": "default",
+          "moves": [
+            33,
+            28,
+            16,
+            0
+          ],
+          "slot": 1,
+          "species": 16
+        }
+      ],
+      "retainedOrigins": [
+        "116:0",
+        "116:1"
+      ],
+      "signatureOrigins": [],
+      "theme": null,
+      "stages": {
+        "first": {
+          "predicate": "boulder_required",
+          "targets": {
+            "116:0": 9,
+            "116:1": 9
+          },
+          "stageCeiling": 14,
+          "gain": 0
+        }
+      },
+      "resources": {
+        "owner": "trainer:fr:trainer:0116",
+        "initialBattleItems": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "initialHeldItems": {
+          "116:0": 0,
+          "116:1": 0
+        },
+        "initialStock": [],
+        "categories": [
+          {
+            "category": "battle_bag",
+            "quantity": 0,
+            "initialization": "source-empty",
+            "consumption": "actual battle use",
+            "replenishment": "none"
+          },
+          {
+            "category": "held",
+            "quantity": 0,
+            "initialization": "source-empty",
+            "consumption": "actual held-item game rules",
+            "replenishment": "none"
+          },
+          {
+            "category": "teaching",
+            "quantity": 0,
+            "initialization": "D26-no-authored-grant",
+            "consumption": "TM consumable; HM reusable equipment",
+            "replenishment": "none"
+          },
+          {
+            "category": "evolution",
+            "quantity": 0,
+            "initialization": "D26-no-authored-grant",
+            "consumption": "actual evolution-item use",
+            "replenishment": "none"
+          },
+          {
+            "category": "capture",
+            "quantity": 0,
+            "initialization": "D26-no-authored-grant",
+            "consumption": "actual attempt use",
+            "replenishment": "none"
+          },
+          {
+            "category": "tutor_relearner",
+            "quantity": 0,
+            "initialization": "D26-no-authored-grant",
+            "consumption": "explicit entitlement use",
+            "replenishment": "none"
+          },
+          {
+            "category": "exceptional",
+            "quantity": 0,
+            "initialization": "D26-no-authored-grant",
+            "consumption": "explicit acquisition-token use",
+            "replenishment": "none"
+          }
+        ]
+      },
+      "designProvenance": "D26 / CONTENT-01 opening playtest policy; source originals/resources are retention facts, not acquisition permissions"
+    },
+    "trainer:fr:trainer:0414": {
+      "displayName": "Brock",
+      "worldTrainerID": "fr:trainer:0414",
+      "sourceTrainer": 414,
+      "sourceVariants": [
+        414
+      ],
+      "qualifiedVariant": 414,
+      "mapEvidence": [
+        "data/maps/PewterCity_Gym/scripts.inc"
+      ],
+      "homeMap": "MAP_PEWTER_CITY_GYM",
+      "regions": {
+        "MAP_PEWTER_CITY_GYM": {
+          "tier": "native",
+          "requires": []
+        }
+      },
+      "originals": [
+        {
+          "baselineKey": "414:0",
+          "fixedIV": 0,
+          "heldItem": 0,
+          "ivSource": 0,
+          "level": 12,
+          "moveMode": "authored",
+          "moves": [
+            33,
+            111,
+            0,
+            0
+          ],
+          "slot": 0,
+          "species": 74
+        },
+        {
+          "baselineKey": "414:1",
+          "fixedIV": 0,
+          "heldItem": 0,
+          "ivSource": 0,
+          "level": 14,
+          "moveMode": "authored",
+          "moves": [
+            33,
+            20,
+            317,
+            0
+          ],
+          "slot": 1,
+          "species": 95
+        }
+      ],
+      "retainedOrigins": [
+        "414:0",
+        "414:1"
+      ],
+      "signatureOrigins": [
+        "414:1"
+      ],
+      "theme": {
+        "primaryType": 5,
+        "coreOrigins": [
+          "414:0",
+          "414:1"
+        ],
+        "minimumCore": 2,
+        "maximumActive": 2,
+        "maximumSupport": 0,
+        "supportSpecies": [],
+        "supportAcquisition": [],
+        "supportLevelCap": 14
+      },
+      "stages": {
+        "first": {
+          "predicate": "boulder_absent",
+          "targets": {
+            "414:0": 12,
+            "414:1": 14
+          },
+          "stageCeiling": 14,
+          "gain": 0
+        }
+      },
+      "resources": {
+        "owner": "trainer:fr:trainer:0414",
+        "initialBattleItems": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "initialHeldItems": {
+          "414:0": 0,
+          "414:1": 0
+        },
+        "initialStock": [],
+        "categories": [
+          {
+            "category": "battle_bag",
+            "quantity": 0,
+            "initialization": "source-empty",
+            "consumption": "actual battle use",
+            "replenishment": "none"
+          },
+          {
+            "category": "held",
+            "quantity": 0,
+            "initialization": "source-empty",
+            "consumption": "actual held-item game rules",
+            "replenishment": "none"
+          },
+          {
+            "category": "teaching",
+            "quantity": 0,
+            "initialization": "D26-no-authored-grant",
+            "consumption": "TM consumable; HM reusable equipment",
+            "replenishment": "none"
+          },
+          {
+            "category": "evolution",
+            "quantity": 0,
+            "initialization": "D26-no-authored-grant",
+            "consumption": "actual evolution-item use",
+            "replenishment": "none"
+          },
+          {
+            "category": "capture",
+            "quantity": 0,
+            "initialization": "D26-no-authored-grant",
+            "consumption": "actual attempt use",
+            "replenishment": "none"
+          },
+          {
+            "category": "tutor_relearner",
+            "quantity": 0,
+            "initialization": "D26-no-authored-grant",
+            "consumption": "explicit entitlement use",
+            "replenishment": "none"
+          },
+          {
+            "category": "exceptional",
+            "quantity": 0,
+            "initialization": "D26-no-authored-grant",
+            "consumption": "explicit acquisition-token use",
+            "replenishment": "none"
+          }
+        ]
+      },
+      "designProvenance": "D26 / CONTENT-01 opening playtest policy; source originals/resources are retention facts, not acquisition permissions"
+    }
+  }
+}

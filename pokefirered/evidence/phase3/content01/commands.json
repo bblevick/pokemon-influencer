@@ -1,0 +1,69 @@
+{
+  "workingDirectory": "/Users/blevicki/Documents/poke/pokefirered",
+  "python": "3.9.6",
+  "jsonschema": "4.25.1",
+  "commands": [
+    {
+      "command": "python3 -m unittest discover -s tests > evidence/phase3/content01/baseline-host-tests.log 2>&1",
+      "exit": 0,
+      "tests": 272,
+      "scope": "retained baseline host suite; existing extraction regression verifies catalog in memory, no export"
+    },
+    {
+      "command": "python3 -m unittest discover -s tests -p test_content01.py > evidence/phase3/content01/development-tests.log 2>&1",
+      "exit": 1,
+      "tests": 28,
+      "scope": "development; incorrect Diglett map name corrected; superseded"
+    },
+    {
+      "command": "python3 -m unittest discover -s tests -p test_content01.py > evidence/phase3/content01/final-content-tests.log 2>&1",
+      "exit": 0,
+      "tests": 29,
+      "scope": "final pure production content scenarios"
+    },
+    {
+      "command": "python3 -m unittest discover -s tests > evidence/phase3/content01/final-host-tests.log 2>&1",
+      "exit": 0,
+      "tests": 301,
+      "scope": "final host regressions; no emulator or hosted inference"
+    },
+    {
+      "command": "python3 tools/content01.py > evidence/phase3/content01/final-verification.log 2>&1",
+      "exit": 0,
+      "scope": "six resolutions, source compatibility, actual protected-file integrity; no activation"
+    },
+    {
+      "command": "git diff --check > evidence/phase3/content01/diff-check.log 2>&1",
+      "exit": 2,
+      "scope": "preexisting unchanged accepted-source whitespace src/new_menu_helpers.c:670; separate changed-scope check passed"
+    },
+    {
+      "command": "git show 037335f4c725d7c9aecdac87066f2002b4bd7e14:include/constants/flags.h",
+      "exit": 0,
+      "scope": "read-only pinned source comparison within tools/content01.py"
+    },
+    {
+      "command": "git show 037335f4c725d7c9aecdac87066f2002b4bd7e14:data/maps/PewterCity_Gym/scripts.inc",
+      "exit": 0,
+      "scope": "read-only pinned source comparison within tools/content01.py"
+    },
+    {
+      "command": "git show 037335f4c725d7c9aecdac87066f2002b4bd7e14:data/maps/ViridianForest/scripts.inc",
+      "exit": 0,
+      "scope": "read-only pinned source comparison within tools/content01.py"
+    },
+    {
+      "command": "git show 037335f4c725d7c9aecdac87066f2002b4bd7e14:data/scripts/trainers.inc",
+      "exit": 0,
+      "scope": "read-only pinned source comparison within tools/content01.py"
+    },
+    {
+      "command": "git show 037335f4c725d7c9aecdac87066f2002b4bd7e14:src/vs_seeker.c",
+      "exit": 0,
+      "scope": "read-only pinned source comparison within tools/content01.py"
+    }
+  ],
+  "newEmulatorRuns": 0,
+  "newROMBuilds": 0,
+  "liveModelCalls": 0
+}

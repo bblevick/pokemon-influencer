@@ -1,0 +1,232 @@
+{
+  "schemaVersion": 1,
+  "jobID": "21346376-e825-4576-ba3d-51d95d379495",
+  "runtimeHome": "/Users/blevicki/Documents/poke/pokefirered/.runtime/hermes/jobs/2d6c3a1a-6b30-4e54-91bf-78bdb347ce8e",
+  "hermesRevision": "f97608f178d1ffeca59860195ab7da295f7c8e5f",
+  "transport": "mock",
+  "experiment": "original",
+  "maxRequests": 3,
+  "model": "pokemon-test/mock",
+  "capability": {
+    "id": "pokemon-test/mock",
+    "mock": true
+  },
+  "requests": [
+    {
+      "startedAt": 1791070176.3521512,
+      "request": {
+        "messages": [
+          {
+            "role": "system",
+            "content": "You are Hermes in a fresh actor-restricted memory inspection job. First call recall_puppeteer_memory. Then briefly describe the retrieved observed species/player moves/own actions and finish. You have exactly two model requests. Never request another tool or publication. This read-only grant cannot publish or modify gameplay. No strategies or inference of hidden data."
+          },
+          {
+            "role": "user",
+            "content": "Call recall_puppeteer_memory once, then summarize its authorized durable battle memory and finish without submitting."
+          }
+        ],
+        "model": "pokemon-test/mock",
+        "max_tokens": 1200,
+        "reasoning_effort": "medium",
+        "tools": [
+          {
+            "type": "function",
+            "function": {
+              "name": "recall_puppeteer_memory",
+              "description": "Retrieve durable prior episodes owned by this actor. No selectors.",
+              "parameters": {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": false,
+                "required": []
+              }
+            }
+          }
+        ]
+      },
+      "sha256": "ad8dede73e34be3b46c7300db562013363fbbef7243bfcab8e5d1335892aed1a",
+      "response": {
+        "id": "pi-mock-1",
+        "object": "chat.completion",
+        "created": 1791070176,
+        "model": "pokemon-test/mock",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": null,
+              "tool_calls": [
+                {
+                  "id": "pi_call_0",
+                  "type": "function",
+                  "function": {
+                    "name": "recall_puppeteer_memory",
+                    "arguments": "{}"
+                  }
+                }
+              ]
+            },
+            "finish_reason": "tool_calls"
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 100,
+          "completion_tokens": 100,
+          "total_tokens": 200
+        }
+      },
+      "finishedAt": 1791070176.352206,
+      "latencySeconds": 5.4836273193359375e-05
+    },
+    {
+      "startedAt": 1791070176.377717,
+      "request": {
+        "messages": [
+          {
+            "role": "system",
+            "content": "You are Hermes in a fresh actor-restricted memory inspection job. First call recall_puppeteer_memory. Then briefly describe the retrieved observed species/player moves/own actions and finish. You have exactly two model requests. Never request another tool or publication. This read-only grant cannot publish or modify gameplay. No strategies or inference of hidden data."
+          },
+          {
+            "role": "user",
+            "content": "Call recall_puppeteer_memory once, then summarize its authorized durable battle memory and finish without submitting."
+          },
+          {
+            "role": "assistant",
+            "content": "",
+            "tool_calls": [
+              {
+                "id": "pi_call_0",
+                "type": "function",
+                "function": {
+                  "name": "recall_puppeteer_memory",
+                  "arguments": "{}"
+                }
+              }
+            ]
+          },
+          {
+            "role": "tool",
+            "content": "{\"episodes\":[{\"actorID\":\"trainer:fr:trainer:0102\",\"battleID\":\"2a2f6a3f4ef5197a4bff810be4a01beb7463bb9b23346196571010333cc02553\",\"episodeID\":\"571adb3126c00f86b7f89e99e8bb3c9c91aa0eef7b3c5c74b25ae446957cc1a3\",\"model\":null,\"obligationID\":\"48f37a68437fd50797863ed2c780e851fab16ffa31f03221238acc46255a79d3\",\"postID\":\"9899c9384cbe5725fa81460cf56de257ef02b6d9e4d5773a5b759151586767d6\",\"priorEpisodeIDs\":[],\"producer\":\"deterministic_fallback\",\"promptVersion\":1,\"publicEvidenceIDs\":[\"a8109d31d8246416ab9f6524e2450588f580235e56be7e3f7e5c2a79a31f7a71\",\"adec0f99badb6e8f0ffcce61d9d5822ebc90b8cd74857cdbc91670faf3f5f508\"],\"schemaVersion\":1,\"scope\":{\"branchID\":\"bad2de33-5df9-453f-8c2b-9daee0ccd396\",\"campaignID\":\"fb797d1a-2861-44d8-9d05-78968f45b56a\",\"memoryCutoff\":4,\"puppeteerCutoff\":3,\"socialCutoff\":3,\"worldCursor\":5},\"sourceEvidenceIDs\":[\"a8109d31d8246416ab9f6524e2450588f580235e56be7e3f7e5c2a79a31f7a71\",\"adec0f99badb6e8f0ffcce61d9d5822ebc90b8cd74857cdbc91670faf3f5f508\",\"10b14a65a4fae511dc0b60f95ef6a3e0521324bec90cdf582250c51485d18376\",\"bdccfa01ef399a06b23a1484b6a2f2da50e6d9c701846eba0d99467a103f55c7\"],\"summary\":{\"observedPlayerMoves\":[[1,33]],\"outcome\":\"trainer_loss\",\"ownAnnouncedMoves\":[[13,33]],\"seenSpeciesIDs\":[1]},\"summaryTemplate\":\"battle_episode_v1\",\"tone\":\"matter_of_fact\",\"visibility\":\"actor_private\"}],\"schemaVersion\":1,\"scope\":\"actor_owned_puppeteer_episodes\",\"truncated\":false}",
+            "tool_call_id": "pi_call_0"
+          }
+        ],
+        "model": "pokemon-test/mock",
+        "max_tokens": 1200,
+        "reasoning_effort": "medium",
+        "tools": [
+          {
+            "type": "function",
+            "function": {
+              "name": "recall_puppeteer_memory",
+              "description": "Retrieve durable prior episodes owned by this actor. No selectors.",
+              "parameters": {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": false,
+                "required": []
+              }
+            }
+          }
+        ]
+      },
+      "sha256": "32cd8497fe88c377bb9ee0e8e31a34107c40a3f909ff7616ed0ccf5e816e3704",
+      "response": {
+        "id": "pi-mock-2",
+        "object": "chat.completion",
+        "created": 1791070176,
+        "model": "pokemon-test/mock",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "Authorized prior episodes retrieved."
+            },
+            "finish_reason": "stop"
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 100,
+          "completion_tokens": 100,
+          "total_tokens": 200
+        }
+      },
+      "finishedAt": 1791070176.377739,
+      "latencySeconds": 2.193450927734375e-05
+    }
+  ],
+  "tools": [
+    {
+      "name": "recall_puppeteer_memory",
+      "arguments": {},
+      "output": {
+        "schemaVersion": 1,
+        "scope": "actor_owned_puppeteer_episodes",
+        "episodes": [
+          {
+            "episodeID": "571adb3126c00f86b7f89e99e8bb3c9c91aa0eef7b3c5c74b25ae446957cc1a3",
+            "actorID": "trainer:fr:trainer:0102",
+            "battleID": "2a2f6a3f4ef5197a4bff810be4a01beb7463bb9b23346196571010333cc02553",
+            "model": null,
+            "obligationID": "48f37a68437fd50797863ed2c780e851fab16ffa31f03221238acc46255a79d3",
+            "postID": "9899c9384cbe5725fa81460cf56de257ef02b6d9e4d5773a5b759151586767d6",
+            "priorEpisodeIDs": [],
+            "producer": "deterministic_fallback",
+            "promptVersion": 1,
+            "publicEvidenceIDs": [
+              "a8109d31d8246416ab9f6524e2450588f580235e56be7e3f7e5c2a79a31f7a71",
+              "adec0f99badb6e8f0ffcce61d9d5822ebc90b8cd74857cdbc91670faf3f5f508"
+            ],
+            "schemaVersion": 1,
+            "scope": {
+              "branchID": "bad2de33-5df9-453f-8c2b-9daee0ccd396",
+              "campaignID": "fb797d1a-2861-44d8-9d05-78968f45b56a",
+              "memoryCutoff": 4,
+              "puppeteerCutoff": 3,
+              "socialCutoff": 3,
+              "worldCursor": 5
+            },
+            "sourceEvidenceIDs": [
+              "a8109d31d8246416ab9f6524e2450588f580235e56be7e3f7e5c2a79a31f7a71",
+              "adec0f99badb6e8f0ffcce61d9d5822ebc90b8cd74857cdbc91670faf3f5f508",
+              "10b14a65a4fae511dc0b60f95ef6a3e0521324bec90cdf582250c51485d18376",
+              "bdccfa01ef399a06b23a1484b6a2f2da50e6d9c701846eba0d99467a103f55c7"
+            ],
+            "summary": {
+              "observedPlayerMoves": [
+                [
+                  1,
+                  33
+                ]
+              ],
+              "outcome": "trainer_loss",
+              "ownAnnouncedMoves": [
+                [
+                  13,
+                  33
+                ]
+              ],
+              "seenSpeciesIDs": [
+                1
+              ]
+            },
+            "summaryTemplate": "battle_episode_v1",
+            "tone": "matter_of_fact",
+            "visibility": "actor_private"
+          }
+        ],
+        "truncated": false
+      }
+    }
+  ],
+  "failures": [],
+  "workerExit": 0,
+  "outcome": {
+    "actorID": "trainer:fr:trainer:0102",
+    "inputScopeSHA256": "c4a0a84742265e54f0b98a899571aa443bb6afd296263b892d4390d136d705a4",
+    "jobID": "21346376-e825-4576-ba3d-51d95d379495",
+    "mutatesGameplay": false,
+    "producer": "hermes_memory_retrieval"
+  }
+}

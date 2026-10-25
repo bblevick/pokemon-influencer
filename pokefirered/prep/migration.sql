@@ -1,0 +1,5 @@
+CREATE TABLE prep_version(version INTEGER NOT NULL, content_sha TEXT NOT NULL);
+CREATE TABLE prep_log(seq INTEGER PRIMARY KEY AUTOINCREMENT,id TEXT NOT NULL UNIQUE,campaign TEXT NOT NULL,branch TEXT NOT NULL,cursor INTEGER NOT NULL,kind TEXT NOT NULL,semantic_key TEXT NOT NULL,payload TEXT NOT NULL);
+CREATE TABLE prep_branches(branch TEXT PRIMARY KEY REFERENCES branches(id),parent_cutoff INTEGER NOT NULL);
+CREATE TABLE prep_view(campaign TEXT PRIMARY KEY REFERENCES campaigns(id),branch TEXT NOT NULL,cutoff INTEGER NOT NULL,epoch INTEGER NOT NULL);
+CREATE TABLE prep_checkpoints(checkpoint TEXT PRIMARY KEY REFERENCES checkpoints(id),cutoff INTEGER NOT NULL,state_sha TEXT NOT NULL);

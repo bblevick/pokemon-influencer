@@ -1,0 +1,16 @@
+Traceback (most recent call last):
+  File "/Users/blevicki/Documents/poke/pokefirered/tools/campaign_expansion01_paginate.py", line 14, in <module>
+    before=snap();ledger=(E/'requests.json').read_bytes();steps=[]
+  File "/Users/blevicki/Documents/poke/pokefirered/tools/campaign_expansion01_paginate.py", line 13, in snap
+    with open_store(cfg['database']) as w:return {m:getattr(w,m)() for m in METHODS}
+                                                    ~~~~~~~~~~~~^^
+  File "/Users/blevicki/Documents/poke/pokefirered/memory/store.py", line 294, in verify_memory_replay
+    context = {actor: self.for_actor(actor).context() for actor in sorted(self.registry_actor_ids())}
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/blevicki/Documents/poke/pokefirered/memory/store.py", line 361, in context
+    page = self.records(as_of_cursor=as_of_cursor, limit=256)
+  File "/Users/blevicki/Documents/poke/pokefirered/memory/store.py", line 337, in records
+    cursor = self._validate(as_of_cursor)
+  File "/Users/blevicki/Documents/poke/pokefirered/memory/store.py", line 316, in _validate
+    raise WorldError('revoked actor grant after restore/branch/suspension')
+world.store.WorldError: revoked actor grant after restore/branch/suspension

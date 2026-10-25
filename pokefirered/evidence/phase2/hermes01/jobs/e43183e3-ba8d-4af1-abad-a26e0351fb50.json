@@ -1,0 +1,701 @@
+{
+  "schemaVersion": 1,
+  "jobID": "ad032f53-d9be-47ac-ae55-e873afa36b23",
+  "runtimeHome": "/Users/blevicki/Documents/poke/pokefirered/.runtime/hermes/jobs/e43183e3-ba8d-4af1-abad-a26e0351fb50",
+  "hermesRevision": "f97608f178d1ffeca59860195ab7da295f7c8e5f",
+  "transport": "mock",
+  "model": "pokemon-test/mock",
+  "capability": {
+    "id": "pokemon-test/mock",
+    "mock": true
+  },
+  "requests": [
+    {
+      "request": {
+        "messages": [
+          {
+            "role": "system",
+            "content": "You are Hermes in a fresh actor-restricted memory inspection job. Call get_battle_evidence, recall_puppeteer_memory and get_actor_context together, then report that authorized memories were retrieved. This read-only grant cannot publish or modify gameplay. No strategies or inference of hidden data."
+          },
+          {
+            "role": "user",
+            "content": "Retrieve authorized durable episodes and actor context; finish without submitting."
+          }
+        ],
+        "model": "pokemon-test/mock",
+        "max_tokens": 1200,
+        "reasoning_effort": "medium",
+        "tools": [
+          {
+            "type": "function",
+            "function": {
+              "name": "get_actor_context",
+              "description": "Retrieve filtered actor knowledge and persona. No selectors.",
+              "parameters": {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": false,
+                "required": []
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "get_battle_evidence",
+              "description": "Retrieve this trainer battle evidence and publication policy. No selectors.",
+              "parameters": {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": false,
+                "required": []
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "recall_puppeteer_memory",
+              "description": "Retrieve durable prior episodes owned by this actor. No selectors.",
+              "parameters": {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": false,
+                "required": []
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "submit_recap_and_memory_result",
+              "description": "Validate and atomically publish the mandatory recap and retain private memory.",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "result": {
+                    "$schema": "https://json-schema.org/draft/2020-12/schema",
+                    "$id": "hermes_recap_v1",
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "schemaVersion",
+                      "obligationID",
+                      "battleID",
+                      "actorID",
+                      "publicEvidenceIDs",
+                      "privateEvidenceIDs",
+                      "priorEpisodeIDs",
+                      "summaryTemplate",
+                      "tone",
+                      "visibility"
+                    ],
+                    "properties": {
+                      "schemaVersion": {
+                        "const": 1
+                      },
+                      "obligationID": {
+                        "type": "string",
+                        "pattern": "^[a-f0-9]{64}$"
+                      },
+                      "battleID": {
+                        "type": "string",
+                        "pattern": "^[a-f0-9]{64}$"
+                      },
+                      "actorID": {
+                        "type": "string",
+                        "pattern": "^trainer:fr:trainer:[0-9]{4}$"
+                      },
+                      "publicEvidenceIDs": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "pattern": "^[a-f0-9]{64}$"
+                        },
+                        "uniqueItems": true,
+                        "minItems": 1,
+                        "maxItems": 2
+                      },
+                      "privateEvidenceIDs": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "pattern": "^[a-f0-9]{64}$"
+                        },
+                        "uniqueItems": true,
+                        "minItems": 1,
+                        "maxItems": 16
+                      },
+                      "priorEpisodeIDs": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "pattern": "^[a-f0-9]{64}$"
+                        },
+                        "uniqueItems": true,
+                        "minItems": 0,
+                        "maxItems": 8
+                      },
+                      "summaryTemplate": {
+                        "const": "battle_episode_v1"
+                      },
+                      "tone": {
+                        "enum": [
+                          "matter_of_fact",
+                          "competitive"
+                        ]
+                      },
+                      "visibility": {
+                        "const": "public"
+                      }
+                    }
+                  }
+                },
+                "additionalProperties": false,
+                "required": [
+                  "result"
+                ]
+              }
+            }
+          }
+        ]
+      },
+      "sha256": "e2f49710fd5fea54b5e584e2edc4bec78126ac2663a10b6b939759c8bd0ce8d1",
+      "response": {
+        "id": "pi-mock-1",
+        "object": "chat.completion",
+        "created": 1790982490,
+        "model": "pokemon-test/mock",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": null,
+              "tool_calls": [
+                {
+                  "id": "pi_call_0",
+                  "type": "function",
+                  "function": {
+                    "name": "get_battle_evidence",
+                    "arguments": "{}"
+                  }
+                },
+                {
+                  "id": "pi_call_1",
+                  "type": "function",
+                  "function": {
+                    "name": "recall_puppeteer_memory",
+                    "arguments": "{}"
+                  }
+                },
+                {
+                  "id": "pi_call_2",
+                  "type": "function",
+                  "function": {
+                    "name": "get_actor_context",
+                    "arguments": "{}"
+                  }
+                }
+              ]
+            },
+            "finish_reason": "tool_calls"
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 100,
+          "completion_tokens": 100,
+          "total_tokens": 200
+        }
+      }
+    },
+    {
+      "request": {
+        "messages": [
+          {
+            "role": "system",
+            "content": "You are Hermes in a fresh actor-restricted memory inspection job. Call get_battle_evidence, recall_puppeteer_memory and get_actor_context together, then report that authorized memories were retrieved. This read-only grant cannot publish or modify gameplay. No strategies or inference of hidden data."
+          },
+          {
+            "role": "user",
+            "content": "Retrieve authorized durable episodes and actor context; finish without submitting."
+          },
+          {
+            "role": "assistant",
+            "content": "",
+            "tool_calls": [
+              {
+                "id": "pi_call_0",
+                "type": "function",
+                "function": {
+                  "name": "get_battle_evidence",
+                  "arguments": "{}"
+                }
+              },
+              {
+                "id": "pi_call_1",
+                "type": "function",
+                "function": {
+                  "name": "recall_puppeteer_memory",
+                  "arguments": "{}"
+                }
+              },
+              {
+                "id": "pi_call_2",
+                "type": "function",
+                "function": {
+                  "name": "get_actor_context",
+                  "arguments": "{}"
+                }
+              }
+            ]
+          },
+          {
+            "role": "tool",
+            "content": "{\"actorID\":\"trainer:fr:trainer:0102\",\"battleID\":\"b2800fe2396c71ddd8f7a2b93fb8b033cf0fd2315db90e0460cdeed7315e2f3a\",\"disclosureAllowlist\":[\"TRAINER_BATTLE_RESULT\",\"POKEMON_SEEN\"],\"evidence\":[{\"claim\":{\"battleID\":\"b2800fe2396c71ddd8f7a2b93fb8b033cf0fd2315db90e0460cdeed7315e2f3a\",\"trainerID\":\"fr:trainer:0102\",\"type\":\"BATTLE_PARTICIPATION\"},\"evidenceID\":\"143054d080a2e9a10e7f2246750f0f0285a719cae736537d0b35e110a743fa3f\",\"sourceKind\":\"actor_direct_memory\"},{\"claim\":{\"battleID\":\"b2800fe2396c71ddd8f7a2b93fb8b033cf0fd2315db90e0460cdeed7315e2f3a\",\"speciesID\":1,\"trainerID\":\"fr:trainer:0102\",\"type\":\"POKEMON_SEEN\"},\"evidenceID\":\"4777403fe48df0909535ff9826468781e2062ff72469c93153320927135ecfdf\",\"sourceKind\":\"actor_direct_memory\"},{\"claim\":{\"battleID\":\"b2800fe2396c71ddd8f7a2b93fb8b033cf0fd2315db90e0460cdeed7315e2f3a\",\"moveID\":33,\"speciesID\":1,\"trainerID\":\"fr:trainer:0102\",\"type\":\"MOVE_REVEALED\"},\"evidenceID\":\"dcdfd7ba0e38295b1adb83092f087860ceb41af74f01606ff8b8bdd65dd53783\",\"sourceKind\":\"actor_direct_memory\"},{\"claim\":{\"battleID\":\"b2800fe2396c71ddd8f7a2b93fb8b033cf0fd2315db90e0460cdeed7315e2f3a\",\"nativeOutcome\":1,\"trainerID\":\"fr:trainer:0102\",\"type\":\"TRAINER_BATTLE_RESULT\"},\"evidenceID\":\"5ea31a3a8e8c47031c8d9dea98510c1957a164c5880dce357d327c1d17a9a96c\",\"sourceKind\":\"actor_direct_memory\"},{\"claim\":{\"battleID\":\"b2800fe2396c71ddd8f7a2b93fb8b033cf0fd2315db90e0460cdeed7315e2f3a\",\"moveID\":33,\"speciesID\":13,\"trainerID\":\"fr:trainer:0102\",\"type\":\"OWN_MOVE_ANNOUNCED\"},\"evidenceID\":\"11bce22197ceda2ef3e2ffc099ac7f51c5518bca7747fd46ae10d54d5fa99cce\",\"sourceKind\":\"participant_own_announced_action\"}],\"minimumPublicClaim\":\"TRAINER_BATTLE_RESULT\",\"obligationID\":\"\",\"schemaVersion\":1}",
+            "tool_call_id": "pi_call_0"
+          },
+          {
+            "role": "tool",
+            "content": "{\"episodes\":[{\"actorID\":\"trainer:fr:trainer:0102\",\"battleID\":\"b2800fe2396c71ddd8f7a2b93fb8b033cf0fd2315db90e0460cdeed7315e2f3a\",\"episodeID\":\"c580b8b847913c67a9f6ed91106bf50db5213f8aa19939449d37dd2334e4e753\",\"model\":null,\"obligationID\":\"debf82f79fedd3543179776549b26b26078f2b2da4dda2b6e044c60bf7103f3c\",\"postID\":\"2e2d9ec59fc008fce1fffdb52b02c3a614da97691688863a99b4ecb43f78b968\",\"priorEpisodeIDs\":[],\"producer\":\"deterministic_fallback\",\"promptVersion\":1,\"publicEvidenceIDs\":[\"5ea31a3a8e8c47031c8d9dea98510c1957a164c5880dce357d327c1d17a9a96c\",\"4777403fe48df0909535ff9826468781e2062ff72469c93153320927135ecfdf\"],\"schemaVersion\":1,\"scope\":{\"branchID\":\"2c2f9e7e-25ef-4f57-8e7e-8af361aa263e\",\"campaignID\":\"cd76385e-e9ce-4c84-a2f5-54c89e8b9051\",\"memoryCutoff\":4,\"puppeteerCutoff\":3,\"socialCutoff\":3,\"worldCursor\":5},\"sourceEvidenceIDs\":[\"5ea31a3a8e8c47031c8d9dea98510c1957a164c5880dce357d327c1d17a9a96c\",\"4777403fe48df0909535ff9826468781e2062ff72469c93153320927135ecfdf\",\"dcdfd7ba0e38295b1adb83092f087860ceb41af74f01606ff8b8bdd65dd53783\",\"11bce22197ceda2ef3e2ffc099ac7f51c5518bca7747fd46ae10d54d5fa99cce\"],\"summary\":{\"observedPlayerMoves\":[[1,33]],\"outcome\":\"trainer_loss\",\"ownAnnouncedMoves\":[[13,33]],\"seenSpeciesIDs\":[1]},\"summaryTemplate\":\"battle_episode_v1\",\"tone\":\"matter_of_fact\",\"visibility\":\"actor_private\"}],\"schemaVersion\":1,\"scope\":\"actor_owned_puppeteer_episodes\",\"truncated\":false}",
+            "tool_call_id": "pi_call_1"
+          },
+          {
+            "role": "tool",
+            "content": "{\"cutoffs\":{\"branchID\":\"2c2f9e7e-25ef-4f57-8e7e-8af361aa263e\",\"campaignID\":\"cd76385e-e9ce-4c84-a2f5-54c89e8b9051\",\"memoryCutoff\":4,\"puppeteerCutoff\":5,\"puppeteerEpoch\":1,\"socialCutoff\":5,\"socialEpoch\":1,\"worldCursor\":5},\"directObservations\":[{\"claim\":{\"battleID\":\"b2800fe2396c71ddd8f7a2b93fb8b033cf0fd2315db90e0460cdeed7315e2f3a\",\"moveID\":33,\"speciesID\":1,\"trainerID\":\"fr:trainer:0102\",\"type\":\"MOVE_REVEALED\"},\"evidenceIDs\":[\"dcdfd7ba0e38295b1adb83092f087860ceb41af74f01606ff8b8bdd65dd53783\"],\"mode\":\"direct\",\"occurrencesInWindow\":1,\"sender\":null},{\"claim\":{\"battleID\":\"b2800fe2396c71ddd8f7a2b93fb8b033cf0fd2315db90e0460cdeed7315e2f3a\",\"nativeOutcome\":1,\"trainerID\":\"fr:trainer:0102\",\"type\":\"TRAINER_BATTLE_RESULT\"},\"evidenceIDs\":[\"5ea31a3a8e8c47031c8d9dea98510c1957a164c5880dce357d327c1d17a9a96c\"],\"mode\":\"direct\",\"occurrencesInWindow\":1,\"sender\":null},{\"claim\":{\"battleID\":\"b2800fe2396c71ddd8f7a2b93fb8b033cf0fd2315db90e0460cdeed7315e2f3a\",\"speciesID\":1,\"trainerID\":\"fr:trainer:0102\",\"type\":\"POKEMON_SEEN\"},\"evidenceIDs\":[\"4777403fe48df0909535ff9826468781e2062ff72469c93153320927135ecfdf\"],\"mode\":\"direct\",\"occurrencesInWindow\":1,\"sender\":null},{\"claim\":{\"battleID\":\"b2800fe2396c71ddd8f7a2b93fb8b033cf0fd2315db90e0460cdeed7315e2f3a\",\"trainerID\":\"fr:trainer:0102\",\"type\":\"BATTLE_PARTICIPATION\"},\"evidenceIDs\":[\"143054d080a2e9a10e7f2246750f0f0285a719cae736537d0b35e110a743fa3f\"],\"mode\":\"direct\",\"occurrencesInWindow\":1,\"sender\":null}],\"observedChanges\":[],\"observedSpeciesIDs\":[1],\"persona\":{\"reference\":\"rick-slice-v1\",\"style\":\"competitive\"},\"reportedClaims\":[],\"retainedEpisodes\":[{\"battleID\":\"b2800fe2396c71ddd8f7a2b93fb8b033cf0fd2315db90e0460cdeed7315e2f3a\",\"episodeID\":\"c580b8b847913c67a9f6ed91106bf50db5213f8aa19939449d37dd2334e4e753\",\"postID\":\"2e2d9ec59fc008fce1fffdb52b02c3a614da97691688863a99b4ecb43f78b968\",\"sourceEvidenceIDs\":[\"5ea31a3a8e8c47031c8d9dea98510c1957a164c5880dce357d327c1d17a9a96c\",\"4777403fe48df0909535ff9826468781e2062ff72469c93153320927135ecfdf\",\"dcdfd7ba0e38295b1adb83092f087860ceb41af74f01606ff8b8bdd65dd53783\",\"11bce22197ceda2ef3e2ffc099ac7f51c5518bca7747fd46ae10d54d5fa99cce\"],\"summary\":{\"observedPlayerMoves\":[[1,33]],\"outcome\":\"trainer_loss\",\"ownAnnouncedMoves\":[[13,33]],\"seenSpeciesIDs\":[1]},\"visibility\":\"actor_private\"}],\"schemaVersion\":1,\"strategicInterpretation\":null,\"trainer\":{\"actorID\":\"trainer:fr:trainer:0102\",\"name\":\"RICK\",\"primarySourceID\":102,\"worldTrainerID\":\"fr:trainer:0102\"},\"truncated\":false,\"unknowns\":[\"unseen player party\",\"unannounced player moves\",\"future actions\"]}",
+            "tool_call_id": "pi_call_2"
+          }
+        ],
+        "model": "pokemon-test/mock",
+        "max_tokens": 1200,
+        "reasoning_effort": "medium",
+        "tools": [
+          {
+            "type": "function",
+            "function": {
+              "name": "get_actor_context",
+              "description": "Retrieve filtered actor knowledge and persona. No selectors.",
+              "parameters": {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": false,
+                "required": []
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "get_battle_evidence",
+              "description": "Retrieve this trainer battle evidence and publication policy. No selectors.",
+              "parameters": {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": false,
+                "required": []
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "recall_puppeteer_memory",
+              "description": "Retrieve durable prior episodes owned by this actor. No selectors.",
+              "parameters": {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": false,
+                "required": []
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "submit_recap_and_memory_result",
+              "description": "Validate and atomically publish the mandatory recap and retain private memory.",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "result": {
+                    "$schema": "https://json-schema.org/draft/2020-12/schema",
+                    "$id": "hermes_recap_v1",
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "schemaVersion",
+                      "obligationID",
+                      "battleID",
+                      "actorID",
+                      "publicEvidenceIDs",
+                      "privateEvidenceIDs",
+                      "priorEpisodeIDs",
+                      "summaryTemplate",
+                      "tone",
+                      "visibility"
+                    ],
+                    "properties": {
+                      "schemaVersion": {
+                        "const": 1
+                      },
+                      "obligationID": {
+                        "type": "string",
+                        "pattern": "^[a-f0-9]{64}$"
+                      },
+                      "battleID": {
+                        "type": "string",
+                        "pattern": "^[a-f0-9]{64}$"
+                      },
+                      "actorID": {
+                        "type": "string",
+                        "pattern": "^trainer:fr:trainer:[0-9]{4}$"
+                      },
+                      "publicEvidenceIDs": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "pattern": "^[a-f0-9]{64}$"
+                        },
+                        "uniqueItems": true,
+                        "minItems": 1,
+                        "maxItems": 2
+                      },
+                      "privateEvidenceIDs": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "pattern": "^[a-f0-9]{64}$"
+                        },
+                        "uniqueItems": true,
+                        "minItems": 1,
+                        "maxItems": 16
+                      },
+                      "priorEpisodeIDs": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "pattern": "^[a-f0-9]{64}$"
+                        },
+                        "uniqueItems": true,
+                        "minItems": 0,
+                        "maxItems": 8
+                      },
+                      "summaryTemplate": {
+                        "const": "battle_episode_v1"
+                      },
+                      "tone": {
+                        "enum": [
+                          "matter_of_fact",
+                          "competitive"
+                        ]
+                      },
+                      "visibility": {
+                        "const": "public"
+                      }
+                    }
+                  }
+                },
+                "additionalProperties": false,
+                "required": [
+                  "result"
+                ]
+              }
+            }
+          }
+        ]
+      },
+      "sha256": "2a58e8d01c506c5d27d63872cf09d041bd4ce025efc9b27f9020adc07853bac4",
+      "response": {
+        "id": "pi-mock-2",
+        "object": "chat.completion",
+        "created": 1790982490,
+        "model": "pokemon-test/mock",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "Authorized prior episodes retrieved."
+            },
+            "finish_reason": "stop"
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 100,
+          "completion_tokens": 100,
+          "total_tokens": 200
+        }
+      }
+    }
+  ],
+  "tools": [
+    {
+      "name": "get_battle_evidence",
+      "arguments": {},
+      "output": {
+        "schemaVersion": 1,
+        "actorID": "trainer:fr:trainer:0102",
+        "battleID": "b2800fe2396c71ddd8f7a2b93fb8b033cf0fd2315db90e0460cdeed7315e2f3a",
+        "obligationID": "",
+        "evidence": [
+          {
+            "evidenceID": "143054d080a2e9a10e7f2246750f0f0285a719cae736537d0b35e110a743fa3f",
+            "claim": {
+              "battleID": "b2800fe2396c71ddd8f7a2b93fb8b033cf0fd2315db90e0460cdeed7315e2f3a",
+              "trainerID": "fr:trainer:0102",
+              "type": "BATTLE_PARTICIPATION"
+            },
+            "sourceKind": "actor_direct_memory"
+          },
+          {
+            "evidenceID": "4777403fe48df0909535ff9826468781e2062ff72469c93153320927135ecfdf",
+            "claim": {
+              "battleID": "b2800fe2396c71ddd8f7a2b93fb8b033cf0fd2315db90e0460cdeed7315e2f3a",
+              "speciesID": 1,
+              "trainerID": "fr:trainer:0102",
+              "type": "POKEMON_SEEN"
+            },
+            "sourceKind": "actor_direct_memory"
+          },
+          {
+            "evidenceID": "dcdfd7ba0e38295b1adb83092f087860ceb41af74f01606ff8b8bdd65dd53783",
+            "claim": {
+              "battleID": "b2800fe2396c71ddd8f7a2b93fb8b033cf0fd2315db90e0460cdeed7315e2f3a",
+              "moveID": 33,
+              "speciesID": 1,
+              "trainerID": "fr:trainer:0102",
+              "type": "MOVE_REVEALED"
+            },
+            "sourceKind": "actor_direct_memory"
+          },
+          {
+            "evidenceID": "5ea31a3a8e8c47031c8d9dea98510c1957a164c5880dce357d327c1d17a9a96c",
+            "claim": {
+              "battleID": "b2800fe2396c71ddd8f7a2b93fb8b033cf0fd2315db90e0460cdeed7315e2f3a",
+              "nativeOutcome": 1,
+              "trainerID": "fr:trainer:0102",
+              "type": "TRAINER_BATTLE_RESULT"
+            },
+            "sourceKind": "actor_direct_memory"
+          },
+          {
+            "evidenceID": "11bce22197ceda2ef3e2ffc099ac7f51c5518bca7747fd46ae10d54d5fa99cce",
+            "claim": {
+              "type": "OWN_MOVE_ANNOUNCED",
+              "battleID": "b2800fe2396c71ddd8f7a2b93fb8b033cf0fd2315db90e0460cdeed7315e2f3a",
+              "trainerID": "fr:trainer:0102",
+              "speciesID": 13,
+              "moveID": 33
+            },
+            "sourceKind": "participant_own_announced_action"
+          }
+        ],
+        "disclosureAllowlist": [
+          "TRAINER_BATTLE_RESULT",
+          "POKEMON_SEEN"
+        ],
+        "minimumPublicClaim": "TRAINER_BATTLE_RESULT"
+      }
+    },
+    {
+      "name": "recall_puppeteer_memory",
+      "arguments": {},
+      "output": {
+        "schemaVersion": 1,
+        "scope": "actor_owned_puppeteer_episodes",
+        "episodes": [
+          {
+            "episodeID": "c580b8b847913c67a9f6ed91106bf50db5213f8aa19939449d37dd2334e4e753",
+            "actorID": "trainer:fr:trainer:0102",
+            "battleID": "b2800fe2396c71ddd8f7a2b93fb8b033cf0fd2315db90e0460cdeed7315e2f3a",
+            "model": null,
+            "obligationID": "debf82f79fedd3543179776549b26b26078f2b2da4dda2b6e044c60bf7103f3c",
+            "postID": "2e2d9ec59fc008fce1fffdb52b02c3a614da97691688863a99b4ecb43f78b968",
+            "priorEpisodeIDs": [],
+            "producer": "deterministic_fallback",
+            "promptVersion": 1,
+            "publicEvidenceIDs": [
+              "5ea31a3a8e8c47031c8d9dea98510c1957a164c5880dce357d327c1d17a9a96c",
+              "4777403fe48df0909535ff9826468781e2062ff72469c93153320927135ecfdf"
+            ],
+            "schemaVersion": 1,
+            "scope": {
+              "branchID": "2c2f9e7e-25ef-4f57-8e7e-8af361aa263e",
+              "campaignID": "cd76385e-e9ce-4c84-a2f5-54c89e8b9051",
+              "memoryCutoff": 4,
+              "puppeteerCutoff": 3,
+              "socialCutoff": 3,
+              "worldCursor": 5
+            },
+            "sourceEvidenceIDs": [
+              "5ea31a3a8e8c47031c8d9dea98510c1957a164c5880dce357d327c1d17a9a96c",
+              "4777403fe48df0909535ff9826468781e2062ff72469c93153320927135ecfdf",
+              "dcdfd7ba0e38295b1adb83092f087860ceb41af74f01606ff8b8bdd65dd53783",
+              "11bce22197ceda2ef3e2ffc099ac7f51c5518bca7747fd46ae10d54d5fa99cce"
+            ],
+            "summary": {
+              "observedPlayerMoves": [
+                [
+                  1,
+                  33
+                ]
+              ],
+              "outcome": "trainer_loss",
+              "ownAnnouncedMoves": [
+                [
+                  13,
+                  33
+                ]
+              ],
+              "seenSpeciesIDs": [
+                1
+              ]
+            },
+            "summaryTemplate": "battle_episode_v1",
+            "tone": "matter_of_fact",
+            "visibility": "actor_private"
+          }
+        ],
+        "truncated": false
+      }
+    },
+    {
+      "name": "get_actor_context",
+      "arguments": {},
+      "output": {
+        "schemaVersion": 1,
+        "observedChanges": [],
+        "trainer": {
+          "actorID": "trainer:fr:trainer:0102",
+          "worldTrainerID": "fr:trainer:0102",
+          "name": "RICK",
+          "primarySourceID": 102
+        },
+        "persona": {
+          "reference": "rick-slice-v1",
+          "style": "competitive"
+        },
+        "cutoffs": {
+          "campaignID": "cd76385e-e9ce-4c84-a2f5-54c89e8b9051",
+          "branchID": "2c2f9e7e-25ef-4f57-8e7e-8af361aa263e",
+          "worldCursor": 5,
+          "memoryCutoff": 4,
+          "socialCutoff": 5,
+          "puppeteerCutoff": 5,
+          "socialEpoch": 1,
+          "puppeteerEpoch": 1
+        },
+        "directObservations": [
+          {
+            "mode": "direct",
+            "claim": {
+              "battleID": "b2800fe2396c71ddd8f7a2b93fb8b033cf0fd2315db90e0460cdeed7315e2f3a",
+              "moveID": 33,
+              "speciesID": 1,
+              "trainerID": "fr:trainer:0102",
+              "type": "MOVE_REVEALED"
+            },
+            "sender": null,
+            "occurrencesInWindow": 1,
+            "evidenceIDs": [
+              "dcdfd7ba0e38295b1adb83092f087860ceb41af74f01606ff8b8bdd65dd53783"
+            ]
+          },
+          {
+            "mode": "direct",
+            "claim": {
+              "battleID": "b2800fe2396c71ddd8f7a2b93fb8b033cf0fd2315db90e0460cdeed7315e2f3a",
+              "nativeOutcome": 1,
+              "trainerID": "fr:trainer:0102",
+              "type": "TRAINER_BATTLE_RESULT"
+            },
+            "sender": null,
+            "occurrencesInWindow": 1,
+            "evidenceIDs": [
+              "5ea31a3a8e8c47031c8d9dea98510c1957a164c5880dce357d327c1d17a9a96c"
+            ]
+          },
+          {
+            "mode": "direct",
+            "claim": {
+              "battleID": "b2800fe2396c71ddd8f7a2b93fb8b033cf0fd2315db90e0460cdeed7315e2f3a",
+              "speciesID": 1,
+              "trainerID": "fr:trainer:0102",
+              "type": "POKEMON_SEEN"
+            },
+            "sender": null,
+            "occurrencesInWindow": 1,
+            "evidenceIDs": [
+              "4777403fe48df0909535ff9826468781e2062ff72469c93153320927135ecfdf"
+            ]
+          },
+          {
+            "mode": "direct",
+            "claim": {
+              "battleID": "b2800fe2396c71ddd8f7a2b93fb8b033cf0fd2315db90e0460cdeed7315e2f3a",
+              "trainerID": "fr:trainer:0102",
+              "type": "BATTLE_PARTICIPATION"
+            },
+            "sender": null,
+            "occurrencesInWindow": 1,
+            "evidenceIDs": [
+              "143054d080a2e9a10e7f2246750f0f0285a719cae736537d0b35e110a743fa3f"
+            ]
+          }
+        ],
+        "reportedClaims": [],
+        "retainedEpisodes": [
+          {
+            "episodeID": "c580b8b847913c67a9f6ed91106bf50db5213f8aa19939449d37dd2334e4e753",
+            "battleID": "b2800fe2396c71ddd8f7a2b93fb8b033cf0fd2315db90e0460cdeed7315e2f3a",
+            "summary": {
+              "observedPlayerMoves": [
+                [
+                  1,
+                  33
+                ]
+              ],
+              "outcome": "trainer_loss",
+              "ownAnnouncedMoves": [
+                [
+                  13,
+                  33
+                ]
+              ],
+              "seenSpeciesIDs": [
+                1
+              ]
+            },
+            "sourceEvidenceIDs": [
+              "5ea31a3a8e8c47031c8d9dea98510c1957a164c5880dce357d327c1d17a9a96c",
+              "4777403fe48df0909535ff9826468781e2062ff72469c93153320927135ecfdf",
+              "dcdfd7ba0e38295b1adb83092f087860ceb41af74f01606ff8b8bdd65dd53783",
+              "11bce22197ceda2ef3e2ffc099ac7f51c5518bca7747fd46ae10d54d5fa99cce"
+            ],
+            "visibility": "actor_private",
+            "postID": "2e2d9ec59fc008fce1fffdb52b02c3a614da97691688863a99b4ecb43f78b968"
+          }
+        ],
+        "observedSpeciesIDs": [
+          1
+        ],
+        "unknowns": [
+          "unseen player party",
+          "unannounced player moves",
+          "future actions"
+        ],
+        "strategicInterpretation": null,
+        "truncated": false
+      }
+    }
+  ],
+  "failures": [],
+  "workerExit": 0,
+  "outcome": {
+    "actorID": "trainer:fr:trainer:0102",
+    "inputScopeSHA256": "7c1db6b46e34065b5cd2a181a0ea434e65c427668ccecfc714419846243a7b5c",
+    "jobID": "ad032f53-d9be-47ac-ae55-e873afa36b23",
+    "mutatesGameplay": false,
+    "producer": "hermes_memory_retrieval"
+  }
+}

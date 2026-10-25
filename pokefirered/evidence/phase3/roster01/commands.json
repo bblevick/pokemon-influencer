@@ -1,0 +1,68 @@
+{
+  "cwd": "/Users/blevicki/Documents/poke/pokefirered",
+  "recordedAtUTC": "2026-10-03T06:33:26.562775+00:00",
+  "commands": [
+    {
+      "command": ".venv/bin/python -m unittest discover -s tests -v",
+      "log": "baseline-host-tests.log",
+      "exitCode": 0,
+      "scope": "226 existing tests before adding the ROSTER test module; host-only"
+    },
+    {
+      "command": ".venv/bin/python tools/roster01.py --write",
+      "log": "generation.log",
+      "exitCode": 0,
+      "scope": "generate and verify catalog with existing accepted ARM build"
+    },
+    {
+      "command": ".venv/bin/python tools/roster01.py",
+      "log": "verification.log",
+      "exitCode": 0,
+      "scope": "final deterministic regeneration, schema/generated-header/native/ARM agreement"
+    },
+    {
+      "command": ".venv/bin/python tools/roster01_examples.py",
+      "log": "examples.log",
+      "exitCode": 0,
+      "scope": "15 source-backed/explicit hypothetical reports"
+    },
+    {
+      "command": ".venv/bin/python -m unittest discover -s tests -v",
+      "log": "host-tests.log",
+      "exitCode": 0,
+      "scope": "272 final host tests including46new, no hosted inference"
+    },
+    {
+      "command": ".venv/bin/python tools/validate_ai_contracts.py",
+      "log": "architecture-tests.log",
+      "exitCode": 0,
+      "scope": "43 offline static checks"
+    },
+    {
+      "command": ".venv/bin/python pokemon_influencer_handoff/tools/validate_handoff.py",
+      "log": "handoff-tests.log",
+      "exitCode": 0,
+      "scope": "60 package checks/9reference fixtures; no emulator/ROM build"
+    },
+    {
+      "command": ".venv/bin/python tools/verify_roster01.py",
+      "log": "closeout.log",
+      "exitCode": 0,
+      "scope": "current preserved source/build/dump/database/save/budget proof"
+    },
+    {
+      "command": "git diff --check",
+      "log": null,
+      "exitCode": 2,
+      "scope": "pre-existing accepted PokeBook src/new_menu_helpers.c:670 trailing whitespace; source left unchanged and accepted overlay digest still matches"
+    }
+  ],
+  "nativeCompilerCommand": "clang -std=gnu11 -Werror -DFIRERED -DENGLISH -DREVISION=0 -DMODERN=0 -I <repo> <temporary-native.c> -o <temporary-native>",
+  "extractorCompilerCommand": "clang -std=gnu11 -Werror -Wno-macro-redefined -DFIRERED -DENGLISH -DREVISION=0 -DMODERN=0 -I <repo> -I <repo>/include <temporary-extract.c> -o <temporary-extract>",
+  "generatedHeaderCommand": "tools/jsonproc/jsonproc src/data/<items|wild_encounters>.json src/data/<items|wild_encounters>.json.txt <temporary-output.h>",
+  "armSymbolsCommand": "arm-none-eabi-nm -S .local/pokebook01-enabled/pokefirered.elf",
+  "temporaryPaths": "created by tempfile.TemporaryDirectory and removed after the run; manifests bind input/tool digests",
+  "newROMBuild": false,
+  "newEmulatorRun": false,
+  "inferenceRequests": 0
+}

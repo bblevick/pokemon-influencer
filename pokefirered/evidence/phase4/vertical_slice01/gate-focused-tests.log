@@ -1,0 +1,43 @@
+test_original_receipts_cannot_be_changed_after_extension (tests.test_vertical_slice_closeout.AdditionalAllowanceTests.test_original_receipts_cannot_be_changed_after_extension) ... ERROR
+test_seventy_cap_preserves_original_thirty_and_role_exclusions (tests.test_vertical_slice_closeout.AdditionalAllowanceTests.test_seventy_cap_preserves_original_thirty_and_role_exclusions) ... ERROR
+test_gym_closeout_scheduler_cannot_generate_missing_strategy (tests.test_vertical_slice_closeout.CleanRestoreTests.test_gym_closeout_scheduler_cannot_generate_missing_strategy) ... ok
+test_durable_thirty_total_and_no_duplicate (tests.test_system1_battle.BattleLiveTests.test_durable_thirty_total_and_no_duplicate) ... ok
+test_host_window_is_bounded_and_retains_old_default (tests.test_system1_battle.BattleLiveTests.test_host_window_is_bounded_and_retains_old_default) ... ok
+test_shadow_retains_selected_probability_without_native_send (tests.test_system1_battle.BattleLiveTests.test_shadow_retains_selected_probability_without_native_send) ... ok
+test_worker_error_and_invalid_output_close_without_retry (tests.test_system1_battle.BattleLiveTests.test_worker_error_and_invalid_output_close_without_retry) ... ok
+test_worker_timeout_disables_further_network (tests.test_system1_battle.BattleLiveTests.test_worker_timeout_disables_further_network) ... ok
+
+======================================================================
+ERROR: test_original_receipts_cannot_be_changed_after_extension (tests.test_vertical_slice_closeout.AdditionalAllowanceTests.test_original_receipts_cannot_be_changed_after_extension)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/blevicki/Documents/poke/pokefirered/tests/test_vertical_slice_closeout.py", line 36, in test_original_receipts_cannot_be_changed_after_extension
+    path=Path(tmp)/'budget.json';self.seed(path)
+                                 ~~~~~~~~~^^^^^^
+  File "/Users/blevicki/Documents/poke/pokefirered/tests/test_vertical_slice_closeout.py", line 13, in seed
+    b.close();b.rebalance_closeout();b.reallocate_remaining_to_tactics();b.continue_authorized_run()
+              ~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/blevicki/Documents/poke/pokefirered/campaign/budget.py", line 75, in rebalance_closeout
+    if any(sum(a['role']==r for a in value['attempts'])>cap for r,cap in CLOSEOUT_LIMITS.items()):raise WorldError('campaign_rebalance_existing_charge_exceeds_bound')
+                                                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+world.store.WorldError: campaign_rebalance_existing_charge_exceeds_bound
+
+======================================================================
+ERROR: test_seventy_cap_preserves_original_thirty_and_role_exclusions (tests.test_vertical_slice_closeout.AdditionalAllowanceTests.test_seventy_cap_preserves_original_thirty_and_role_exclusions)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/blevicki/Documents/poke/pokefirered/tests/test_vertical_slice_closeout.py", line 18, in test_seventy_cap_preserves_original_thirty_and_role_exclusions
+    path=Path(tmp)/'budget.json';self.seed(path)
+                                 ~~~~~~~~~^^^^^^
+  File "/Users/blevicki/Documents/poke/pokefirered/tests/test_vertical_slice_closeout.py", line 13, in seed
+    b.close();b.rebalance_closeout();b.reallocate_remaining_to_tactics();b.continue_authorized_run()
+              ~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/blevicki/Documents/poke/pokefirered/campaign/budget.py", line 75, in rebalance_closeout
+    if any(sum(a['role']==r for a in value['attempts'])>cap for r,cap in CLOSEOUT_LIMITS.items()):raise WorldError('campaign_rebalance_existing_charge_exceeds_bound')
+                                                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+world.store.WorldError: campaign_rebalance_existing_charge_exceeds_bound
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.469s
+
+FAILED (errors=2)

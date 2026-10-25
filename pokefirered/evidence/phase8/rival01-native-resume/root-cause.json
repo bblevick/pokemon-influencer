@@ -1,0 +1,30 @@
+{
+  "gateBRootCause": "Existing authorize_launch unconditionally invokes parent-checkpoint restore; saved derived cutoffs exclude committed descendants. This is intentional rollback isolation, not lost data. Generic durable prebattle-descendant resume is absent.",
+  "sourceHooks": [
+    "world/store.py:132",
+    "strategy/store.py:48",
+    "prep/store.py:76",
+    "system1/store.py:43"
+  ],
+  "beforeStrategyCutoff": 16,
+  "afterStrategyCutoff": 14,
+  "beforePrepCutoff": 35,
+  "afterPrepCutoff": 33,
+  "nativeRetainedFailure": {
+    "lastFrame": 3643,
+    "sequence": 0,
+    "ack": 0,
+    "drops": 0,
+    "restartLoggedButNoProgress": true,
+    "processSampleObservation": "CPU Thread sampled in GBAProcessEvents \u2192 audio _sample \u2192 mCoreSyncProduceAudio \u2192 pthread_cond_wait for708 samples. This locates sampled suspension before frame callbacks; it does not establish its initiating cause.",
+    "rootCauseFullyQualified": false,
+    "newNativeReproductionPerformed": false
+  },
+  "supervisorInspection": {
+    "emulatorStartedBeforeHost": true,
+    "readinessOnlyChecksFreshFileTime": true,
+    "doesNotRequireFrameProgressionOrHostFrameReceipt": true,
+    "correctionImplemented": false
+  },
+  "stopCondition": "User sections4/14/30B: unsupported frozen encounter reattachment; preserve and stop without fabricated pairing."
+}

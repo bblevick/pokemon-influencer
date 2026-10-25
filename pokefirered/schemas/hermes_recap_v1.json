@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "hermes_recap_v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "obligationID",
+    "battleID",
+    "actorID",
+    "publicEvidenceIDs",
+    "privateEvidenceIDs",
+    "priorEpisodeIDs",
+    "summaryTemplate",
+    "tone",
+    "visibility"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "obligationID": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "battleID": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "actorID": {
+      "type": "string",
+      "pattern": "^trainer:fr:trainer:[0-9]{4}$"
+    },
+    "publicEvidenceIDs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-f0-9]{64}$"
+      },
+      "uniqueItems": true,
+      "minItems": 1,
+      "maxItems": 2
+    },
+    "privateEvidenceIDs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-f0-9]{64}$"
+      },
+      "uniqueItems": true,
+      "minItems": 1,
+      "maxItems": 16
+    },
+    "priorEpisodeIDs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-f0-9]{64}$"
+      },
+      "uniqueItems": true,
+      "minItems": 0,
+      "maxItems": 8
+    },
+    "summaryTemplate": {
+      "const": "battle_episode_v1"
+    },
+    "tone": {
+      "enum": [
+        "matter_of_fact",
+        "competitive"
+      ]
+    },
+    "visibility": {
+      "const": "public"
+    }
+  }
+}

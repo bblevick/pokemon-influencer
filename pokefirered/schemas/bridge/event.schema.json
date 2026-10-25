@@ -1,0 +1,471 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "transportVersion": {
+      "const": 2
+    },
+    "schemaVersion": {
+      "const": 1
+    },
+    "recordClass": {
+      "enum": [
+        "canonical_event",
+        "observation"
+      ]
+    },
+    "eventType": {
+      "enum": [
+        "BATTLE_STARTED",
+        "BATTLE_TURN_STARTED",
+        "BATTLE_OBSERVATION",
+        "BATTLE_ACTION_RESOLVED",
+        "TRAINER_DEFEATED",
+        "BATTLE_ENDED"
+      ]
+    },
+    "sequence": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 4294967295
+    },
+    "session": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 4294967295
+    },
+    "run": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 4294967295
+    },
+    "branch": {
+      "type": "string",
+      "pattern": "^transient:[0-9]+:[0-9]+$"
+    },
+    "battleID": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 4294967295
+    },
+    "turnID": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 65535
+    },
+    "phase": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 4294967295
+    },
+    "frameCounter": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 4294967295
+    },
+    "buildTag": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 4294967295
+    },
+    "payloadLength": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 72
+    },
+    "payload": {},
+    "sequenceGap": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "streamIncomplete": {
+      "type": "boolean"
+    },
+    "romSHA256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "wireHex": {
+      "type": "string",
+      "maxLength": 268,
+      "pattern": "^[0-9a-f]+$"
+    }
+  },
+  "required": [
+    "transportVersion",
+    "schemaVersion",
+    "recordClass",
+    "eventType",
+    "sequence",
+    "session",
+    "run",
+    "branch",
+    "battleID",
+    "turnID",
+    "phase",
+    "frameCounter",
+    "buildTag",
+    "payloadLength",
+    "payload"
+  ],
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://pokemon-influencer.invalid/schemas/bridge/event.schema.json",
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "eventType": {
+            "const": "BATTLE_STARTED"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "payload": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "battleFlags": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 4294967295
+              },
+              "battleKind": {
+                "type": "string",
+                "maxLength": 160
+              },
+              "trainerID": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 4294967295
+              },
+              "previouslyUndefeated": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "battleFlags",
+              "battleKind",
+              "trainerID",
+              "previouslyUndefeated"
+            ]
+          },
+          "recordClass": {
+            "const": "canonical_event"
+          },
+          "payloadLength": {
+            "const": 8
+          },
+          "phase": {
+            "const": 0
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "eventType": {
+            "const": "BATTLE_TURN_STARTED"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "payload": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {},
+            "required": []
+          },
+          "recordClass": {
+            "const": "canonical_event"
+          },
+          "payloadLength": {
+            "const": 0
+          },
+          "phase": {
+            "const": 1
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "eventType": {
+            "const": "BATTLE_OBSERVATION"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "payload": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "observerSide": {
+                "const": 1
+              },
+              "trainerID": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 4294967295
+              },
+              "ownActive": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "speciesID": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 4294967295
+                  },
+                  "hp": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 4294967295
+                  },
+                  "maxHP": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 4294967295
+                  },
+                  "statusMask": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 4294967295
+                  },
+                  "knownMoveIDs": {
+                    "type": "array",
+                    "maxItems": 4,
+                    "items": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 65535
+                    }
+                  },
+                  "movePP": {
+                    "type": "array",
+                    "maxItems": 4,
+                    "items": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 65535
+                    }
+                  }
+                },
+                "required": [
+                  "speciesID",
+                  "hp",
+                  "maxHP",
+                  "statusMask",
+                  "knownMoveIDs",
+                  "movePP"
+                ]
+              },
+              "opponentActive": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "revealedSpeciesID": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 4294967295
+                  },
+                  "publicHPBar": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 48
+                  },
+                  "publicHPBarMax": {
+                    "const": 48
+                  },
+                  "revealedMoveIDs": {
+                    "type": "array",
+                    "maxItems": 4,
+                    "items": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 65535
+                    }
+                  }
+                },
+                "required": [
+                  "revealedSpeciesID",
+                  "publicHPBar",
+                  "publicHPBarMax",
+                  "revealedMoveIDs"
+                ]
+              },
+              "legalActionsComplete": {
+                "const": false
+              }
+            },
+            "required": [
+              "observerSide",
+              "trainerID",
+              "ownActive",
+              "opponentActive",
+              "legalActionsComplete"
+            ]
+          },
+          "recordClass": {
+            "const": "observation"
+          },
+          "payloadLength": {
+            "const": 40
+          },
+          "phase": {
+            "const": 1
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "eventType": {
+            "const": "BATTLE_ACTION_RESOLVED"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "payload": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "actorSide": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 4294967295
+              },
+              "resolutionKind": {
+                "type": "string",
+                "maxLength": 160
+              },
+              "announcedMoveID": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 4294967295
+              },
+              "visibleActorSpeciesID": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 4294967295
+              }
+            },
+            "required": [
+              "actorSide",
+              "resolutionKind",
+              "announcedMoveID",
+              "visibleActorSpeciesID"
+            ]
+          },
+          "recordClass": {
+            "const": "canonical_event"
+          },
+          "payloadLength": {
+            "const": 6
+          },
+          "phase": {
+            "const": 2
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "eventType": {
+            "const": "TRAINER_DEFEATED"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "payload": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "trainerID": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 4294967295
+              },
+              "previouslyUndefeated": {
+                "type": "boolean"
+              },
+              "outcome": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 4294967295
+              }
+            },
+            "required": [
+              "trainerID",
+              "previouslyUndefeated",
+              "outcome"
+            ]
+          },
+          "recordClass": {
+            "const": "canonical_event"
+          },
+          "payloadLength": {
+            "const": 4
+          },
+          "phase": {
+            "const": 3
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "eventType": {
+            "const": "BATTLE_ENDED"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "payload": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "trainerID": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 4294967295
+              },
+              "previouslyUndefeated": {
+                "type": "boolean"
+              },
+              "outcome": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 4294967295
+              }
+            },
+            "required": [
+              "trainerID",
+              "previouslyUndefeated",
+              "outcome"
+            ]
+          },
+          "recordClass": {
+            "const": "canonical_event"
+          },
+          "payloadLength": {
+            "const": 4
+          },
+          "phase": {
+            "const": 3
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,217 @@
+{
+  "type": "object",
+  "properties": {
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "actor": {
+      "type": "string",
+      "minLength": 1
+    },
+    "stage": {
+      "type": "string",
+      "minLength": 1
+    },
+    "qualified": {
+      "type": "boolean"
+    },
+    "scenarioOnly": {
+      "type": "boolean"
+    },
+    "opportunityOrdinal": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "aggregateMoveChanges": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "acquisitionLimit": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 2
+    },
+    "partyLimit": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 6
+    },
+    "originalLineages": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "signatureLineages": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "requires": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "regions": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "tier": {
+            "enum": [
+              "native",
+              "nearby",
+              "accessible",
+              "exceptional"
+            ]
+          },
+          "requires": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true
+          },
+          "acquisitionPermission": {
+            "type": "string",
+            "minLength": 0
+          }
+        },
+        "required": [
+          "tier",
+          "requires",
+          "acquisitionPermission"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "allowedSpecies": {
+      "type": "array",
+      "items": {
+        "type": "integer",
+        "minimum": 1
+      },
+      "uniqueItems": true
+    },
+    "methods": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "acquisitionLevelCap": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 100
+    },
+    "captureItem": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "captureCostPerAttempt": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "balance": {
+      "type": "object",
+      "properties": {
+        "acquisitionProbability": {
+          "anyOf": [
+            {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "minimumOpportunitySpacing": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "campaignAcquisitionCap": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "acquisitionProbability",
+        "minimumOpportunitySpacing",
+        "campaignAcquisitionCap"
+      ],
+      "additionalProperties": false
+    },
+    "originWeights": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "native",
+        "nearby"
+      ],
+      "properties": {
+        "native": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "nearby": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    }
+  },
+  "required": [
+    "version",
+    "actor",
+    "stage",
+    "qualified",
+    "scenarioOnly",
+    "opportunityOrdinal",
+    "aggregateMoveChanges",
+    "acquisitionLimit",
+    "partyLimit",
+    "originalLineages",
+    "signatureLineages",
+    "requires",
+    "regions",
+    "allowedSpecies",
+    "methods",
+    "acquisitionLevelCap",
+    "captureItem",
+    "captureCostPerAttempt",
+    "balance",
+    "originWeights"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

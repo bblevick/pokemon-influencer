@@ -1,0 +1,19 @@
+# Separate from upstream Makefile: no ROM dependency scanning for setup checks.
+PYTHON ?= .venv/bin/python
+export DUMP
+.PHONY: doctor baseline test-host inspect-dump
+
+doctor:
+	$(PYTHON) tools/phase0.py doctor
+baseline:
+	$(PYTHON) tools/phase0.py baseline
+test-host:
+	$(PYTHON) tools/phase0.py test-host
+inspect-dump:
+	$(PYTHON) tools/phase0.py inspect-dump
+
+# Validates retained LIVE evidence; does not claim to launch a new playthrough.
+.PHONY: verify-emulator-evidence
+verify-emulator-evidence:
+	$(PYTHON) tools/verify_phase0_save.py
+	$(PYTHON) tools/verify_phase0_emulator.py

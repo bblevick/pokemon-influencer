@@ -1,0 +1,30 @@
+.....E........................
+======================================================================
+ERROR: test_http_502_retains_metadata_and_charge (tests.test_strategy01_provider.ProviderTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/blevicki/Documents/poke/pokefirered/strategy/provider.py", line 131, in structured
+    with urllib.request.urlopen(request,timeout=limits.request_seconds) as response:
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/mock.py", line 1093, in __call__
+    return self._mock_call(*args, **kwargs)
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/mock.py", line 1097, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/mock.py", line 1152, in _execute_mock_call
+    raise effect
+urllib.error.HTTPError: HTTP Error 502: upstream
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/blevicki/Documents/poke/pokefirered/tests/test_strategy01_provider.py", line 79, in test_http_502_retains_metadata_and_charge
+    with patch('urllib.request.urlopen',side_effect=urllib.error.HTTPError('https://fixture',502,'upstream',{},None)),self.assertRaisesRegex(ProviderError,'http_502'):self.provider.structured({},SCHEMA,Limits())
+  File "/Users/blevicki/Documents/poke/pokefirered/strategy/provider.py", line 136, in structured
+    error_data=error.read(limits.response_bytes+1)
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/tempfile.py", line 468, in __getattr__
+    file = self.__dict__['file']
+KeyError: 'file'
+
+----------------------------------------------------------------------
+Ran 30 tests in 26.463s
+
+FAILED (errors=1)

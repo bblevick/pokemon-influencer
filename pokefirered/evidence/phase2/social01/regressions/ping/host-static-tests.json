@@ -1,0 +1,74 @@
+{
+  "scope": "host protocol, actual C logic on native platform, and compiled ARM allocation/layout; not emulator execution",
+  "results": [
+    {
+      "command": [
+        "/Users/blevicki/Documents/poke/pokefirered/.venv/bin/python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-v"
+      ],
+      "log": "evidence/phase2/social01/regressions/ping/host-tests.log",
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "clang",
+        "-std=c99",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=address,undefined",
+        "-D__attribute__(x)=",
+        "-DPI_BRIDGE=1",
+        "-DPI_BRIDGE_TEST=1",
+        "-I",
+        "/Users/blevicki/Documents/poke/pokefirered/.local/phase1-native",
+        "tests/pi_mailbox_test.c",
+        "src/pi_bridge.c",
+        "-o",
+        "/Users/blevicki/Documents/poke/pokefirered/.local/pi_mailbox_test"
+      ],
+      "log": "evidence/phase2/social01/regressions/ping/native-compile.log",
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/Users/blevicki/Documents/poke/pokefirered/.local/pi_mailbox_test"
+      ],
+      "log": "evidence/phase2/social01/regressions/ping/rom-state-machine-host.log",
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/Users/blevicki/Documents/poke/pokefirered/.venv/bin/python",
+        "tools/phase1_build.py",
+        "--verify-existing",
+        "--output-prefix",
+        "phase1-ui-ping",
+        "--evidence-dir",
+        "evidence/phase2/social01/regressions/ping"
+      ],
+      "log": "evidence/phase2/social01/regressions/ping/static-enabled.log",
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/Users/blevicki/Documents/poke/pokefirered/.venv/bin/python",
+        "tools/phase1_build.py",
+        "--disabled",
+        "--verify-existing",
+        "--output-prefix",
+        "phase1-ui-ping",
+        "--evidence-dir",
+        "evidence/phase2/social01/regressions/ping"
+      ],
+      "log": "evidence/phase2/social01/regressions/ping/static-disabled.log",
+      "exit_code": 0
+    }
+  ],
+  "passed": true
+}

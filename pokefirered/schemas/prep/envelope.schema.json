@@ -1,0 +1,1275 @@
+{
+  "type": "object",
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "generatorVersion": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "envelopeID": {
+      "type": "string"
+    },
+    "envelopeSHA256": {
+      "type": "string"
+    },
+    "scope": {
+      "type": "object",
+      "properties": {
+        "campaign": {
+          "type": "string"
+        },
+        "branch": {
+          "type": "string"
+        },
+        "actor": {
+          "type": "string"
+        },
+        "restore_epoch": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "cutoff": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "prepCutoff": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "opportunityID": {
+          "type": "string"
+        },
+        "activation": {
+          "type": "string"
+        },
+        "memoryCutoff": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "socialCutoff": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "puppeteerCutoff": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "campaign",
+        "branch",
+        "actor",
+        "restore_epoch",
+        "cutoff",
+        "prepCutoff",
+        "opportunityID",
+        "activation",
+        "memoryCutoff",
+        "socialCutoff",
+        "puppeteerCutoff"
+      ],
+      "additionalProperties": false
+    },
+    "identity": {
+      "type": "object",
+      "properties": {
+        "actor": {
+          "type": "string"
+        },
+        "worldTrainerID": {
+          "type": "string"
+        },
+        "sourceVariant": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "kind": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "actor",
+        "worldTrainerID",
+        "sourceVariant",
+        "kind"
+      ],
+      "additionalProperties": false
+    },
+    "rules": {
+      "type": "object",
+      "properties": {
+        "contentSHA256": {
+          "type": "string"
+        },
+        "contentVersion": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "catalogSHA256": {
+          "type": "string"
+        },
+        "sourceCommit": {
+          "type": "string"
+        },
+        "romSHA256": {
+          "type": "string"
+        },
+        "adaptationRulesSHA256": {
+          "type": "string"
+        },
+        "generationSHA256": {
+          "type": "string"
+        },
+        "validatorSHA256": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "contentSHA256",
+        "contentVersion",
+        "catalogSHA256",
+        "sourceCommit",
+        "romSHA256",
+        "adaptationRulesSHA256",
+        "generationSHA256",
+        "validatorSHA256"
+      ],
+      "additionalProperties": false
+    },
+    "progression": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "namedStage",
+        "milestoneID",
+        "flags",
+        "earnedOpportunityAllowance",
+        "earnedOpportunityIDs",
+        "appliedOpportunityIDs"
+      ],
+      "properties": {
+        "namedStage": {
+          "enum": [
+            "before-boulder",
+            "after-boulder"
+          ]
+        },
+        "milestoneID": {
+          "const": "story.boulder-awarded"
+        },
+        "flags": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "FLAG_DEFEATED_BROCK",
+            "FLAG_BADGE01_GET"
+          ],
+          "properties": {
+            "FLAG_DEFEATED_BROCK": {
+              "type": "boolean"
+            },
+            "FLAG_BADGE01_GET": {
+              "type": "boolean"
+            }
+          }
+        },
+        "earnedOpportunityAllowance": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "earnedOpportunityIDs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 8
+        },
+        "appliedOpportunityIDs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 512
+        }
+      }
+    },
+    "levels": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "origin": {
+            "type": "string",
+            "minLength": 1
+          },
+          "originalLevel": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100
+          },
+          "target": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100
+          },
+          "stageCeiling": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100
+          },
+          "current": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100
+          },
+          "maximum": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100
+          }
+        },
+        "required": [
+          "origin",
+          "originalLevel",
+          "target",
+          "stageCeiling",
+          "current",
+          "maximum"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "companions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "lineage": {
+            "type": "string"
+          },
+          "actor": {
+            "type": "string"
+          },
+          "origin": {
+            "type": "string"
+          },
+          "origin_kind": {
+            "enum": [
+              "baseline",
+              "wild"
+            ]
+          },
+          "origin_level": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100
+          },
+          "species": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "level": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100
+          },
+          "moves": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "maxItems": 4,
+            "minItems": 4
+          },
+          "history": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "enum": [
+                    "level",
+                    "evolution",
+                    "level_move"
+                  ]
+                },
+                "species": {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                "level": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 100
+                },
+                "value": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "slot": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 3
+                }
+              },
+              "required": [
+                "kind",
+                "species",
+                "level",
+                "value",
+                "slot"
+              ],
+              "additionalProperties": false
+            },
+            "maxItems": 64
+          },
+          "held_item": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "fixedIV": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "ivSource": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "active": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "lineage",
+          "actor",
+          "origin",
+          "origin_kind",
+          "origin_level",
+          "species",
+          "level",
+          "moves",
+          "history",
+          "held_item",
+          "fixedIV",
+          "ivSource",
+          "active"
+        ],
+        "additionalProperties": false
+      },
+      "maxItems": 6
+    },
+    "moveOptions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "lineage": {
+            "type": "string"
+          },
+          "retainedMoves": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "maxItems": 4
+          },
+          "futurePaths": {
+            "type": "array",
+            "items": {
+              "$schema": "https://json-schema.org/draft/2020-12/schema",
+              "additionalProperties": false,
+              "properties": {
+                "code": {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "fully_legal": {
+                  "const": false
+                },
+                "ids": {
+                  "type": "object"
+                },
+                "prerequisites": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "provenance": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "catalogSHA256": {
+                      "pattern": "^[0-9a-f]{64}$",
+                      "type": "string"
+                    },
+                    "catalogVersion": {
+                      "const": 1
+                    },
+                    "contextSHA256": {
+                      "pattern": "^[0-9a-f]{64}$",
+                      "type": "string"
+                    },
+                    "fixture": {
+                      "type": "boolean"
+                    },
+                    "policySHA256": {
+                      "pattern": "^[0-9a-f]{64}$",
+                      "type": "string"
+                    },
+                    "policyVersion": {
+                      "minimum": 1,
+                      "type": "integer"
+                    },
+                    "scope": {
+                      "additionalProperties": false,
+                      "properties": {
+                        "actor": {
+                          "pattern": "^trainer:fr:trainer:[0-9]{4}$",
+                          "type": "string"
+                        },
+                        "branch": {
+                          "minLength": 1,
+                          "type": "string"
+                        },
+                        "campaign": {
+                          "minLength": 1,
+                          "type": "string"
+                        },
+                        "cutoff": {
+                          "minimum": 0,
+                          "type": "integer"
+                        },
+                        "restore_epoch": {
+                          "minimum": 0,
+                          "type": "integer"
+                        }
+                      },
+                      "required": [
+                        "campaign",
+                        "branch",
+                        "actor",
+                        "restore_epoch",
+                        "cutoff"
+                      ],
+                      "type": "object"
+                    },
+                    "sourceFiles": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "validatorSHA256": {
+                      "pattern": "^[0-9a-f]{64}$",
+                      "type": "string"
+                    },
+                    "validatorVersion": {
+                      "const": 1
+                    }
+                  },
+                  "required": [
+                    "catalogSHA256",
+                    "policySHA256",
+                    "catalogVersion",
+                    "policyVersion",
+                    "scope",
+                    "contextSHA256",
+                    "fixture",
+                    "sourceFiles",
+                    "validatorVersion",
+                    "validatorSHA256"
+                  ],
+                  "type": "object"
+                },
+                "resources": {
+                  "type": "object"
+                },
+                "status": {
+                  "enum": [
+                    "allowed",
+                    "blocked",
+                    "unqualified"
+                  ]
+                }
+              },
+              "required": [
+                "status",
+                "code",
+                "ids",
+                "prerequisites",
+                "resources",
+                "provenance",
+                "fully_legal"
+              ],
+              "title": "ROSTER-01 element prerequisite result, not package approval",
+              "type": "object"
+            },
+            "maxItems": 256
+          },
+          "evolutionTargets": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "maxItems": 5
+          },
+          "evolutionProofRequired": {
+            "const": true
+          }
+        },
+        "required": [
+          "lineage",
+          "retainedMoves",
+          "futurePaths",
+          "evolutionTargets",
+          "evolutionProofRequired"
+        ],
+        "additionalProperties": false
+      },
+      "maxItems": 6
+    },
+    "budgets": {
+      "type": "object",
+      "properties": {
+        "aggregateMoveChanges": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "levelGainPerOpportunity": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "catchBudget": {
+          "const": 0
+        },
+        "activeAdditions": {
+          "const": 0
+        },
+        "reserveAdditions": {
+          "const": 0
+        },
+        "replacements": {
+          "const": 0
+        },
+        "restock": {
+          "const": false
+        },
+        "ivNatureRerolls": {
+          "const": false
+        },
+        "automaticEVTraining": {
+          "const": false
+        },
+        "accessibleMaps": {
+          "const": []
+        },
+        "exceptionalMaps": {
+          "const": []
+        },
+        "methods": {
+          "const": [
+            "land_mons"
+          ]
+        },
+        "teachingMethods": {
+          "const": [
+            "retained",
+            "level_up"
+          ]
+        },
+        "evolutionMethods": {
+          "const": [
+            "EVO_LEVEL"
+          ]
+        },
+        "unsupportedMethods": {
+          "const": [
+            "surf",
+            "fishing",
+            "rock_smash",
+            "tutor",
+            "relearner",
+            "trade",
+            "gift",
+            "fossil",
+            "special_evolution"
+          ]
+        },
+        "extraHealing": {
+          "const": 0
+        },
+        "tmhmStock": {
+          "const": 0
+        },
+        "evolutionConsumables": {
+          "const": 0
+        },
+        "exceptionalTokens": {
+          "const": 0
+        },
+        "partyOrderChanges": {
+          "const": true
+        }
+      },
+      "required": [
+        "aggregateMoveChanges",
+        "levelGainPerOpportunity",
+        "catchBudget",
+        "activeAdditions",
+        "reserveAdditions",
+        "replacements",
+        "restock",
+        "ivNatureRerolls",
+        "automaticEVTraining",
+        "accessibleMaps",
+        "exceptionalMaps",
+        "methods",
+        "teachingMethods",
+        "evolutionMethods",
+        "unsupportedMethods",
+        "extraHealing",
+        "tmhmStock",
+        "evolutionConsumables",
+        "exceptionalTokens",
+        "partyOrderChanges"
+      ],
+      "additionalProperties": false
+    },
+    "acquisition": {
+      "type": "object",
+      "properties": {
+        "allowance": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "profile": {
+          "type": "object",
+          "properties": {
+            "version": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "actor": {
+              "type": "string",
+              "minLength": 1
+            },
+            "stage": {
+              "type": "string",
+              "minLength": 1
+            },
+            "qualified": {
+              "type": "boolean"
+            },
+            "scenarioOnly": {
+              "type": "boolean"
+            },
+            "opportunityOrdinal": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "aggregateMoveChanges": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "acquisitionLimit": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 2
+            },
+            "partyLimit": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 6
+            },
+            "originalLineages": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "uniqueItems": true
+            },
+            "signatureLineages": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "uniqueItems": true
+            },
+            "requires": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "uniqueItems": true
+            },
+            "regions": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object",
+                "properties": {
+                  "tier": {
+                    "enum": [
+                      "native",
+                      "nearby",
+                      "accessible",
+                      "exceptional"
+                    ]
+                  },
+                  "requires": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "uniqueItems": true
+                  },
+                  "acquisitionPermission": {
+                    "type": "string",
+                    "minLength": 0
+                  }
+                },
+                "required": [
+                  "tier",
+                  "requires",
+                  "acquisitionPermission"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "allowedSpecies": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "uniqueItems": true
+            },
+            "methods": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "uniqueItems": true
+            },
+            "acquisitionLevelCap": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100
+            },
+            "captureItem": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "captureCostPerAttempt": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "balance": {
+              "type": "object",
+              "properties": {
+                "acquisitionProbability": {
+                  "anyOf": [
+                    {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 1
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "minimumOpportunitySpacing": {
+                  "anyOf": [
+                    {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "campaignAcquisitionCap": {
+                  "anyOf": [
+                    {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                }
+              },
+              "required": [
+                "acquisitionProbability",
+                "minimumOpportunitySpacing",
+                "campaignAcquisitionCap"
+              ],
+              "additionalProperties": false
+            },
+            "originWeights": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "native",
+                "nearby"
+              ],
+              "properties": {
+                "native": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1
+                },
+                "nearby": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1
+                }
+              }
+            }
+          },
+          "required": [
+            "version",
+            "actor",
+            "stage",
+            "qualified",
+            "scenarioOnly",
+            "opportunityOrdinal",
+            "aggregateMoveChanges",
+            "acquisitionLimit",
+            "partyLimit",
+            "originalLineages",
+            "signatureLineages",
+            "requires",
+            "regions",
+            "allowedSpecies",
+            "methods",
+            "acquisitionLevelCap",
+            "captureItem",
+            "captureCostPerAttempt",
+            "balance",
+            "originWeights"
+          ],
+          "additionalProperties": false
+        },
+        "originWeights": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "native",
+            "nearby"
+          ],
+          "properties": {
+            "native": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "nearby": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            }
+          }
+        },
+        "eligibleOrigins": {
+          "type": "object"
+        },
+        "originSamplerImplemented": {
+          "const": false
+        },
+        "laterCandidateGenerationGate": {
+          "type": "string"
+        },
+        "activeCapacity": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 6
+        },
+        "reserveCapacity": {
+          "const": 0
+        }
+      },
+      "required": [
+        "allowance",
+        "profile",
+        "originWeights",
+        "eligibleOrigins",
+        "originSamplerImplemented",
+        "laterCandidateGenerationGate",
+        "activeCapacity",
+        "reserveCapacity"
+      ],
+      "additionalProperties": false
+    },
+    "resources": {
+      "type": "object",
+      "properties": {
+        "available": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "prefixItems": [
+              {
+                "type": "integer",
+                "minimum": 1
+              },
+              {
+                "type": "integer",
+                "minimum": 0
+              }
+            ],
+            "items": false,
+            "minItems": 2
+          },
+          "maxItems": 64
+        },
+        "reserved": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          },
+          "maxItems": 8
+        },
+        "initialization": {
+          "type": "object",
+          "properties": {
+            "owner": {
+              "type": "string"
+            },
+            "stock": {
+              "type": "array",
+              "items": {
+                "type": "array",
+                "prefixItems": [
+                  {
+                    "type": "integer",
+                    "minimum": 1
+                  },
+                  {
+                    "type": "integer",
+                    "minimum": 0
+                  }
+                ],
+                "items": false,
+                "minItems": 2
+              },
+              "maxItems": 64
+            },
+            "categories": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "category": {
+                    "enum": [
+                      "battle_bag",
+                      "held",
+                      "teaching",
+                      "evolution",
+                      "capture",
+                      "tutor_relearner",
+                      "exceptional"
+                    ]
+                  },
+                  "quantity": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "initialization": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "consumption": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "replenishment": {
+                    "enum": [
+                      "none"
+                    ]
+                  }
+                },
+                "required": [
+                  "category",
+                  "quantity",
+                  "initialization",
+                  "consumption",
+                  "replenishment"
+                ],
+                "additionalProperties": false
+              },
+              "minItems": 7,
+              "maxItems": 7
+            },
+            "restock": {
+              "const": false
+            },
+            "contentSHA256": {
+              "type": "string"
+            },
+            "sourceTrainer": {
+              "type": "integer",
+              "minimum": 1
+            }
+          },
+          "required": [
+            "owner",
+            "stock",
+            "categories",
+            "restock",
+            "contentSHA256",
+            "sourceTrainer"
+          ],
+          "additionalProperties": false
+        },
+        "restock": {
+          "const": false
+        },
+        "owned": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "prefixItems": [
+              {
+                "type": "integer",
+                "minimum": 1
+              },
+              {
+                "type": "integer",
+                "minimum": 0
+              }
+            ],
+            "items": false,
+            "minItems": 2
+          },
+          "maxItems": 64
+        }
+      },
+      "required": [
+        "available",
+        "reserved",
+        "initialization",
+        "restock",
+        "owned"
+      ],
+      "additionalProperties": false
+    },
+    "identityPolicy": {
+      "type": "object",
+      "properties": {
+        "retainedLineages": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 6
+        },
+        "signatureLineages": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 6
+        },
+        "theme": {
+          "anyOf": [
+            {
+              "type": "object",
+              "properties": {
+                "primaryType": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "coreOrigins": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "minimumCore": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "maximumActive": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 6
+                },
+                "maximumSupport": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "supportSpecies": {
+                  "type": "array",
+                  "items": {
+                    "type": "integer",
+                    "minimum": 1
+                  }
+                },
+                "supportAcquisition": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "supportLevelCap": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 100
+                }
+              },
+              "required": [
+                "primaryType",
+                "coreOrigins",
+                "minimumCore",
+                "maximumActive",
+                "maximumSupport",
+                "supportSpecies",
+                "supportAcquisition",
+                "supportLevelCap"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "retainedLineages",
+        "signatureLineages",
+        "theme"
+      ],
+      "additionalProperties": false
+    },
+    "evidence": {
+      "type": "object",
+      "properties": {
+        "nativeReceiptIDs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 8
+        },
+        "opportunityReceipt": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "pairedCheckpoint": {
+          "type": "string"
+        },
+        "trustedStateSHA256": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "nativeReceiptIDs",
+        "opportunityReceipt",
+        "pairedCheckpoint",
+        "trustedStateSHA256"
+      ],
+      "additionalProperties": false
+    },
+    "generation": {
+      "type": "object",
+      "properties": {
+        "version": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "maximumCandidates": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "maximumIndividualPaths": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "maximumExaminedPackages": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "maximumEnvelopeBytes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "maximumCandidateBytes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "order": {
+          "type": "string"
+        },
+        "sampling": {
+          "type": "string"
+        },
+        "originSampler": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "version",
+        "maximumCandidates",
+        "maximumIndividualPaths",
+        "maximumExaminedPackages",
+        "maximumEnvelopeBytes",
+        "maximumCandidateBytes",
+        "order",
+        "sampling",
+        "originSampler"
+      ],
+      "additionalProperties": false
+    },
+    "knowledgeBoundary": {
+      "type": "string"
+    },
+    "expiry": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "generatorVersion",
+    "envelopeID",
+    "envelopeSHA256",
+    "scope",
+    "identity",
+    "rules",
+    "progression",
+    "levels",
+    "companions",
+    "moveOptions",
+    "budgets",
+    "acquisition",
+    "resources",
+    "identityPolicy",
+    "evidence",
+    "generation",
+    "knowledgeBoundary",
+    "expiry"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

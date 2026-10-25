@@ -1,0 +1,293 @@
+{
+  "type": "object",
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "envelopeID": {
+      "type": "string",
+      "pattern": "^envelope:[0-9a-f]{64}$"
+    },
+    "candidateID": {
+      "type": "string",
+      "pattern": "^candidate:[0-9a-f]{64}$"
+    },
+    "party": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "lineage": {
+            "type": "string"
+          },
+          "origin": {
+            "type": "string"
+          },
+          "species": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "level": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100
+          },
+          "moves": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "maxItems": 4,
+            "minItems": 4
+          },
+          "heldItem": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "fixedIV": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "ivSource": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "required": [
+          "lineage",
+          "origin",
+          "species",
+          "level",
+          "moves",
+          "heldItem",
+          "fixedIV",
+          "ivSource"
+        ],
+        "additionalProperties": false
+      },
+      "maxItems": 6,
+      "minItems": 1
+    },
+    "order": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "maxItems": 6
+    },
+    "paths": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "enum": [
+                "level",
+                "evolution",
+                "level_move"
+              ]
+            },
+            "species": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "level": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100
+            },
+            "value": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "slot": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 3
+            }
+          },
+          "required": [
+            "kind",
+            "species",
+            "level",
+            "value",
+            "slot"
+          ],
+          "additionalProperties": false
+        },
+        "maxItems": 64
+      }
+    },
+    "battleItems": {
+      "type": "array",
+      "items": {
+        "type": "integer",
+        "minimum": 0
+      },
+      "maxItems": 4,
+      "minItems": 4
+    },
+    "resourceCosts": {
+      "type": "array",
+      "items": {
+        "type": "array",
+        "prefixItems": [
+          {
+            "type": "integer",
+            "minimum": 1
+          },
+          {
+            "type": "integer",
+            "minimum": 1
+          }
+        ],
+        "items": false,
+        "minItems": 2
+      },
+      "maxItems": 64
+    },
+    "acquisitionCount": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "validation": {
+      "anyOf": [
+        {
+          "type": "object",
+          "maxProperties": 0
+        },
+        {
+          "type": "object",
+          "properties": {
+            "valid": {
+              "const": true
+            },
+            "scope": {
+              "const": "complete opening host package, not native installed team"
+            },
+            "electiveMoveChanges": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "contentSHA256": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "catalogSHA256": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "validatorSHA256": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "pathProof": {
+              "type": "string",
+              "maxLength": 256
+            },
+            "resourcesRevalidatedAtCommitRequired": {
+              "const": true
+            }
+          },
+          "required": [
+            "valid",
+            "scope",
+            "electiveMoveChanges",
+            "contentSHA256",
+            "catalogSHA256",
+            "validatorSHA256",
+            "pathProof",
+            "resourcesRevalidatedAtCommitRequired"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "descriptors": {
+      "anyOf": [
+        {
+          "type": "object",
+          "maxProperties": 0
+        },
+        {
+          "type": "object",
+          "properties": {
+            "retainsSignature": {
+              "const": true
+            },
+            "evolvedCompanions": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "electiveMoveChanges": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "acquisitionCount": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "teamSize": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 6
+            },
+            "typeComposition": {
+              "type": "array",
+              "maxItems": 6,
+              "items": {
+                "type": "array",
+                "maxItems": 2,
+                "items": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              }
+            },
+            "moveTypes": {
+              "type": "array",
+              "maxItems": 18,
+              "items": {
+                "type": "integer",
+                "minimum": 0
+              }
+            },
+            "nonDamagingMoveCount": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "required": [
+            "retainsSignature",
+            "evolvedCompanions",
+            "electiveMoveChanges",
+            "acquisitionCount",
+            "teamSize",
+            "typeComposition",
+            "moveTypes",
+            "nonDamagingMoveCount"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "envelopeID",
+    "candidateID",
+    "party",
+    "order",
+    "paths",
+    "battleItems",
+    "resourceCosts",
+    "acquisitionCount",
+    "validation",
+    "descriptors"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

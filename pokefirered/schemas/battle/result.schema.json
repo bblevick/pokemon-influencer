@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Provider-neutral bounded choice result (scope owned by request job)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "choiceID",
+    "probabilities",
+    "confidence",
+    "diagnostics"
+  ],
+  "properties": {
+    "choiceID": {
+      "type": "string",
+      "minLength": 1
+    },
+    "probabilities": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "confidence": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "minimum": 0,
+      "maximum": 1
+    },
+    "diagnostics": {
+      "type": "object"
+    }
+  }
+}

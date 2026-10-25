@@ -1,0 +1,31 @@
+tools/scaninc/scaninc -M build/firered/src/pi_preparation.d -I include -I tools/agbcc/include src/pi_preparation.c
+tools/scaninc/scaninc -M build/firered/src/pi_events.d -I include -I tools/agbcc/include src/pi_events.c
+tools/scaninc/scaninc -M build/firered/src/pi_bridge.d -I include -I tools/agbcc/include src/pi_bridge.c
+tools/scaninc/scaninc -M build/firered/src/pi_battle.d -I include -I tools/agbcc/include src/pi_battle.c
+tools/scaninc/scaninc -M build/firered/src/main.d -I include -I tools/agbcc/include src/main.c
+tools/scaninc/scaninc -M build/firered/src/battle_script_commands.d -I include -I tools/agbcc/include src/battle_script_commands.c
+tools/scaninc/scaninc -M build/firered/src/battle_main.d -I include -I tools/agbcc/include src/battle_main.c
+tools/scaninc/scaninc -M build/firered/src/battle_controller_opponent.d -I include -I tools/agbcc/include src/battle_controller_opponent.c
+tools/agbcc/bin/agbcc <flags> -o build/firered/src/battle_controller_opponent.o src/battle_controller_opponent.c
+tools/agbcc/bin/agbcc <flags> -o build/firered/src/battle_main.o src/battle_main.c
+tools/agbcc/bin/agbcc <flags> -o build/firered/src/battle_script_commands.o src/battle_script_commands.c
+tools/agbcc/bin/agbcc <flags> -o build/firered/src/main.o src/main.c
+tools/agbcc/bin/agbcc <flags> -o build/firered/src/pi_battle.o src/pi_battle.c
+tools/agbcc/bin/agbcc <flags> -o build/firered/src/pi_bridge.o src/pi_bridge.c
+tools/agbcc/bin/agbcc <flags> -o build/firered/src/pi_events.o src/pi_events.c
+tools/agbcc/bin/agbcc <flags> -o build/firered/src/pi_preparation.o src/pi_preparation.c
+tools/agbcc/bin/agbcc <flags> -o build/firered/src/pokedex.o src/pokedex.c
+agbcc: warnings being treated as errors
+src/pi_battle.c: In function `PiBattle_Item':
+src/pi_battle.c:66: warning: implicit declaration of function `GetBattlerSide'
+tools/agbcc/bin/agbcc <flags> -o build/firered/src/pokedex_area_markers.o src/pokedex_area_markers.c
+tools/agbcc/bin/agbcc <flags> -o build/firered/src/pokedex_screen.o src/pokedex_screen.c
+src/pi_battle.c: In function `Execute':
+src/pi_battle.c:116: warning: implicit declaration of function `GetBattlerPosition'
+tools/agbcc/bin/agbcc <flags> -o build/firered/src/pokemon.o src/pokemon.c
+tools/agbcc/bin/agbcc <flags> -o build/firered/src/pokemon_icon.o src/pokemon_icon.c
+make: *** [build/firered/src/pi_battle.o] Error 1
+make: *** Deleting file `build/firered/src/pi_battle.o'
+make: *** Waiting for unfinished jobs....
+
+EXIT_CODE=2

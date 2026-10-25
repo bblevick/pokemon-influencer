@@ -1,0 +1,492 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://pokemon-influencer.invalid/schemas/ai/battle_request.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "requestID": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 96,
+      "pattern": "^[A-Za-z0-9_.:-]+$"
+    },
+    "battleID": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 96,
+      "pattern": "^[A-Za-z0-9_.:-]+$"
+    },
+    "turn": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 65535
+    },
+    "trainerID": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 96,
+      "pattern": "^[A-Za-z0-9_.:-]+$"
+    },
+    "identity": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "saveLineageID": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 96,
+          "pattern": "^[A-Za-z0-9_.:-]+$"
+        },
+        "branchID": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 96,
+          "pattern": "^[A-Za-z0-9_.:-]+$"
+        },
+        "sessionID": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 96,
+          "pattern": "^[A-Za-z0-9_.:-]+$"
+        },
+        "generation": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 4294967295
+        },
+        "sequence": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 4294967295
+        },
+        "phase": {
+          "type": "string",
+          "enum": [
+            "action_selection",
+            "forced_replacement"
+          ]
+        },
+        "eventCursor": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 4294967295
+        },
+        "observationHash": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "romSHA256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "catalogVersion": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 96,
+          "pattern": "^[A-Za-z0-9_.:-]+$"
+        }
+      },
+      "required": [
+        "saveLineageID",
+        "branchID",
+        "sessionID",
+        "generation",
+        "sequence",
+        "phase",
+        "eventCursor",
+        "observationHash",
+        "romSHA256",
+        "catalogVersion"
+      ]
+    },
+    "personality": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "aggression": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "caution": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "loyalty": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      },
+      "required": [
+        "aggression",
+        "caution",
+        "loyalty"
+      ]
+    },
+    "strategicPosture": {
+      "$ref": "https://pokemon-influencer.invalid/schemas/ai/strategic_posture.schema.json"
+    },
+    "visibleState": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "mode": {
+          "type": "string",
+          "enum": [
+            "single_trainer"
+          ]
+        },
+        "ownActive": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "speciesID": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 65535
+            },
+            "hp": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 65535
+            },
+            "maxHP": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 65535
+            },
+            "knownMoveIDs": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 65535
+              },
+              "maxItems": 4,
+              "minItems": 0
+            },
+            "status": {
+              "type": "string",
+              "enum": [
+                "none",
+                "poison",
+                "toxic",
+                "burn",
+                "paralysis",
+                "sleep",
+                "freeze"
+              ]
+            }
+          },
+          "required": [
+            "speciesID",
+            "hp",
+            "maxHP",
+            "knownMoveIDs",
+            "status"
+          ]
+        },
+        "opponentActive": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "revealedSpeciesID": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 65535
+            },
+            "publicHPFraction": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "revealedMoveIDs": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 65535
+              },
+              "maxItems": 4,
+              "minItems": 0
+            },
+            "status": {
+              "type": "string",
+              "enum": [
+                "none",
+                "poison",
+                "toxic",
+                "burn",
+                "paralysis",
+                "sleep",
+                "freeze"
+              ]
+            }
+          },
+          "required": [
+            "revealedSpeciesID",
+            "publicHPFraction",
+            "revealedMoveIDs"
+          ]
+        },
+        "weather": {
+          "type": "string",
+          "enum": [
+            "none",
+            "sun",
+            "rain",
+            "sand",
+            "hail"
+          ]
+        }
+      },
+      "required": [
+        "mode",
+        "ownActive",
+        "opponentActive"
+      ]
+    },
+    "authorizedOpponentKnowledge": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "claimID": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 96,
+            "pattern": "^[A-Za-z0-9_.:-]+$"
+          },
+          "subjectID": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 96,
+            "pattern": "^[A-Za-z0-9_.:-]+$"
+          },
+          "predicate": {
+            "type": "string",
+            "enum": [
+              "revealed_species",
+              "revealed_move",
+              "revealed_item",
+              "observed_tendency"
+            ]
+          },
+          "valueID": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 96,
+            "pattern": "^[A-Za-z0-9_.:-]+$"
+          },
+          "evidenceID": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 96,
+            "pattern": "^[A-Za-z0-9_.:-]+$"
+          },
+          "knowledgeCursor": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 4294967295
+          }
+        },
+        "required": [
+          "claimID",
+          "subjectID",
+          "predicate",
+          "valueID",
+          "evidenceID",
+          "knowledgeCursor"
+        ]
+      },
+      "maxItems": 32,
+      "minItems": 0
+    },
+    "recentHistory": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "eventID": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 96,
+            "pattern": "^[A-Za-z0-9_.:-]+$"
+          },
+          "turn": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 65535
+          },
+          "actor": {
+            "type": "string",
+            "enum": [
+              "own",
+              "opponent"
+            ]
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "move_revealed",
+              "switch_revealed",
+              "item_revealed",
+              "status_revealed"
+            ]
+          },
+          "valueID": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 96,
+            "pattern": "^[A-Za-z0-9_.:-]+$"
+          }
+        },
+        "required": [
+          "eventID",
+          "turn",
+          "actor",
+          "kind",
+          "valueID"
+        ]
+      },
+      "maxItems": 32,
+      "minItems": 0
+    },
+    "legalActions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "legalActionID": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 96,
+            "pattern": "^[A-Za-z0-9_.:-]+$"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "move",
+              "switch",
+              "item",
+              "forced_replacement",
+              "struggle"
+            ]
+          },
+          "actorSlot": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 5
+          },
+          "targetSlot": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 5
+          },
+          "moveID": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 65535
+          },
+          "partySlot": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 5
+          },
+          "itemID": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 65535
+          }
+        },
+        "required": [
+          "legalActionID",
+          "kind",
+          "actorSlot"
+        ],
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "kind": {
+                  "const": "move"
+                }
+              }
+            },
+            "then": {
+              "required": [
+                "moveID"
+              ]
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "kind": {
+                  "const": "switch"
+                }
+              }
+            },
+            "then": {
+              "required": [
+                "partySlot"
+              ]
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "kind": {
+                  "const": "forced_replacement"
+                }
+              }
+            },
+            "then": {
+              "required": [
+                "partySlot"
+              ]
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "kind": {
+                  "const": "item"
+                }
+              }
+            },
+            "then": {
+              "required": [
+                "itemID"
+              ]
+            }
+          }
+        ]
+      },
+      "maxItems": 24,
+      "minItems": 1
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "requestID",
+    "battleID",
+    "turn",
+    "trainerID",
+    "identity",
+    "personality",
+    "strategicPosture",
+    "visibleState",
+    "authorizedOpponentKnowledge",
+    "recentHistory",
+    "legalActions"
+  ]
+}

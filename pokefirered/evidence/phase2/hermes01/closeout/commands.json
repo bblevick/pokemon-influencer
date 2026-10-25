@@ -1,0 +1,207 @@
+{
+  "scope": "new closeout only; all subprocess/native/model details retained; no new baseline discovery or unrelated playthrough",
+  "commands": [
+    {
+      "argv": [
+        "python3",
+        "scripts/install_hermes.py",
+        "--verify-only"
+      ],
+      "exitCode": 0,
+      "log": "install-verified.json"
+    },
+    {
+      "argv": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_hermes*.py",
+        "-v"
+      ],
+      "exitCode": 0,
+      "log": "offline-focused.log",
+      "tests": 27
+    },
+    {
+      "argv": [
+        "python3",
+        "tools/hermes01_launch.py",
+        "--save",
+        ".local/hermes01/S1.sav",
+        "--start"
+      ],
+      "exitCode": 0,
+      "log": "launch-S1-console.log"
+    },
+    {
+      "argv": [
+        "python3",
+        "tools/hermes01_host.py",
+        "--mode",
+        "enabled-test",
+        "--live",
+        "--experiment",
+        "closeout",
+        "--seconds",
+        "900"
+      ],
+      "exitCode": 0,
+      "log": "host-live-console.log",
+      "stopped": "task-owned SIGTERM after save"
+    },
+    {
+      "argv": [
+        "python3",
+        "tools/hermes01_scenario.py",
+        "battle",
+        "--label",
+        "closeout-rick",
+        "--steps",
+        "60"
+      ],
+      "exitCode": 0,
+      "log": "battle-console.log"
+    },
+    {
+      "argv": [
+        "python3",
+        "tools/hermes01_scenario.py",
+        "save",
+        "--label",
+        "closeout-s2",
+        "--menu-cursor",
+        "0"
+      ],
+      "exitCode": 0,
+      "log": "save-console.log"
+    },
+    {
+      "argv": [
+        "python3",
+        "tools/hermes01_launch.py",
+        "--save",
+        ".local/hermes01/S1.sav",
+        "--start"
+      ],
+      "exitCode": 0,
+      "log": "restore-S1-console.log"
+    },
+    {
+      "argv": [
+        "python3",
+        "tools/hermes01_launch.py",
+        "--save",
+        ".local/hermes01/closeout-S2.sav",
+        "--start"
+      ],
+      "exitCode": 0,
+      "log": "reload-S2-console.log"
+    },
+    {
+      "argv": [
+        "python3",
+        "tools/hermes01_host.py",
+        "--mode",
+        "offline",
+        "--seconds",
+        "600"
+      ],
+      "exitCode": 0,
+      "logs": [
+        "host-restore-S1-console.log",
+        "host-positive-console.log"
+      ],
+      "stopped": "task-owned SIGTERM"
+    },
+    {
+      "argv": [
+        "python3",
+        "scripts/inspect_hermes_memory.py",
+        "--database",
+        ".local/hermes01/world.sqlite3",
+        "--actor",
+        "trainer:fr:trainer:0102",
+        "--experiment",
+        "closeout",
+        "--live"
+      ],
+      "exitCode": 0,
+      "log": "recall-console.log"
+    },
+    {
+      "argv": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-v"
+      ],
+      "exitCode": 0,
+      "log": "host-tests-final.log",
+      "tests": 211
+    },
+    {
+      "argv": [
+        "python3",
+        "tools/verify_hermes01_closeout.py"
+      ],
+      "exitCode": 0,
+      "log": "verification-console.log",
+      "assertions": 39
+    },
+    {
+      "argv": [
+        "python3",
+        "tools/world01_verify_ui.py"
+      ],
+      "exitCode": 0,
+      "log": "rom-source-audit.log"
+    },
+    {
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exitCode": 0
+    }
+  ],
+  "cleanupCommands": [
+    [
+      "python3",
+      "scripts/clean_hermes_runtime.py",
+      "/Users/blevicki/Documents/poke/pokefirered/.runtime/hermes/jobs/03261a31-2e58-463c-a181-5076a0c07867"
+    ],
+    [
+      "python3",
+      "scripts/clean_hermes_runtime.py",
+      "/Users/blevicki/Documents/poke/pokefirered/.runtime/hermes/jobs/03261a31-2e58-463c-a181-5076a0c07867",
+      "--delete"
+    ],
+    [
+      "python3",
+      "scripts/clean_hermes_runtime.py",
+      "/Users/blevicki/Documents/poke/pokefirered/.runtime/hermes/jobs/37efd158-7b5e-4fdf-a67f-e3744135e4b4",
+      "--delete"
+    ]
+  ],
+  "actualNativeInputSegments": "input-commands.jsonl",
+  "nativeUI": "CUA Tools > Scripting > File > recent .local/hermes01-run.lua once per fresh OS process; quit owned emulator with super+q",
+  "modelRequestsResponsesTools": "native-job.json and fresh-recall.json",
+  "metadataGETs": [
+    "https://openrouter.ai/api/v1/models",
+    "https://openrouter.ai/api/v1/models/thinkingmachines/inkling:free/endpoints"
+  ],
+  "exploratoryAuditFailures": [
+    "Diagnosis reader initially treated embedded runtimeAudit as filename; corrected to read its object",
+    "Restore asserted before bridge handshake applied pending launch; rerun after actual managed Continue",
+    "Trace export queried nonexistent events.payload; corrected to actual get_canonical_events domain API"
+  ],
+  "limitations": "exploratory audit failures are not acceptance evidence; they changed no game facts or validation rules"
+}

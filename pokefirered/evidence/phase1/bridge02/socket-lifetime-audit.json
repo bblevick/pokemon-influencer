@@ -1,0 +1,11 @@
+{
+  "sourceCommit": "26b7884bc25a5933960f3cdcd98bac1ae14d42e2",
+  "path": "src/script/socket.c",
+  "sha256": "0c4312d901ce528d8dd9970c5c7403761ec747455b2b6908b706c7e55e808100",
+  "nativeClose": "void _mScriptSocketClose(struct mScriptSocket* ssock) {\n\tif (!SOCKET_FAILED(ssock->socket)) {\n\t\tSocketClose(ssock->socket);\n\t}\n}\n\n",
+  "destructorBinding": "mSCRIPT_DEFINE_STRUCT_DEINIT_NAMED(mScriptSocket, close)",
+  "observed": "intermittent unknown-error disconnects after repeated socket closes; explicit disconnect/reconnect still succeeded",
+  "inference": "native close/destructor can double-close a reused descriptor",
+  "workaround": "retain up to128 closed native socket objects in gameplay bridge and512 in independent input harness; stop acceptance at budget before allocation, fresh process required",
+  "emulatorBinaryModified": false
+}

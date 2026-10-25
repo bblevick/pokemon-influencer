@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://pokemon-influencer.invalid/schemas/ai/strategic_posture.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "postureID": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 96,
+      "pattern": "^[A-Za-z0-9_.:-]+$"
+    },
+    "trainerID": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 96,
+      "pattern": "^[A-Za-z0-9_.:-]+$"
+    },
+    "branchID": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 96,
+      "pattern": "^[A-Za-z0-9_.:-]+$"
+    },
+    "evidenceCutoff": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 4294967295
+    },
+    "objective": {
+      "type": "string",
+      "enum": [
+        "balanced",
+        "pressure",
+        "preserve_partners",
+        "status_control"
+      ]
+    },
+    "aggression": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "riskTolerance": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "switchPreference": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "itemPreference": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "evidenceIDs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 96,
+        "pattern": "^[A-Za-z0-9_.:-]+$"
+      },
+      "maxItems": 32,
+      "minItems": 0
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "postureID",
+    "trainerID",
+    "branchID",
+    "evidenceCutoff",
+    "objective",
+    "aggression",
+    "riskTolerance",
+    "switchPreference",
+    "itemPreference",
+    "evidenceIDs"
+  ]
+}

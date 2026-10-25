@@ -1,0 +1,178 @@
+{
+  "demonstratedCause": "three serial retrieval requests exhausted original three-request cap before submission; next request refused before cloud forwarding",
+  "nativeAudit": "evidence/phase2/hermes01/live-native.json",
+  "nativeRequests": [
+    {
+      "attempt": 6,
+      "responseID": "gen-1790982677-SCwUqN8qL4z0CoUFdvPA",
+      "finishReason": [
+        "tool_calls"
+      ],
+      "tools": [
+        "get_battle_evidence"
+      ],
+      "usage": {
+        "prompt_tokens": 903,
+        "completion_tokens": 22,
+        "total_tokens": 925,
+        "cost": 0,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0,
+          "upstream_inference_prompt_cost": 0,
+          "upstream_inference_completions_cost": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      }
+    },
+    {
+      "attempt": 7,
+      "responseID": "gen-1790982678-gdINerOiYUvPcMKLdSyJ",
+      "finishReason": [
+        "tool_calls"
+      ],
+      "tools": [
+        "recall_puppeteer_memory"
+      ],
+      "usage": {
+        "prompt_tokens": 1910,
+        "completion_tokens": 24,
+        "total_tokens": 1934,
+        "cost": 0,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 896,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0,
+          "upstream_inference_prompt_cost": 0,
+          "upstream_inference_completions_cost": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      }
+    },
+    {
+      "attempt": 8,
+      "responseID": "gen-1790982679-4h8k9O5pnZ3RkXSoEQeG",
+      "finishReason": [
+        "tool_calls"
+      ],
+      "tools": [
+        "get_actor_context"
+      ],
+      "usage": {
+        "prompt_tokens": 1967,
+        "completion_tokens": 18,
+        "total_tokens": 1985,
+        "cost": 0,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 1792,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0,
+          "upstream_inference_prompt_cost": 0,
+          "upstream_inference_completions_cost": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      }
+    }
+  ],
+  "nativeToolOutputs": [
+    {
+      "name": "get_battle_evidence",
+      "fields": [
+        "schemaVersion",
+        "actorID",
+        "battleID",
+        "obligationID",
+        "evidence",
+        "disclosureAllowlist",
+        "minimumPublicClaim"
+      ]
+    },
+    {
+      "name": "recall_puppeteer_memory",
+      "fields": [
+        "schemaVersion",
+        "scope",
+        "episodes",
+        "truncated"
+      ]
+    },
+    {
+      "name": "get_actor_context",
+      "fields": [
+        "schemaVersion",
+        "observedChanges",
+        "trainer",
+        "persona",
+        "cutoffs",
+        "directObservations",
+        "reportedClaims",
+        "retainedEpisodes",
+        "observedSpeciesIDs",
+        "unknowns",
+        "strategicInterpretation",
+        "truncated"
+      ]
+    }
+  ],
+  "nativeFailures": [
+    "WorldError: per-job model request budget"
+  ],
+  "shadowAudit": "evidence/phase2/hermes01/live-shadow-attributed.json",
+  "shadowSequence": [
+    [
+      "get_battle_evidence",
+      "get_actor_context",
+      "recall_puppeteer_memory"
+    ],
+    [
+      "submit_recap_and_memory_result"
+    ],
+    []
+  ],
+  "notDemonstrated": [
+    "truncation",
+    "unsupported parameter/tool protocol",
+    "submitted schema rejection (none submitted)",
+    "timeout/deadline",
+    "branch invalidation",
+    "fallback racing accepted submission"
+  ],
+  "bundledRetrievalMeaning": "v2 registered get_battle_evidence returns actor battle evidence + actorContext + priorMemory through existing scoped services; actual model then selects references and submits; renderer stays deterministic",
+  "remainingProof": "new native battle commits live Hermes submission; fresh worker retrieves newly retained episode after cleanup and managed save reload",
+  "renewal": {
+    "previousAttempts": 10,
+    "additionalCap": 10,
+    "perJobCap": 4,
+    "toolCap": 6,
+    "role": "puppeteer",
+    "zeroPaid": true
+  }
+}
